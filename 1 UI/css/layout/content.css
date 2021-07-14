@@ -1,5 +1,41 @@
 .content {
     position: absolute;
-    top: 49px;
-    left: 226px;
+    top: 49px; /* 49+16*/
+    left: 226px; /* 226+16*/
+    width: calc(100vw - 226px);
+    height: calc(100vh - 49px);
+    background-color: #ffffff;
+}
+/*Page title*/
+.content .header-content {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+}
+.content .header-content .title {
+    font-size: 20px;
+    font-weight: bold;
+}
+.content .header-content .content-feature {
+    position: absolute;
+    right: 16px;
+}
+/*filter bar*/
+.content .filter-bar{
+
+}
+/* Grid */
+.content .grid {
+    
+}
+/* Paging */
+.content .paging-bar {
+
+}
+
+.fixed {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background-color: black;
 }

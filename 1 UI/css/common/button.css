@@ -1,0 +1,17 @@
+.m-btn {
+    display: flex;
+    align-items: center;
+    background-color: #019160;
+    border-radius: 4px;
+    height: 40px;
+    font-size: 13px;
+    border-color: #ffffff;
+   font-family: MISAGoogleSans-Regular;
+   padding-left: 16px;
+   padding-right: 16px;
+   outline: none;
+   border: none;
+}
+.m-btn .btn-text {
+    margin: 8xp;
+}

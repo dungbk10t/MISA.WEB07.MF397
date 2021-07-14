@@ -6,7 +6,7 @@ body {
     margin: 0px;
 }
 @font-face {
-    font-family: MISAGoogleSans;
+    font-family: MISAGoogleSans-Regular;
     src: url("../content/font/GoogleSans-Regular.otf");
 }
 @font-face {
