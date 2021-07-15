@@ -3,7 +3,6 @@
     $(".dialog-modal").hide();
 })
 
-
 $(".content .content-body .grid table tbody tr").click(function () {
     $(".employee-profile-dialog").show();
     $(".dialog-modal").show();
