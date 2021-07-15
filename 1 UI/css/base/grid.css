@@ -1,0 +1,72 @@
+﻿.content .content-body .grid {
+    border-bottom: 5px solid #bbbbbb;
+}
+
+    .content .content-body .grid table.tb-head {
+        width: 100%;
+        height: 50px;
+        table-layout: fixed;
+        float:left;
+    }
+
+    .content .content-body .grid table.tb-body {
+        width: 100%;
+        height: calc(100% - 80px);
+        table-layout:auto;
+        float:left;
+    }
+
+        .content .content-body .grid table.tb-head thead {
+            width: 100%;
+            height: 50px;
+            background-color: #ffffff;
+            border-bottom: solid 1px #E4E4E4;
+            display: table;
+        }
+
+        .content .content-body .grid table.tb-body tbody {
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow-y: scroll;
+        }
+
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: lightgray;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 3px;
+}
+
+.content .content-body .grid table.tb-body tbody tr {
+    border-bottom: 1px solid #E4E4E4;
+    display: table;
+    table-layout: fixed;
+    height: 48px;
+    width:100%;
+}
+
+
+    .content .content-body .grid table.tb-body tbody tr:nth-child(2n+1) {
+        background-color: #FFF3EB
+    }
+
+.content .content-body .grid table tbody.tb-body tr:hover {
+    background-color: #bbbbbb;
+}
+
+.content .content-body .grid table.tb-body tr td {
+    padding: 5px 10px;
+    width: 5%;
+    text-align:left;
+}
+
+.content .content-body .grid table.tb-head tr th {
+    padding: 5px 10px;
+    width: 5%;
+    text-align: left;
+}

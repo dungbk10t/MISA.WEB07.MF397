@@ -1,68 +1,84 @@
-.button {
-    height: 40px;
-    border-radius: 4px;
-    color: #ffffff;
-    padding-left: 24px;
-    padding-right: 24px;
-    text-align: center;
-    background-color: #019160;
-    line-height: 40px;
-    width: 200px;
-    box-sizing: unset;
-    display: inline-block;
-    min-width: 75px;
+button {
     cursor: pointer;
-}
-.button:hover{
-    background-color: #2FBE8E;
-}
-.button.button:active{
-    background-color: #01B075;
+    outline: none;
 }
 
-.m-btn {
-    display: flex;
-    align-items: center;
+.button {
+    height: 40px;
+    min-width: 100px;
     background-color: #019160;
     border-radius: 4px;
-    height: 40px;
     font-size: 13px;
     color: #ffffff;
-    font-family: MISAGoogleSans-Regular;
-    padding-left: 16px;
-    padding-right: 16px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-.m-btn:hover {
-    background-color: #2FBE8B;
-}
-.m-btn .m-btn-icon {
-    background-position: center;
-}
-.m-btn .btn-text {
-    margin-left: 8px;
-}
-.m-second-button {
-    border: 1px solid #bbbbbb;
-    background-color: #ffffff;
-    border-radius: 4px;
-    height: 40px;
-    color: #000000;
+    display: flex;
     padding-left: 24px;
     padding-right: 24px;
-    text-align: center;
-    outline: none;
-    cursor: pointer;
+    align-items: center;
+    border: 1px solid #019160;
+    outline:none;
 }
-.m-second-button:hover {
-    background-color: #E9EBEE;
-    
+
+    .button:hover {
+        background-color: #2FBE8E;
+    }
+
+    .button.button-icon {
+        padding-left: 16px;
+        padding-right: 16px;
+        min-width:50px;
+    }
+
+    .button.button-icon i {
+        margin-right: 8px;
+    }
+
+    .button.button-refresh {
+        border: 1px solid #bbbbbb;
+        background-color: #ffffff;
+        width:45px;
+        min-width:45px;
+        color:#000000;
+        padding:0;
+    }
+
+        .button.button-refresh:hover {
+            background-color: #E9EBEE;
+            border:none;
+        }
+
+        .button.button-refresh i {
+            margin: auto 16px;
+        }
+
+.content .content-body .content-paging .paging-center button{
+    height:40px;
 }
-.m-btn-refresh {
-    background-image: url('../../content/icon/refresh.png');
-    background-repeat: no-repeat;
-    height: 40px;
-    background-position: center;
+
+.content .content-body .content-paging .paging-center button.circle{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid #bbbbbb;
 }
+
+    .content .content-body .content-paging .paging-center button.circle:hover{
+        background-color:#ffffff;
+    }
+
+    .content .content-body .content-paging .paging-center button.circle:nth-child(3n+1) {
+        background-color: #019160;
+    }
+
+        .content .content-body .content-paging .paging-center button.circle:nth-child(3n+1):hover {
+            background-color: #2FBE8E;
+        }
+
+        .content .content-body .content-paging .paging-center button.btn-inline {
+            border: none;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+    .content .content-body .content-paging .paging-center button.btn-inline i{
+        font-size:20px;
+    }
