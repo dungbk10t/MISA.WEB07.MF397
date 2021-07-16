@@ -183,9 +183,12 @@
 
             .content .content-body .content-toolbar .toolbar-left {
                 height: 100%;
-                width: 400px;
+                width: 850px;
+                display: flex;
             }
-
+                .content .content-body .content-toolbar .toolbar-left .combobox {
+                    margin-left: 16px;
+                }
             .content .content-body .content-toolbar .toolbar-right {
                 height: 100%;
                 width: 250px;
@@ -210,15 +213,12 @@
             float: left;
             position: relative;
         }
-
-
             .content .content-body .content-paging .paging-left {
                 height: 100%;
                 width: 300px;
                 position: absolute;
                 left: 0;
             }
-
                 .content .content-body .content-paging .paging-left > p {
                     line-height: 56px;
                 }

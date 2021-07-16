@@ -3,6 +3,8 @@
 @import url('base/input.css');
 @import url('base/grid.css');
 @import url('base/dialog.css');
+@import url('base/combobox.css');
+@import url('base/select.css');
 
 @font-face {
     font-family: 'GoogleSans-Bold';

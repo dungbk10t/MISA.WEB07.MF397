@@ -50,7 +50,6 @@
             background-color: #ffffff;
         }
 
-
         .employee-profile-dialog .dialog-header button i {
             font-size: 21px;
         }
@@ -60,7 +59,6 @@
         height: calc(100% - 135px);
         float: left;
     }
-
         .employee-profile-dialog .dialog-content .dialog-content-left {
             width: 200px;
             height: 100%;
@@ -125,7 +123,6 @@
                     bottom: 0;
                 }
 
-
             .employee-profile-dialog .dialog-content .dialog-content-right .my-row {
                 width: calc(100% - 24px);
                 height: 57px;
@@ -151,20 +148,13 @@
                 .employee-profile-dialog .dialog-content .dialog-content-right .small-info input {
                     width: 290px;
                 }
+                .employee-profile-dialog .dialog-content .dialog-content-right .small-info .combobox {
+                    width: 290px;
+                }
+                .employee-profile-dialog .dialog-content .dialog-content-right .small-info select {
+                    width: 290px;
+                }
 
-                    .employee-profile-dialog .dialog-content .dialog-content-right .small-info input.calender {
-                        background-image: url('../../content/img/calender.jpg');
-                        background-repeat: no-repeat;
-                        background-size: 16px;
-                        background-position: 246px center;
-                    }
-
-                    .employee-profile-dialog .dialog-content .dialog-content-right .small-info input.down1 {
-                        background-image: url('../../content/img/down1.jpg');
-                        background-repeat: no-repeat;
-                        background-size: 16px;
-                        background-position: 264px center;
-                    }
 
     .employee-profile-dialog .dialog-footer {
         height: 60px;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/base/input.css" rel="stylesheet" />
+    <link href="content/font/fontawesome-5.15.1/css/all.css" rel="stylesheet" />
+    <link href="css/base/combobox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="lib/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../css/base/combobox.css">
+</head>
+<body>
+    <div class="combobox">
+        <input type="text" />
+        <button><i class="fas fa-chevron-down"></i></button>
+        <div class="combobox-data">
+            <div class="combobox-item">
+                <i class="fas fa-check"></i>
+                <p>Giám đốc</p>
+            </div>
+            <div class="combobox-item">
+                <i class="fas fa-check"></i>
+                <p>Giám đốc</p>
+            </div>
+            <div class="combobox-item">
+                <i class="fas fa-check"></i>
+                <p>Giám đốc</p>
+            </div>
+            <div class="combobox-item">
+                <i class="fas fa-check"></i>
+                <p>Giám đốc</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(".combobox .combobox-data").hide();
+        $(".combobox button").click(function () {
+            $(".combobox .combobox-data").show();
+        })
+        $(".combobox .combobox-item").click(function () {
+            $(".combobox .combobox-data").hide();
+        })
+    </script>
+</body>
+</html> 

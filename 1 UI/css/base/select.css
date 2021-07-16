@@ -1,4 +1,4 @@
-input {
+select {
     width: 325px;
     height: 40px;
     padding: 10px 16px;
@@ -7,7 +7,8 @@ input {
     border: solid 1px #bbbbbb;
     box-sizing: border-box;
 }
-select.chondi {
+
+option {
     width: 325px;
     height: 40px;
     padding: 10px 16px;
@@ -16,10 +17,3 @@ select.chondi {
     border: solid 1px #bbbbbb;
     box-sizing: border-box;
 }
-    input.input-icon {
-        background-image: url('../../content/icon/search.png');
-        background-repeat: no-repeat;
-        background-position: 16px center;
-        background-size: 16px;
-        padding-left: 40px;
-    }
