@@ -77,12 +77,24 @@
                 border-radius: 50%;
                 border: 1px solid #BDBEC0;
                 margin: 10px auto;
+                margin-bottom: 0px;
                 display: block;
+            }
+            .employee-profile-dialog .dialog-content .dialog-content-left .text-avatar {
+                width: 167px;
+                height: 50px;
+                margin: 10px auto;
+                margin-top: 0px;
+                text-align: center;
+                color: #454545;
+                font-family: 'GoogleSans-Regular';
+                font-size: 13px;
             }
 
             .employee-profile-dialog .dialog-content .dialog-content-left p {
                 display: block;
                 margin: 0 auto;
+                
             }
 
         .employee-profile-dialog .dialog-content .dialog-content-right {
@@ -122,6 +134,7 @@
                     position: absolute;
                     left: 0;
                     bottom: 0;
+                    border-radius: 4px;
                 }
 
             .employee-profile-dialog .dialog-content .dialog-content-right .my-row {
@@ -148,6 +161,9 @@
 
                 .employee-profile-dialog .dialog-content .dialog-content-right .small-info input {
                     width: 290px;
+                }
+                .employee-profile-dialog .dialog-content .dialog-content-right .small-info .right-align {
+                    text-align: right;
                 }
 
                 .employee-profile-dialog .dialog-content .dialog-content-right .small-info .dropdown {

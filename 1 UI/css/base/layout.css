@@ -113,12 +113,19 @@
                 line-height: 48px;
                 margin-left: 24px;
             }
-
+            /* .content .content-header .header-left select {
+                line-height: 48px;
+                margin-left: 24px;
+            }
+            .content .content-header .header-left option {
+                line-height: 48px;
+                margin-left: 24px;
+            } */
             .content .content-header .header-left i {
                 margin-left: 10px;
                 line-height: 48px;
             }
-
+        
         .content .content-header .header-right {
             height: 100%;
             width: 300px;
@@ -204,16 +211,21 @@
             width: 100%;
             height: calc(100% - 156px);
             float: left;
+            text-overflow: ellipsis; 
         }
 
             .content .content-body .grid .tb-head .price {
                 text-align: right;
             }
-
             .content .content-body .grid .tb-body .price {
                 text-align: right;
             }
-
+            .content .content-body .grid .tb-body td {
+                text-overflow: ellipsis; 
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            
         .content .content-body .content-paging {
             width: 100%;
             height: 56px;
