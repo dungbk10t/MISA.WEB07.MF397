@@ -6,30 +6,30 @@
         width: 100%;
         height: 50px;
         table-layout: fixed;
-        float:left;
+        float: left;
     }
 
     .content .content-body .grid table.tb-body {
         width: 100%;
         height: calc(100% - 80px);
-        table-layout:auto;
-        float:left;
+        table-layout: auto;
+        float: left;
     }
 
-        .content .content-body .grid table.tb-head thead {
-            width: 100%;
-            height: 50px;
-            background-color: #ffffff;
-            border-bottom: solid 1px #E4E4E4;
-            display: table;
-        }
+    .content .content-body .grid table.tb-head thead {
+        width: 100%;
+        height: 50px;
+        background-color: #ffffff;
+        border-bottom: solid 1px #E4E4E4;
+        display: table;
+    }
 
-        .content .content-body .grid table.tb-body tbody {
-            width: 100%;
-            height: 100%;
-            display: block;
-            overflow-y: scroll;
-        }
+    .content .content-body .grid table.tb-body tbody {
+        width: 100%;
+        height: 100%;
+        display: block;
+        overflow-y: scroll;
+    }
 
 ::-webkit-scrollbar {
     width: 7px;
@@ -47,7 +47,7 @@
     display: table;
     table-layout: fixed;
     height: 48px;
-    width:100%;
+    width: 100%;
 }
 
 
@@ -62,7 +62,7 @@
 .content .content-body .grid table.tb-body tr td {
     padding: 5px 10px;
     width: 5%;
-    text-align:left;
+    text-align: left;
 }
 
 .content .content-body .grid table.tb-head tr th {

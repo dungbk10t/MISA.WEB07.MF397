@@ -153,6 +153,13 @@
                 .employee-profile-dialog .dialog-content .dialog-content-right .small-info .dropdown {
                     width: 290px;
                 }
+                    .employee-profile-dialog .dialog-content .dialog-content-right .small-info .dropdown p {
+                        font-family: 'GoogleSans-Regular';
+                        font-size: 13px;
+                        margin: 0;
+                        margin-left: 10px;
+                        line-height: 40px;
+                    }
 
                 .employee-profile-dialog .dialog-content .dialog-content-right .small-info select {
                     width: 290px;

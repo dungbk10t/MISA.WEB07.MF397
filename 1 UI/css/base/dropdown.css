@@ -17,7 +17,9 @@
 
     .dropdown p {
         margin: 0;
+        margin-left: 10px;
         line-height: 40px;
+        font-family: 'GoogleSans-Regular';
         font-size: 13px;
     }
 
@@ -70,6 +72,8 @@
         height: 210px;
         transition: 1s;
         background-color: white;
+        z-index: 99;
+        box-shadow: 1px 2px 4px 1px #383838;
     }
 
     .dropdown .dropdown-data .dropdown-item {
