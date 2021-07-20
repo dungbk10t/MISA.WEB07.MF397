@@ -68,55 +68,27 @@
             </div>
             <div class="content-toolbar">
                 <div class="toolbar-left">
-                    <input class="input-icon" type="text" placeholder="Tìm kiếm theo mã, tên hoặc số điện thoại" />
-                    <div class="dropdown">
-                        <button class="dropdown-main">
-                            <p>Tất cả chức vụ</p>
-                            <div class="icon"><i class="fas fa-chevron-down"></i></div>
-                        </button>
-                        <div class="dropdown-data">
-                            <div class="dropdown-item">
-                                <i class="fas fa-check"></i>
-                                <p>Giám đốc</p>
+                    <input class="input-icon" type="text" placeholder="Tìm kiếm theo mã, tên hoặc số điện thoại" />                   
+                        <label class="dropdown" for="dropdown-input">
+                            <div class="dropdown-header-wrapper"> 
+                                <span class="dropdown-value">
+                                </span>
+                                <i class="fas fa-chevron-down icon-down show"></i>
+                                <i class="fas fa-chevron-up icon-up"></i>
                             </div>
-                            <div class="dropdown-item item-selected">
-                                <i class="fas fa-check"></i>
-                                <p>Giám đốc</p>
+                            <ul class="dropdown-list">
+                            </ul>
+                        </label> 
+                        <label class="dropdown" for="dropdown-input">
+                            <div class="dropdown-header-wrapper"> 
+                                <span class="dropdown-value dropdown-value-2">
+                                </span>
+                                <i class="fas fa-chevron-down icon-down show"></i>
+                                <i class="fas fa-chevron-up icon-up"></i>
                             </div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-check"></i>
-                                <p>Giám đốc</p>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-check"></i>
-                                <p>Giám đốc</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="dropdown-main">
-                            <p>Tất cả chức vụ</p>
-                            <div class="icon"><i class="fas fa-chevron-down"></i></div>
-                        </button>
-                        <div class="dropdown-data">
-                            <div class="dropdown-item">
-                                <i class="fas fa-check"></i>
-                                <p>Giám đốc</p>
-                            </div>
-                            <div class="dropdown-item item-selected">
-                                <i class="fas fa-check"></i>
-                                <p>Giám đốc</p>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-check"></i>
-                                <p>Giám đốc</p>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="fas fa-check"></i>
-                                <p>Giám đốc</p>
-                            </div>
-                        </div>
-                    </div>
+                            <ul class="dropdown-list dropdown-list-2">
+                            </ul>
+                        </label> 
                 </div>
                 <div class="toolbar-right">
                     <button class="button button-refresh">
@@ -566,7 +538,7 @@
                         </div>
                         <div class="small-info">
                             <p>Họ và tên(<font color="red">*</font>)</p>
-                            <input type="text" value="Nguyễn Văn Mạnh" />
+                            <input type="text" value="Nguyễn Văn Mạnh" autofocus/>
                         </div>
                     </div>
                     <div class="my-row">
@@ -576,38 +548,19 @@
                         </div>
                         <div class="small-info">
                             <p>Giới tính</p>
-                            <div class="dropdown">
-                                <button class="dropdown-main">
-                                    <p>Tất cả chức vụ</p>
-                                    <div class="icon"><i class="fas fa-chevron-down"></i></div>
-                                </button>
-                                <div class="dropdown-data">
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item item-selected">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
+                        <!-- Combobox -->
+                            <div class="combobox combobox--sex">
+                                <input type="text" name="" class="combobox__input combobox__input--sex">
+                                <div class="combobox__input-cancel">
+                                    <i class="fas fa-times-circle"></i>
                                 </div>
-                            </div>
+                                <div class="combobox__dropdown combobox__dropdown--sex">
+                                    <i class="fas fa-chevron-down combobox__icon"></i>
+                                </div>
+                                <ul class="combobox__list combobox__list--sex">
+                                </ul>
+                            </div> 
+                        <!-- Combobox -->   
                         </div>
                     </div>
                     <div class="my-row">
@@ -645,73 +598,35 @@
                     <div class="my-row">
                         <div class="small-info">
                             <p>Vị trí</p>
-                            <div class="dropdown">
-                                <button class="dropdown-main">
-                                    <p>Tất cả chức vụ</p>
-                                    <div class="icon"><i class="fas fa-chevron-down"></i></div>
-                                </button>
-                                <div class="dropdown-data">
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item item-selected">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
+                            <!-- Combobox -->
+                            <div class="combobox combobox--position">
+                                <input type="text" name="" class="combobox__input combobox__input--position">
+                                <div class="combobox__input-cancel">
+                                    <i class="fas fa-times-circle"></i>
                                 </div>
-                            </div>
+                                <div class="combobox__dropdown combobox__dropdown--position">
+                                    <i class="fas fa-chevron-down combobox__icon"></i>
+                                </div>
+                                <ul class="combobox__list combobox__list--position">
+                                </ul>
+                            </div> 
+                            <!-- Combobox -->
                         </div>
                         <div class="small-info">
                             <p>Phòng ban</p>
-                            <div class="dropdown">
-                                <button class="dropdown-main">
-                                    <p>Tất cả chức vụ</p>
-                                    <div class="icon"><i class="fas fa-chevron-down"></i></div>
-                                </button>
-                                <div class="dropdown-data">
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item item-selected">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
+                            <!-- Combobox -->
+                            <div class="combobox combobox--department">
+                                <input type="text" name="" class="combobox__input combobox__input--department">
+                                <div class="combobox__input-cancel">
+                                    <i class="fas fa-times-circle"></i>
                                 </div>
-                            </div>
+                                <div class="combobox__dropdown combobox__dropdown--department">
+                                    <i class="fas fa-chevron-down combobox__icon"></i>
+                                </div>
+                                <ul class="combobox__list combobox__list--department">
+                                </ul>
+                            </div> 
+                            <!-- Combobox -->   
                         </div>
                     </div>
                     <div class="my-row">
@@ -721,7 +636,7 @@
                         </div>
                         <div class="small-info">
                             <p>Mức lương cơ bản</p>
-                            <input class="right-align" type="text" value="30.000.000" value="VND"/>
+                            <input class="right-align" type="text" value="30.000.000 VND" />
                         </div>
                     </div>
                     <div class="my-row">
@@ -731,38 +646,19 @@
                         </div>
                         <div class="small-info">
                             <p>Tình trạng công việc</p>
-                            <div class="dropdown">
-                                <button class="dropdown-main">
-                                    <p>Tất cả chức vụ</p>
-                                    <div class="icon"><i class="fas fa-chevron-down"></i></div>
-                                </button>
-                                <div class="dropdown-data">
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item item-selected">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <i class="fas fa-check"></i>
-                                        <p>Giám đốc</p>
-                                    </div>
+                             <!-- Combobox -->
+                             <div class="combobox combobox--jobstatus">
+                                <input type="text" name="" class="combobox__input combobox__input--jobstatus">
+                                <div class="combobox__input-cancel">
+                                    <i class="fas fa-times-circle"></i>
                                 </div>
-                            </div>
+                                <div class="combobox__dropdown combobox__dropdown--jobstatus">
+                                    <i class="fas fa-chevron-down combobox__icon"></i>
+                                </div>
+                                <ul class="combobox__list combobox__list--jobstatus">
+                                </ul>
+                            </div> 
+                            <!-- Combobox -->   
                         </div>
                     </div>
                 </div>
@@ -777,9 +673,11 @@
             </button>
         </div>
     </div>
-
+    <!-- Javascritp -->
     <script src="../lib/jquery-3.6.0.min.js"></script>
     <script src="../js/page/employee.js"></script>
-
+    <script src="../js/page/dropdown.js"></script>
+    <script src="../js/page/combobox.js"></script>
+     <!-- Javascritp -->
 </body>
 </html>

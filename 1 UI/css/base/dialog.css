@@ -96,11 +96,12 @@
                 margin: 0 auto;
                 
             }
-
+            
         .employee-profile-dialog .dialog-content .dialog-content-right {
             width: calc(100% - 200px);
             height: 100%;
             float: left;
+            overflow-y: scroll;
         }
 
             .employee-profile-dialog .dialog-content .dialog-content-right .thongtinchung {
