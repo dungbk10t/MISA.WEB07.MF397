@@ -36,7 +36,8 @@ var comboboxDataPosition = [
 
 var comboboxDataRestaurant = [
     'Nam',
-    'Nữ'
+    'Nữ',
+    'Không xác định'
 ];
 
 var comboboxDataDepartment = [

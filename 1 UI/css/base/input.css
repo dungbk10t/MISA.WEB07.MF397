@@ -27,3 +27,7 @@ input.input-icon {
     background-size: 16px;
     padding-left: 40px;
 }
+    input.input-icon.input-search::placeholder {
+        font-family: GoogleSans-Italic;
+    }
+

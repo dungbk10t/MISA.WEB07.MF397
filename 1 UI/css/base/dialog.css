@@ -39,7 +39,7 @@
             margin: 0;
         }
 
-        .employee-profile-dialog .dialog-header button.btn-exit {
+        .employee-profile-dialog .dialog-header button.btn-close {
             position: absolute;
             top: 15px;
             right: 15px;
@@ -203,3 +203,53 @@
             border: none;
             background-color: #E9EBEE;
         }
+
+
+/* ********************** BEGIN : DIALOG DELETE ********************** */
+.dialog-box-delete {
+    position: absolute;
+    width: 400px;
+    height: 190px;
+    top: calc(50% - 95px);
+    left: calc(50% - 200px);
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+.box-delete-header {
+    position: absolute;
+    height: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+.box-delete-header .title {
+    font-size: 15px;
+    color: #000000;
+    font-family: GoogleSan_Bold;
+    margin-top: 24px;
+    margin-left: 24px;
+}
+.box-delete-content{
+    position: absolute;
+    top: 50px;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    padding: 24px;
+}
+.box-delete-footer {
+    position: absolute;
+    height: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #E5E5E5;
+    border-radius: 4px;
+}
+/* ********************** END : DIALOG DELETE ********************** */
+
+
+/* ********************** BEGIN : DIALOG EDIT ********************** */
