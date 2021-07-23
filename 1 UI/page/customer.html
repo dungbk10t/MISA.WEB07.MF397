@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <div class="menu">
         <div class="menu-header">
             <div class="toggle"></div>
@@ -113,17 +112,17 @@
                 <table class="tb-head" border="0">
                     <thead>
                         <tr>
-                            <!-- <th >#</th> -->
-                            <th fieldName="EmployeeCode">Mã nhân viên</th>
-                            <th fieldName="FullName">Họ và tên</th>
-                            <th fieldName="DateOfBirth" formatType="ddmmyyyy">Ngày sinh</th>
-                            <th fieldName="GenderName" >Giới tính</th>
-                            <th fieldName="PhoneNumber">Điện thoại</th>
-                            <th fieldName="Email" class="email">Email</th>
-                            <th fieldName="PositionName">Chức vụ</th>
-                            <th fieldName="DepartmentName">Phòng ban</th>
-                            <th fieldName="Salary" formatType="money" class="price">Mức lương cơ bản</th>
-                            <th fieldName="WorkStatus">Tình trạng công việc</th>
+                            <!-- <th>#</th> -->
+                            <th>Mã nhân viên</th>
+                            <th>Họ và tên</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>Điện thoại</th>
+                            <th class="email">Email</th>
+                            <th>Chức vụ</th>
+                            <th>Phòng ban</th>
+                            <th class="price">Mức lương cơ bản</th>
+                            <th>Tình trạng công việc</th>
                         </tr>
                     </thead>
                 </table>
@@ -192,19 +191,19 @@
                             <!-- EMPLOYEE CODE -->
                             <div class="small-info">
                                 <p>Mã nhân viên (<font color="red">*</font>)</p>
-                                <input id='employee__code' type="text" class="autofocus" tabindex="1" value="" required/>
+                                <input id='employee__code' type="text" autofocus tabindex="1" />
                             </div>
                             <!-- FULLNAME -->
                             <div class="small-info">
                                 <p>Họ và tên(<font color="red">*</font>)</p>
-                                <input id='employee__fullname' type="text" tabindex="2" value="" required/>
+                                <input id='employee__fullname' type="text" tabindex="2" />
                             </div>
                         </div>
                         <div class="my-row">
                             <!-- DATE OF BIRTH -->
                             <div class="small-info">
                                 <p>Ngày sinh</p>
-                                <input id='employee__dob' type="date" tabindex="3" value=""/>
+                                <input id='employee__dob' type="date" tabindex="3" />
                             </div>
                             <!-- GENDER -->
                             <div class="small-info">
@@ -212,7 +211,7 @@
                                 <!-- Combobox -->
                                 <div class="combobox combobox--sex">
                                     <input id='employee__gender' type="text" name=""
-                                        class="combobox__input combobox__input--sex" tabindex="4" value="">
+                                        class="combobox__input combobox__input--sex" tabindex="3">
                                     <div class="combobox__input-cancel">
                                         <i class="fas fa-times-circle"></i>
                                     </div>
@@ -230,31 +229,31 @@
                             <!-- ID CARD NUMBER -->
                             <div class="small-info">
                                 <p>Số CMND/Căn cước(<font color="red">*</font>)</p>
-                                <input id='employee_idnumber' type="text" tabindex="5" value="" required/>
+                                <input id='employee_idnumber' type="text" tabindex="4" />
                             </div>
                             <!-- RELESE DATE -->
                             <div class="small-info">
                                 <p>Ngày cấp</p>
-                                <input id='employee__iddate' type="date" tabindex="6" value=""/>
+                                <input id='employee__iddate' type="date" tabindex="5" />
                             </div>
                         </div>
                         <div class="my-row">
                             <!-- RELESE PLACE -->
                             <div class="small-info">
                                 <p>Nơi cấp</p>
-                                <input id='employee__idplace' type="text" tabindex="7" value=""/>
+                                <input id='employee__idplace' type="text" tabindex="6" />
                             </div>
                         </div>
                         <div class="my-row">
                             <!-- EMAIL -->
                             <div class="small-info">
                                 <p>Email(<font color="red">*</font>)</p>
-                                <input id='employee__email' type="text" tabindex="8" value="" required/>
+                                <input id='employee__email' type="text" tabindex="7" />
                             </div>
                             <!-- PHONE -->
                             <div class="small-info">
                                 <p>Số điện thoại(<font color="red">*</font>)</p>
-                                <input id='employee__phone' type="text" tabindex="9" value=""/>
+                                <input id='employee__phone' type="text" tabindex="8" />
                             </div>
                         </div>
                     </div>
@@ -269,7 +268,7 @@
                                 <p>Vị trí</p>
                                 <!-- Combobox -->
                                 <div class="combobox combobox--position">
-                                    <input id='employee__position' type="text" name="" tabindex="11" value=""
+                                    <input id='employee__position' type="text" name="" tabindex="10"
                                         class="combobox__input combobox__input--position">
                                     <div class="combobox__input-cancel">
                                         <i class="fas fa-times-circle"></i>
@@ -287,7 +286,7 @@
                                 <p>Phòng ban</p>
                                 <!-- Combobox -->
                                 <div class="combobox combobox--department">
-                                    <input id='employee__department' type="text" name="" tabindex="12"
+                                    <input id='employee__department' type="text" name="" tabindex="11"
                                         class="combobox__input combobox__input--department">
                                     <div class="combobox__input-cancel">
                                         <i class="fas fa-times-circle"></i>
@@ -305,26 +304,26 @@
                             <!-- TAX CODE -->
                             <div class="small-info">
                                 <p>Mã số thuế cá nhân</p>
-                                <input id='employee__taxcode' type="text" tabindex="13" value=""/>
+                                <input id='employee__taxcode' type="text" tabindex="12" />
                             </div>
                             <!-- SALARY -->
                             <div class="small-info">
                                 <p>Mức lương cơ bản</p>
-                                <input id='employee__basesalary' class="right-align" type="text" tabindex="14" value=""/>
+                                <input id='employee__basesalary' class="right-align" type="text" tabindex="13" />
                             </div>
                         </div>
                         <div class="my-row">
                             <!-- JOIN DATE -->
                             <div class="small-info">
                                 <p>Ngày gia nhập công ty</p>
-                                <input id='employee__joindate' type="date" tabindex="15" value=""/>
+                                <input id='employee__joindate' type="date" tabindex="14" />
                             </div>
                             <!-- WORK STATUS -->
                             <div class="small-info">
                                 <p>Tình trạng công việc</p>
                                 <!-- Combobox -->
                                 <div class="combobox combobox--jobstatus">
-                                    <input id='employee__workstatus' type="text" name="" tabindex="16" value=""
+                                    <input id='employee__workstatus' type="text" name="" tabindex="15"
                                         class="combobox__input combobox__input--jobstatus">
                                     <div class="combobox__input-cancel">
                                         <i class="fas fa-times-circle"></i>
@@ -352,55 +351,13 @@
         </div>
     </div>
 
-    <!-- from xác nhận xóa -->
-    <!-- <div class="dialog-delete">
-        <div class="dialog-background"></div>
-        <div class="dialog-box-delete">
-            <div class="box-delete-header">
-                <span class="title">Xóa bản ghi</span>
-                <button class="close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-x">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg></button>
-            </div>
-            <div class="box-delete-content">
-                <span>Bạn có chắc muốn xóa thông tin của nhân viên</span>
-                <strong></strong>
-                <span>không?</span>
-            </div>
-            <div class="dialog-box-footer">
-                <button class="box-delete" id="delete2">Xóa</button>
-                <button id=btn-close class="box-can">Hủy</button>
-            </div>
-        </div>
-    </div> -->
-    <!-- from chỉnh sửa-xóa -->
-    <!-- <div class="dialog-edit-delete">
-        <div class="dialog-background"></div>
-        <div class="box-edit-delete">
-            <div class="box-delete-header">
-                <span class="title" style="line-height: 50px;">Nhân viên: </span>
-                <button class="close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-x">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg></button>
-            </div>
-            <div class="btn-edit-delete">
-                <button class="box-edit" id="btn-edit">chỉnh sửa</button>
-                <button class="box-delete" id="delete1">Xóa</button>
-            </div>
-        </div>
-    </div> -->
     <!-- Javascritp -->
     <script src="../lib/jquery-3.6.0.min.js"></script>
+    <script src="../js/page/employee.js"></script>
+    <script src="../js/page/customer.js"></script>
     <script src="../js/common/combobox.js"></script>
     <script src="../js/common/dropdown.js"></script>
     <script src="../js/common/handleData.js"></script>
-    <script src="../js/page/employee.js"></script>
     <!-- Javascritp -->
 </body>
 

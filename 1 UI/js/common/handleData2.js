@@ -1,3 +1,4 @@
+flagAdd = 1;
 /* 
 ----> TABLE CODE ID <----
 id='employee__code'
@@ -33,6 +34,7 @@ Salary
 WorkStatus
 JoinDate 
 */
+
 $(document).ready(function() {
     $('employee__dialog').hide();
     loadData();
@@ -47,13 +49,13 @@ var id = "";    // Trả về id khi lấy ra 1 element row  của employee tabl
 function setEvent() {
     var em =""; // // Biến lấy mã 1 employee
     // 1. Sự kiện : Click vào Button để thểm user data
-    $('.button-add-user').click(function(){
+    $('#btn-addUser').click(function(){
         $('#employee__dialog #employee__code').val('NV'+ max);
         $('#employee__dialog').show();
         $('#employee__code').focus();
     });
     // 2. Sự kiện : Click vào Button để đóng Dailog
-    $('.btn-close').click(function(){
+    $('#btn-close').click(function(){
         $('#employee__dialog').hide();
         $('.dialog-delete').hide();
         $('.dialog-edit-delete').hide();
@@ -77,11 +79,11 @@ function setEvent() {
             async: false,                   // Chạy đồng bộ (=false), chạy bất đồng bộ(=true)
             contentType: "application/json" // Kiểu nội dung dữ liệu được gửi lên server
         }).done(function (response) {
+            console.log(response);
             em = response;
         }).fail(function (response) {
             alert("Không thể lấy dữ liệu từ API !!");
         });
-        // var em = $(this).closest('.onRow').find('td:nth-child(1)').text();
         $('.dialog-edit-delete .title').append(`<span>${em.EmployeeCode}</span>`)
         $('.dialog-edit-delete').show();
     });
@@ -92,38 +94,39 @@ function setEvent() {
         $('.dialog-delete').show();
     });
     // 6. Sự kiện : Click vào button xác nhận xóa hẳn
-    $('#delete2').click(function(){
-        $('.dialog-edit-delete .title span').remove();
-        $('.dialog-delete strong span').remove();
-        $('.dialog-delete').hide();
-    });
+    // $('#delete2').click(function(){
+    //     $('.dialog-edit-delete .title span').remove();
+    //     $('.dialog-delete strong span').remove();
+    //     $('.dialog-delete').hide();
+    // });
     // 7. Sự kiện : Chỉnh sửa dữ liệu
     $('#btn-edit').click(function(){
         editEmployee();
         $('#employee__dialog').show();
     });
     // 8. Sự kiện : Đẩy dữ liệu lên API
-    $('#btn-save').click(function(){
-        var check = checkIsValidForm();
-        if(check){
-            onClickButtonSave();
-        }
-    });
+    // $('#btn-Save').click(onClickButtonSave){
+    //     var check = checkIsValidForm();
+    //     if(check){
+    //         onClickButtonSave();
+    //     }
+    // });
+    $('#btn-Save').click(onClickButtonSave);
     // 9. Sư kiện : Xóa dữ liệu
-    $('#delete2').click(function(){
-        $.ajax({
-            method: "DELETE",
-            url: "http://cukcuk.manhnv.net/v1/Employees/" + id,
-            data: null,
-            async: false
-        }).done(function (response) {
-           alert('Xóa dữ liệu thành công !');
-        }).fail(function (response) {
-            alert('Không xóa được dữ liệu !');
-        }); 
-        $('.dialog-delete').hide();
-        location.reload();
-    });
+    // $('#delete2').click(function(){
+    //     $.ajax({
+    //         method: "DELETE",
+    //         url: "http://cukcuk.manhnv.net/v1/Employees/" + id,
+    //         data: null,
+    //         async: false
+    //     }).done(function (response) {
+    //        alert('Xóa dữ liệu thành công !');
+    //     }).fail(function (response) {
+    //         alert('Không xóa được dữ liệu !');
+    //     }); 
+    //     $('.dialog-delete').hide();
+    //     location.reload();
+    // });
 }
 // Đổ dữ liệu vào form và bảng
 
@@ -157,7 +160,7 @@ function getData() {
 // Xử lý bảng dữ liệu rồi thêm vào 
 function handleDataTableHTML(data) {
     $.each(data, function(index, employee) {
-        var tableHTML = `<tr>
+        var tableHTML = `<tr id="${ employee.EmployeeId}" >
                             <td><input class="checkbox" type="checkbox" name="" id=""></td>
                             <td>${employee.EmployeeCode}</td>  
                             <td>${employee.FullName}</td>
@@ -234,78 +237,69 @@ function isEmail(email) {
 
 /* ************************************ BEGIN : CÁC HÀM XỬ LÝ SỰ KIỆN ************************************ */
 
-// Hàm sử lý sự kiện click Button
-function onClickButtonSave() {
-    var e_Code = $('#employee__code').val();
-    var e_FullName = $('#employee__fullname').val();
-    var e_Dob = $('#employee__dob').val();
-    var e_Gender = $('#employee__gender').val();
-    var e_GenderName
-    switch (e_Gender) {
-        case 0:
-            e_GenderName = "Nữ";
-            break;
-        case 1:
-            e_GenderName = "Nam";
-            break;
-        case 2:
-            e_GenderName = "Không xác định"
-            break;
-    }
-    var e_IdNumber = $('#employee_idnumber').val();
-    var e_IdDate = $('#employee__iddate').val();
-    var e_IdPlace = $('#employee__idplace').val();
-    var e_Email = $('#employee__email').val();
-    var e_Phone = $('#employee__phone').val();
-    var e_Position = $('#employee__position').val();
-    var e_Department = $('#employee__department').val();
-    var e_TaxCode = $('#employee__taxcode').val();
-    var e_Salary = $('#employee__basesalary').val();
-    var e_JoinDate = $('#employee__joindate').val();
-    var e_WorkStatus = $('#employee__workstatus').val();
 
-    var newEmployee = {
-        "EmployeeCode": e_Code,
-        "FullName": e_FullName,
-        "DateOfBirth": e_Dob,
-        "Gender": e_Gender,
-        "GenderName": e_GenderName,
-        "IdentityNumber": e_IdNumber,
-        "IdentityDate":e_IdDate,
-        "IdentityPlace":e_IdPlace,
-        "PersonalTaxCode":e_TaxCode,
-        "Email": e_Email,
-        "PhoneNumber": e_Phone,
-        "PositionId": e_Position,
-        "DepartmentId": e_Department,
-        "Salary": e_Salary,
-        "WorkStatus": e_WorkStatus,
-        "JoinDate": e_JoinDate
+function onClickButtonSave(e) {
+    var myUrl = "http://cukcuk.manhnv.net/v1/Employees";
+    var method = 'POST';
+    //console.log(flagAdd);
+    //console.log(myEmployeeId);
+    if (flagAdd != 1) {
+        myUrl = "http://cukcuk.manhnv.net/v1/Employees/" + myEmployeeId;
+        method = 'PUT';
     }
-    var method = "POST";
-    var url = "http://cukcuk.manhnv.net/v1/Employees/";
-    if(status == 1){
-        method = "PUT";
-        url = "http://cukcuk.manhnv.net/v1/Employees/" + id;
-        status = 0;
-        id=""
+    console.log(myUrl);
+    console.log(method);
+
+    var email = $('#inputEmail').val();
+    var salary = $('#inputSalary').val();
+    if (isEmail(email) && $.isNumeric(salary)) {
+        var employee = {};
+        employee.EmployeeCode = $('#inputEmployeeCode').val();
+        employee.FullName = $('#inputFullName').val();
+        employee.DateOfBirth = $('#inputDateOfBirth').val();
+        employee.Gender = ($('#inputGenderName').attr('value') == "Nam") ? 1 : 0;
+        employee.IdentityNumber = $('#inputIdentityNumber').val();
+        employee.IdentityDate = $('#inputIdentityDate').val();
+        employee.IdentityPlace = $('#inputIdentityPlace').val();
+        employee.Email = $('#inputEmail').val();
+        employee.PhoneNumber = $('#inputPhoneNumber').val();
+        employee.PositionId = $('#inputPositionName').attr('value');
+        employee.DepartmentId = $('#inputDepartmentName').attr('value');
+        employee.PersonalTaxCode = $('#inputPersonalTaxCode').val();
+        employee.Salary = $('#inputSalary').val();
+        employee.JoinDate = $('#inputJoinDate').val();
+        employee.WorkStatus = ($('#inputWorkStatus').attr('value') == "Đang làm việc") ? 1 : 0;
+
+        console.log(employee);
+
+        // gọi ajax post dữ liệu
+        $.ajax({
+            url: myUrl,
+            method: method,
+            data: JSON.stringify(employee),
+            dataType: 'json',
+            contentType: 'application/json'
+        }).done(res => {
+            if (flagAdd == 1) {
+                alert('Thêm mới thành công!');
+            } else {
+                alert('Cập nhật thông tin thành công!');
+            }
+        }).fail(res => {
+            alert("Đã có lỗi xảy ra!");
+        });
+
+        // Ẩn dialog đi và load lại dữ liệu
+        setTimeout(loadData, 2000);
+        $('.dialog').css("visibility", "hidden");
+    } else {
+        alert("Vui lòng kiểm tra lại email và lương!");
     }
-    $.ajax({
-        method: method,
-        url: url,
-        data: JSON.stringify(newEmployee),
-        contentType: "application/json"
-    }).done(function (res) {
-        location.reload();
-    }).fail(function (res) {
-        alert('Mã Nhân Viên bị trùng')
-        console.log(res);
-        // alert(response.responseText);
-    });
-    $('#from-add-employee').hide(); 
+
 }
 
 // Hàm xử lý sự kiện chỉnh sửa Form
+
 function handleEventEditForm(){
     status = 1;  //set Status = 1 -> Edit Form
     $.ajax({
@@ -336,6 +330,7 @@ function handleEventEditForm(){
 }
 
 // Hiểm kiểm tra Form hợp lệ
+
 function checkIsValidForm(){
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     // Khởi biến isValid. Tác dung : Gán giá trị true/false để kiểm tra tính hợp lệ của atribute
@@ -382,10 +377,10 @@ function checkIsValidForm(){
     //    + Trả về False : Nếu một trong các trường trong form hợp lệ.
     if(!isValid){
         alert('Nhập lại form');
-        return false;
     }
     else {
         return true;
     }
+    return false;
 }
 /* ************************************ END : CÁC HÀM XỬ LÝ SỰ KIỆN ************************************ */
