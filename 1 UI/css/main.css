@@ -1,13 +1,12 @@
-@import url('base/layout.css');
-@import url('base/button.css');
-@import url('base/input.css');
-@import url('base/grid.css');
-@import url('base/dialog.css');
-@import url('base/combobox.css');
-@import url('base/select.css');
-@import url('base/dropdown.css');
-@import url('base/checkbox.css');
-
+@import url('./layout/layout.css');
+@import url('./components/button.css');
+@import url('./components/input.css');
+@import url('./components/grid.css');
+@import url('./components/dialog.css');
+@import url('./components/select.css');
+@import url('./components/dropdown.css');
+@import url('./components/checkbox.css');
+@import url('./components/dialogDelete.css');
 
 @font-face {
     font-family: 'GoogleSans-Bold';

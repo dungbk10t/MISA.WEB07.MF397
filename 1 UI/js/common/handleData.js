@@ -1,6 +1,5 @@
 class HandleDataJS {
     constructor() {
-        this.dataUrl = "";
         this.loadData();
     }
     loadData() {
@@ -23,22 +22,18 @@ class HandleDataJS {
                 });
             console.log(employees);
             data = employees;
-            $.each(data, function (employee) {
+            $.each(data, function (index, employee) {
                 var tableHTML = `<tr id="${employee.EmployeeId}" >
                                     <td>${employee.EmployeeCode}</td>  
                                     <td>${employee.FullName}</td>
                                     <td>${formatDate(employee.DateOfBirth)}</td>
-                                    <td>${employee.GenderName}</td>
+                                    <td>${formatGenderName(employee.GenderName)}</td>
                                     <td>${employee.PhoneNumber}</td>
                                     <td class="email">${employee.Email}</td>
-                                    <td>${employee.PositionName}</td>
-                                    <td>${employee.DepartmentName}</td>
-                                    <td class="price">${fomatNumber(
-                    employee.Salary
-                )}</td>
-                                    <td>${formatWorkStatus(
-                    employee.WorkStatus
-                )}</td>
+                                    <td>${formatPositionName(employee.PositionName)}</td>
+                                    <td>${formatDepartmentName(employee.DepartmentName)}</td>
+                                    <td class="price">${fomatNumber(employee.Salary)}</td>
+                                    <td>${formatWorkStatus(employee.WorkStatus)}</td>
                          </tr>`;
                 $(".tb-body tbody").append(tableHTML);
                 var num = Number(employee.EmployeeCode.slice(2));
