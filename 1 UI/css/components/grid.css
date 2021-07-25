@@ -1,4 +1,4 @@
-﻿.content .content-body .grid {
+﻿﻿.content .content-body .grid {
     border-bottom: 5px solid #bbbbbb;
 }
     .content .content-body .grid table.tb-head {
@@ -27,18 +27,18 @@
         overflow: scroll; /* Để cả x và y  */
     }
 ::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     background-color: lightgray;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:horizontal{
     background-color: grey;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb {
     background-color: grey;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
 .content .content-body .grid table.tb-body tbody tr {
@@ -48,11 +48,8 @@
     height: 48px;
     width: 100%;
 }
-    .content .content-body .grid table.tb-body tbody tr:nth-child(2n+1) {
-        background-color: #E9EBEE;
-    }
     .content .content-body .grid table.tb-body tbody tr:hover {
-        background-color: #2FBE8E;
+        background-color: #E9EBEE;
     }
 
 .content .content-body .grid table.tb-body tr td {

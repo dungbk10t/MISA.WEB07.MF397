@@ -9,9 +9,7 @@
     <link href="../css/main.css" rel="stylesheet" />
     <title>Document</title>
 </head>
-
 <body>
-
     <div class="menu">
         <div class="menu-header">
             <div class="toggle"></div>
@@ -72,41 +70,6 @@
                 <div class="toolbar-left">
                     <input class="input-icon input-search" type="text"
                         placeholder="Tìm kiếm theo mã, tên hoặc số điện thoại" />
-                    <!-- Dropdown -->
-                    <!-- <div class="dropdown form-dropdown" id="dd4" tabindex="4">                       
-                        <div class="dropdown-list">
-                             <div class="dropdown-list-item gender-txt" value="1">
-                                 <i class="fas fa-check"></i>
-                                 <div class="dd-item-text">Nam</div>
-                             </div>
-                             <div class="dropdown-list-item gender-txt" value="0">
-                                 <i class="fas fa-check"></i>
-                                 <div class="dd-item-text gender-txt">Nữ</div>
-                             </div>
-                        </div>                 
-                        <div class="dropdown-select">
-                         <div class="select">Chọn giới tính</div>
-                         <i class="fas fa-angle-down"></i>
-                        </div>
-                    </div> -->
-                    <!-- Dropdown -->
-                    <!-- <div class="dropdown form-dropdown" id="dd4" tabindex="4">                       
-                        <div class="dropdown-list">
-                             <div class="dropdown-list-item gender-txt" value="1">
-                                 <i class="fas fa-check"></i>
-                                 <div class="dd-item-text">Nam</div>
-                             </div>
-                             <div class="dropdown-list-item gender-txt" value="0">
-                                 <i class="fas fa-check"></i>
-                                 <div class="dd-item-text gender-txt">Nữ</div>
-                             </div>
-                        </div>                 
-                        <div class="dropdown-select">
-                         <div class="select">Chọn giới tính</div>
-                         <i class="fas fa-angle-down"></i>
-                        </div>
-                    </div> -->
-                    <!-- Dropdown -->
                 </div>
                 <div class="toolbar-right">
                     <button id="btn-refresh" class="button button-refresh">
@@ -121,20 +84,19 @@
                             <th fieldName="EmployeeCode">Mã nhân viên</th>
                             <th fieldName="FullName">Họ và tên</th>
                             <th fieldName="DateOfBirth">Ngày sinh</th>
-                            <th fieldName="GenderName" >Giới tính</th>
+                            <th fieldName="GenderName">Giới tính</th>
                             <th fieldName="PhoneNumber">Điện thoại</th>
                             <th fieldName="Email" class="email">Email</th>
                             <th fieldName="PositionName">Chức vụ</th>
                             <th fieldName="DepartmentName">Phòng ban</th>
-                            <th fieldName="Salary"class="price">Mức lương cơ bản</th>
+                            <th fieldName="Salary" class="price">Mức lương cơ bản</th>
                             <th fieldName="WorkStatus">Tình trạng công việc</th>
                         </tr>
                     </thead>
                 </table>
                 <table class="tb-body" border="0">
                     <tbody>
-                        <tr class="table-employee__row">
-                            <!-- <td><input class="checkbox" type="checkbox" name="" id=""></td> -->
+                        <tr>
                             <td>NV-512340</td>
                             <td>Phạm Tuấn Dũng</td>
                             <td>18/02/1998</td>
@@ -144,10 +106,9 @@
                             <td>Nhân viên</td>
                             <td>Phòng Nhân sự</td>
                             <td class="price">10.000.000</td>
-                            <td>Đang thử việc</td>
+                            <td>Đang thử việc</td>             
                         </tr>
                     </tbody>
-
                 </table>
             </div>
             <div class="content-paging">
@@ -196,41 +157,45 @@
                             <!-- EMPLOYEE CODE -->
                             <div class="small-info">
                                 <p>Mã nhân viên (<font color="red">*</font>)</p>
-                                <input id='employee__code' type="text" class="autofocus" tabindex="1" value="" required/>
+                                <input id='employee__code' type="text" class="autofocus" tabindex="1" value="" required />    
                             </div>
                             <!-- FULLNAME -->
                             <div class="small-info">
                                 <p>Họ và tên(<font color="red">*</font>)</p>
-                                <input id='employee__fullname' type="text" tabindex="2" value="" required/>
+                                <input id='employee__fullname' type="text" tabindex="2" value="" required />
                             </div>
                         </div>
                         <div class="my-row">
                             <!-- DATE OF BIRTH -->
                             <div class="small-info">
                                 <p>Ngày sinh</p>
-                                <input id='employee__dob' type="date" tabindex="3" value=""/>
+                                <input id='employee__dob' type="date" tabindex="3" value="" />
                             </div>
                             <!-- GENDER -->
                             <div class="small-info">
                                 <p>Giới tính</p>
-                                 <!-- Dropdown -->
-                                <div class="dropdown form-dropdown" id="dd4" tabindex="4">                       
+                                <!-- Dropdown -->
+                                <div class="dropdown form-dropdown" id="employee__gender" tabindex="4">
                                     <div class="dropdown-list">
-                                         <div class="dropdown-list-item gender-txt" value="1">
-                                             <i class="fas fa-check"></i>
-                                             <div class="dd-item-text">Nam</div>
-                                         </div>
-                                         <div class="dropdown-list-item gender-txt" value="0">
-                                             <i class="fas fa-check"></i>
-                                             <div class="dd-item-text gender-txt">Nữ</div>
-                                         </div>
-                                    </div>                 
+                                        <div class="dropdown-list-item" value="0">
+                                            <i class="fas fa-check"></i>
+                                            <div class="dd-item-text">Nữ</div>
+                                        </div>
+                                        <div class="dropdown-list-item" value="1">
+                                            <i class="fas fa-check"></i>
+                                            <div class="dd-item-text">Nam</div>
+                                        </div>
+                                        <div class="dropdown-list-item" value="2">
+                                            <i class="fas fa-check"></i>
+                                            <div class="dd-item-text">Không xác định</div>
+                                        </div>
+                                    </div>
                                     <div class="dropdown-select">
-                                     <div class="select">Chọn giới tính</div>
-                                     <i class="fas fa-angle-down"></i>
+                                        <div class="select">Chọn giới tính</div>
+                                        <i class="fas fa-angle-down"></i>
                                     </div>
                                 </div>
-                                 <!-- Dropdown -->
+                                <!-- Dropdown -->
                             </div>
                         </div>
 
@@ -238,31 +203,31 @@
                             <!-- ID CARD NUMBER -->
                             <div class="small-info">
                                 <p>Số CMND/Căn cước(<font color="red">*</font>)</p>
-                                <input id='employee__idnumber' type="text" tabindex="5" value="" required/>
+                                <input id='employee__idnumber' type="text" tabindex="5" value="" required />
                             </div>
                             <!-- RELESE DATE -->
                             <div class="small-info">
                                 <p>Ngày cấp</p>
-                                <input id='employee__iddate' type="date" tabindex="6" value=""/>
+                                <input id='employee__iddate' type="date" tabindex="6" value="" />
                             </div>
                         </div>
                         <div class="my-row">
                             <!-- RELESE PLACE -->
                             <div class="small-info">
                                 <p>Nơi cấp</p>
-                                <input id='employee__idplace' type="text" tabindex="7" value=""/>
+                                <input id='employee__idplace' type="text" tabindex="7" value="" />
                             </div>
                         </div>
                         <div class="my-row">
                             <!-- EMAIL -->
                             <div class="small-info">
                                 <p>Email(<font color="red">*</font>)</p>
-                                <input id='employee__email' type="text" tabindex="8" value="" required/>
+                                <input id='employee__email' type="text" tabindex="8" value="" required />
                             </div>
                             <!-- PHONE -->
                             <div class="small-info">
                                 <p>Số điện thoại(<font color="red">*</font>)</p>
-                                <input id='employee__phone' type="text" tabindex="9" value=""/>
+                                <input id='employee__phone' type="text" tabindex="9" value="" />
                             </div>
                         </div>
                     </div>
@@ -275,12 +240,18 @@
                             <!-- POSISION -->
                             <div class="small-info">
                                 <p>Vị trí</p>
-                                <div class="dropdown form-dropdown" id="dd5" tabindex="10">                       
+                                <div class="dropdown form-dropdown" id="employee__position" tabindex="10">
                                     <div class="dropdown-list">
-                                    </div>                 
+                                        <div class="dropdown-list-item pos-txt"
+                                            value="30d41e52-5e66-72bc-6c1c-b47866e0b131">
+                                            <i class="fas fa-check"></i>
+                                            <div class="dd-item-text">Giám đốc</div>
+                                        </div>
+
+                                    </div>
                                     <div class="dropdown-select">
-                                     <div class="select">Chọn vị trí</div>
-                                     <i class="fas fa-angle-down"></i>
+                                        <div class="select">Chọn vị trí</div>
+                                        <i class="fas fa-angle-down"></i>
                                     </div>
                                 </div>
                             </div>
@@ -288,12 +259,11 @@
                             <div class="small-info">
                                 <p>Phòng ban</p>
                                 <!-- Dropdown -->
-                                <div class="dropdown form-dropdown" id="dd6" tabindex="11">                       
-                                    <div class="dropdown-list">
-                                    </div>                 
+                                <div class="dropdown form-dropdown" id="employee__department" tabindex="11">
+                                    <div class="dropdown-list"></div>
                                     <div class="dropdown-select">
-                                     <div class="select">Chọn phòng ban</div>
-                                     <i class="fas fa-angle-down"></i>
+                                        <div class="select">Chọn phòng ban</div>
+                                        <i class="fas fa-angle-down"></i>
                                     </div>
                                 </div>
                                 <!-- Dropdown -->
@@ -303,42 +273,43 @@
                             <!-- TAX CODE -->
                             <div class="small-info">
                                 <p>Mã số thuế cá nhân</p>
-                                <input id='employee__taxcode' type="text" tabindex="13" value=""/>
+                                <input id='employee__taxcode' type="text" tabindex="13" value="" />
                             </div>
                             <!-- SALARY -->
                             <div class="small-info">
                                 <p>Mức lương cơ bản</p>
-                                <input id='employee__basesalary' class="right-align" type="text" tabindex="14" value=""/>
+                                <input id='employee__basesalary' class="right-align" type="text" tabindex="14"
+                                    value="" />
                             </div>
                         </div>
                         <div class="my-row">
                             <!-- JOIN DATE -->
                             <div class="small-info">
                                 <p>Ngày gia nhập công ty</p>
-                                <input id='employee__joindate' type="date" tabindex="15" value=""/>
+                                <input id='employee__joindate' type="date" tabindex="15" value="" />
                             </div>
                             <!-- WORK STATUS -->
                             <div class="small-info">
                                 <p>Tình trạng công việc</p>
                                 <!-- Dropdown -->
-                                <div class="dropdown form-dropdown drop-up" id="dd7" tabindex="12">                       
+                                <div class="dropdown form-dropdown drop-up" id="employee__workstatus" tabindex="12">
                                     <div class="dropdown-list">
-                                         <div class="dropdown-list-item workStatus-txt" value="0">
-                                             <i class="fas fa-check"></i>
-                                             <div class="dd-item-text">Đang làm việc</div>
-                                         </div>
-                                         <div class="dropdown-list-item workStatus-txt" value="1">
-                                             <i class="fas fa-check"></i>
-                                             <div class="dd-item-text">Đang thử việc</div>
-                                         </div>
-                                         <div class="dropdown-list-item workStatus-txt" value="2">
+                                        <div class="dropdown-list-item workStatus-txt" value="0">
+                                            <i class="fas fa-check"></i>
+                                            <div class="dd-item-text">Đang làm việc</div>
+                                        </div>
+                                        <div class="dropdown-list-item workStatus-txt" value="1">
+                                            <i class="fas fa-check"></i>
+                                            <div class="dd-item-text">Đang thử việc</div>
+                                        </div>
+                                        <div class="dropdown-list-item workStatus-txt" value="2">
                                             <i class="fas fa-check"></i>
                                             <div class="dd-item-text">Đã nghỉ việc</div>
                                         </div>
-                                    </div>                 
+                                    </div>
                                     <div class="dropdown-select">
-                                     <div class="select">Chọn vị trí</div>
-                                     <i class="fas fa-angle-down"></i>
+                                        <div class="select">Chọn vị trí</div>
+                                        <i class="fas fa-angle-down"></i>
                                     </div>
                                 </div>
                                 <!-- Dropdown -->
@@ -347,10 +318,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="dialog-footer">
-                <button id ="btn-cancel" class="btn-cancel"><b>Hủy</b></button>
-                <button id ="btn-save" class="button button-icon btn-save">
+                <button id="btn-cancel" class="btn-cancel"><b>Hủy</b></button>
+                <button id="btn-save" class="button button-icon btn-save">
                     <i class="fas fa-save"></i>
                     <p>Lưu</p>
                 </button>
@@ -364,8 +334,8 @@
         <div class="dialog-box-delete">
             <div class="box-delete-header">
                 <span class="title">Xóa bản ghi</span>
-                <button id="btn-close" class="close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                <button id="btn-close" class="close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="feather feather-x">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -377,7 +347,7 @@
                 <span>không?</span>
             </div>
             <div class="dialog-box-footer">
-                <button class="box-delete" id="delete2">Xóa</button>
+                <button class="box-delete" id="btn-delete2">Xóa</button>
                 <button id="btn-cancel" class="box-can">Hủy</button>
             </div>
         </div>
@@ -388,8 +358,8 @@
         <div class="box-edit-delete">
             <div class="box-delete-header">
                 <span class="title" style="line-height: 50px;">Nhân viên: </span>
-                <button id="btn-close" class="close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                <button id="btn-close" class="close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="feather feather-x">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -397,7 +367,7 @@
             </div>
             <div class="btn-edit-delete">
                 <button class="box-edit" id="btn-edit">Chỉnh sửa</button>
-                <button class="box-delete" id="delete1">Xóa</button>
+                <button class="box-delete" id="btn-delete1">Xóa</button>
             </div>
         </div>
     </div>

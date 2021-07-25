@@ -7,16 +7,21 @@
  * @returns Number
  * @author: tuandung
  */
-function fomatNumber(inputNumber) {
-    inputNumber += '';
-    x = inputNumber.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+function fomatSalary(inputData) {
+    if(inputData == null) {
+        return '';
     }
-    return x1 + x2;
+    else {
+        inputData += '';
+        x = inputData.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
 }
 /**
  * Hàm định dạng lại ngày : Ngày/Tháng/Năm
@@ -26,101 +31,57 @@ function fomatNumber(inputNumber) {
  * @author: tuandung
  */
 function formatDate(inputDate) {
-    var now = new Date(inputDate);
-    var day = ("0" + now.getDate()).slice(-2);
-    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-    var today = (day)+"/"+(month)+"/"+now.getFullYear();
-    return today;
+    if(inputDate == null) {
+        return "";
+    }
+    else {
+        var now = new Date(inputDate);
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var dateString = (day)+"/"+(month)+"/"+now.getFullYear();
+        return dateString;
+    }
 }
 /**
  * Hàm định dạng trạng thái công việc
  * @date : 23.07.2021
- * @param {*} inputWorkStatus 
- * @returns workStatus
+ * @param {*} inputwStatusStr 
+ * @returns wStatusStr
  * @author: tuandung
  */
-function formatWorkStatus(inputWorkStatus){
-    var workStatus
-    switch (inputWorkStatus) {
+function formatworkStatus(inputwStatusStr){
+    var wStatusStr;
+    switch (inputwStatusStr) {
         case 0:
-            workStatus = "Đang thử việc";
+            wStatusStr = "Đang thử việc";
             break;
         case 1:
-            workStatus = "Đang làm việc";
+            wStatusStr = "Đang làm việc";
             break;
         case 2:
-            workStatus = "Đã nghỉ việc";
+            wStatusStr = "Đã nghỉ việc";
             break;
         case 3:
-            workStatus = "Đã nghỉ hưu";
+            wStatusStr = "Đã nghỉ hưu";
             break;
         default:
-            workStatus = ""
+            wStatusStr = ""
             break;
     }
-    return workStatus;
+    return wStatusStr;
 }
 /**
- * Hàm định dạng trạng giới tính
+ * Hàm định dạng dữ liệu NULL
  * @date : 24.07.2021
- * @param {*} inputWorkStatus 
- * @returns workStatus
+ * @param {*} dataAPI
+ * @returns "" <=> dataAPI == NULL , else return dataAPI
  * @author: tuandung
  */
-function formatGenderName(dataAPI) {
-    var result;
-    if(dataAPI == "Nam") {
-        result = "Nam";
-    }
-    else if (dataAPI == "Nam") {
-        result = "Nữ"
-    }
-    else if (dataAPI == "Không xác định") {
-        result = "Không xác định"
-    }
-    else {
-        result = "";
-    }
-    return result;
-} 
-function formatPositionName(dataAPI) {
-    var result;
-    if(dataAPI == "Giám đốc") {
-        result = "Giám đốc";
-    }
-    else if(dataAPI == "Nhân viên") {
-        result = "Nhân viên";
-    }
-    else if(dataAPI == "Phó phòng") {
-        result = "Phó phòng";
-    }
-    else if(dataAPI == "Trưởng phòng") {
-        result = "Trưởng phòng";
-    }
-    else {
-        result = "";
-    }
-    return result;
+
+function formatDataAPI(dataAPI) {
+    return (dataAPI == null) ? "" : dataAPI;
 }
-function formatDepartmentName(dataAPI) {
-    var result;
-    if(dataAPI == "Phòng Marketting") {
-        result = "Phòng Marketting";
-    }
-    else if(dataAPI == "Phòng đào tạo") {
-        result = "Phòng đào tạo";
-    }
-    else if(dataAPI == "Phòng Nhân sự") {
-        result = "Phòng Nhân sự";
-    }
-    else if(dataAPI == "Phòng Công nghệ") {
-        result = "Phòng Công nghệ";
-    }
-    else {
-        result = "";
-    }
-    return result;
-}
+
 /**
  * Hàm kiểm tra 1 chuỗi có phải email hay không
  * @date : 23.07.2021
@@ -134,3 +95,27 @@ function validateEmail(email) {
   }
 
 /* ************************************ END : CÁC HÀM XỬ LÝ DỮ LIỆU ************************************ */
+
+function formatDateToValue(data) {
+    if(data == "") {
+        return null;
+    }
+    else {
+        var now = new Date(inputDate);
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var dateString = now.getFullYear()+"-"+(month)+"-"(day);
+        return dateString;
+    }
+}
+function matchItemDropdown(id) {
+	var itemId = $(`#${id}`).attr('value')
+	var itemList = $(`#${id} .dropdown-list .dropdown-list-item`);
+	$.each(itemList, function(index, item) {
+		$(item).removeClass("dropdown-item-check");
+		$(item). $(item).children(".fa-check").css("opacity", "0");
+	});
+	itemId.toggleClass("dropdown-item-check")
+       	itemId.children(".fa-check").css("opacity", "1")
+	$(`#${id} .select`).text(workStatusId.text().trim());
+}

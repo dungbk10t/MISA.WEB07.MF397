@@ -181,6 +181,7 @@
         float: left;
         padding: 24px;
         box-sizing: border-box;
+        background-color: #E9EBEE;
     }
 
         .content .content-body .content-title {
@@ -231,6 +232,7 @@
             height: calc(100% - 156px);
             float: left;
             text-overflow: ellipsis; 
+            background-color: #ffffff;
         }
 
             .content .content-body .grid .tb-head .price {

@@ -1,10 +1,8 @@
 $(document).ready(()=>{
-    showDropDown("dd1");
-    showDropDown("dd2");
-    showDropDown("dd4");
-    showDropDown("dd5");
-    showDropDown("dd6");
-    showDropDown("dd7");
+    showDropDown("employee__gender");
+    showDropDown("employee__position");
+    showDropDown("employee__department");
+    showDropDown("employee__workstatus");
 })
 
 function showDropDown(id){
@@ -19,7 +17,6 @@ function showDropDown(id){
         $(item).click(()=>{
             ddItem.removeClass("dropdown-item-check")
             $(item).toggleClass("dropdown-item-check")
-            // console.log($(item).attr("value"))
             $("#"+id+" .fa-check").css("opacity", "0")
             $(item).children(".fa-check").css("opacity", "1");
             ddList.toggleClass("active");
