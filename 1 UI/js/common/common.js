@@ -97,19 +97,22 @@ function validateEmail(email) {
 /* ************************************ END : CÁC HÀM XỬ LÝ DỮ LIỆU ************************************ */
 
 function formatDateToValue(data) {
-    if(data == "") {
-        return null;
+    if (data != null) {
+        var date = new Date(data);
+        var day = date.getDate();
+        day = (day < 10) ? '0' + day : day;
+        var month = date.getMonth() + 1;
+        month = (month < 10) ? '0' + month : month;
+        var year = date.getFullYear();
+        return year+'-'+month+'-'+day;
     }
     else {
-        var now = new Date(inputDate);
-        var day = ("0" + now.getDate()).slice(-2);
-        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-        var dateString = now.getFullYear()+"-"+(month)+"-"(day);
-        return dateString;
+        return '';
     }
 }
-function matchItemDropdown(id) {
-	var itemId = $(`#${id}`).attr('value')
+function matchItemDropdown(res, id, attr) {
+    console.log(id);
+	var itemId = $(`#${id}`).find(`[value='${res.attr}']`);
 	var itemList = $(`#${id} .dropdown-list .dropdown-list-item`);
 	$.each(itemList, function(index, item) {
 		$(item).removeClass("dropdown-item-check");
@@ -117,5 +120,10 @@ function matchItemDropdown(id) {
 	});
 	itemId.toggleClass("dropdown-item-check")
        	itemId.children(".fa-check").css("opacity", "1")
-	$(`#${id} .select`).text(workStatusId.text().trim());
+    if(id == "employee__workstatus") {
+        $(`#${id} .select`).text(itemId.text().trim());
+    }
+    else {
+        $(`#${id} .select`).text(itemId.text());
+    }
 }
