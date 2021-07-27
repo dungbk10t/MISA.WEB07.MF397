@@ -230,7 +230,6 @@ function btnEditOnClick(e) {
             url: `http://cukcuk.manhnv.net/v1/Employees/${eID}`,
             method: "GET",
         }).done(res => {
-            // debugger
             data = res;
             $('#employee__code').val(data.EmployeeCode);
             $('#employee__fullname').val(data.FullName);
@@ -246,20 +245,51 @@ function btnEditOnClick(e) {
 
             /* ******************************************** */
 
-            /* Binding data dropdown vao form*/
-            // $('#employee__gender').val(data.Gender);
-            // $('#employee__position').val(data.PositionId);
-            // $('#employee__department').val(data.DepartmentId);
-            // $('#employee__workstatus').val(data.WorkStatus);
-            console.log(data.Gender);
-            console.log(data.PositionId);
-            console.log(data.DepartmentId);
-            console.log(data.WorkStatus);
-            // matchItemDropdown(employee__gender);
-            // matchItemDropdown(employee__position);
-            // matchItemDropdown(employee__department);
-            // matchItemDropdown(employee__workstatus);
-            // debugger
+            $("#employee__gender .select").text(data.GenderName);
+            var genderId = $("#employee__gender").find(`[value='${data.Gender}']`);
+            var genderIdList = $("#employee__gender .dropdown-list .dropdown-list-item");
+            $.each(genderIdList, function(index, item){
+                $(item).removeClass("dropdown-item-check")
+                $(item).children(".fa-check").css("opacity", "0");
+            })
+            genderId.toggleClass("dropdown-item-check");
+            genderId.children(".fa-check").css("opacity", "1");
+
+            //Binding vị trí lên form
+            var positionId = $("#employee__position").find(`[value='${data.PositionId}']`);
+            var positionIdList = $("#employee__position .dropdown-list .dropdown-list-item");
+            $.each(positionIdList, function(index, item){
+                $(item).removeClass("dropdown-item-check");
+                $(item).children(".fa-check").css("opacity", "0");
+            })
+            positionId.toggleClass("dropdown-item-check");
+            positionId.children(".fa-check").css("opacity", "1");
+            $("#employee__position .select").text(positionId.text())
+
+            //Binding phòng ban lên form
+            var departmentId = $("#employee__department").find(`[value='${data.DepartmentId}']`);
+            var departmentIdList = $("#employee__department .dropdown-list .dropdown-list-item");
+            $.each(departmentIdList, function(index, item){
+                $(item).removeClass("dropdown-item-check");
+                $(item).children(".fa-check").css("opacity", "0");
+            })
+            departmentId.toggleClass("dropdown-item-check");
+            departmentId.children(".fa-check").css("opacity", "1");
+            $("#employee__department .select").text(departmentId.text());
+
+            //Binding tính trạng công việc lên form
+            $("#employee__workstatus .select").text(data.WorkStatus);
+            var workStatusId = $("#employee__workstatus").find(`[value='${data.WorkStatus}']`);
+            var workStatusIdList = $("#employee__workstatus .dropdown-list .dropdown-list-item");
+            $.each(workStatusIdList, function(index, item){
+                $(item).removeClass("dropdown-item-check");
+                $(item).children(".fa-check").css("opacity", "0");
+            })
+            workStatusId.toggleClass("dropdown-item-check");
+            workStatusId.children(".fa-check").css("opacity", "1");
+            $("#employee__workstatus .select").text(workStatusId.text().trim());
+
+           
         }).fail(res => {
             switch (res.status) {
                 case 500:
