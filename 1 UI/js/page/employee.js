@@ -21,12 +21,15 @@ class EmployeeJS extends HandleDataJS {
         this.dataUrl = "http://cukcuk.manhnv.net/v1/Employees";
     }
     loadDropdown() {
-        //bind dữ liệu lên các dropdown
-        //1.Dropdown phòng ban
-        loadPositionData();
-        loadDepartmentData();
-        //2.Dropdown vị trí
-        // loadDropdownData("Position");
+         //bind dữ liệu lên các dropdown
+        // 1. Dropdown position form
+        loadPositionData("employee__position");
+        // 2. Dropdown department form
+        loadDepartmentData("employee__department");
+        // 3. Dropdown position table
+        loadPositionData("employee__position_1");
+        // 4. Dropdown  position table
+        loadDepartmentData("employee__department_1");
     }
     setEvent() {
         //1. Sự kiện khi click thêm mới
@@ -312,73 +315,88 @@ function editFormEmployee() {
         $('.autofocus').focus();
         $('.dialog').css("visibility", "visible");
     } catch (error) {
-
+        alert("Có lỗi");
+        console.log(error);
     }
 }
 
 function tableOneRowOnDbClick(e) {
-    formMode = 1;
-    eID = $(this).attr("employeeId");
-    $.ajax({
-        method: "GET",
-        url: "http://cukcuk.manhnv.net/v1/Employees/" + eID,
-        data: null, // các biến dữ liệu được gửi lên server (ten_bien1:dữ liệu, ten_bien2:dữ liệu, ...)
-        async: false, // chạy đồng bộ (=false), chạy bất đồng bộ(=true)
-        contentType: "application/json" // kiểu nội dung dữ liệu được gửi lên server
-    }).done(function (res) {
-        data = res;
-        console.log(data);
-    }).fail(function (res) {
-        alert("Không thể lấy dữ liệu từ Api");
-    });
-    $('.dialog-edit-delete .title').append(`<span>${data.EmployeeCode}</span>`)
-    $('.dialog-edit-delete').show();
+    try {
+        formMode = 1;
+        eID = $(this).attr("employeeId");
+        $.ajax({
+            method: "GET",
+            url: "http://cukcuk.manhnv.net/v1/Employees/" + eID,
+            data: null, // các biến dữ liệu được gửi lên server (ten_bien1:dữ liệu, ten_bien2:dữ liệu, ...)
+            async: false, // chạy đồng bộ (=false), chạy bất đồng bộ(=true)
+            contentType: "application/json" // kiểu nội dung dữ liệu được gửi lên server
+        }).done(function (res) {
+            data = res;
+            console.log(data);
+        }).fail(function (res) {
+            alert("Không thể lấy dữ liệu từ Api");
+        });
+        $('.dialog-edit-delete .title').append(`<span>${data.EmployeeCode}</span>`)
+        $('.dialog-edit-delete').show();
+    } catch (error) {
+        alert("Có lỗi");
+        console.log(error);
+    }
 }
 
-function loadPositionData() {
-    $.ajax({
-        url: "http://cukcuk.manhnv.net/v1/Positions",
-        method: 'GET',
-        async: false
-    }).done(res => {
-        $('#employee__position .dropdown-list').empty();
-        res.forEach(e => {
-            const positionID = e["PositionId"];
-            const positionName = e["PositionName"];
-            console.log(positionName);
-            console.log(positionID);
-            let optionHTML = $(`<div class="dropdown-list-item pos-txt" value="${positionID}">
-                                    <i class="fas fa-check"></i>
-                                    <div class="dd-item-text">${positionName}</div>
-                                </div>`);
-            $("#employee__position .dropdown-list").append(optionHTML);
+function loadPositionData(id) {
+    try {
+        $.ajax({
+            url: "http://cukcuk.manhnv.net/v1/Positions",
+            method: 'GET',
+            async: false
+        }).done(res => {
+            $("#" + id + " .dropdown-list").empty();
+            res.forEach(e => {
+                const positionID = e["PositionId"];
+                const positionName = e["PositionName"];
+                console.log(positionName);
+                console.log(positionID);
+                let optionHTML = $(`<div class="dropdown-list-item pos-txt" value="${positionID}">
+                                        <i class="fas fa-check"></i>
+                                        <div class="dd-item-text">${positionName}</div>
+                                    </div>`);
+                $("#" + id + " .dropdown-list").append(optionHTML);
+            });
+        }).fail(res => {
+            alert("Không load được vị trí!!");
         });
-    }).fail(res => {
-        alert("Không load được vị trí!!");
-    })
+    } catch (error) {
+        
+    }
 }
 
-function loadDepartmentData() {
-    $.ajax({
-        url: "http://cukcuk.manhnv.net/api/Department",
-        method: 'GET',
-        async: false
-    }).done(res => {
-        $('#employee__department .dropdown-list').empty();
-        res.forEach(e => {
-            const departmentID = e["DepartmentId"];
-            const departmentName = e["DepartmentName"];
-            console.log(departmentID);
-            console.log(departmentName);
-            let optionHTML = $(`<div class="dropdown-list-item depart-txt" value="${departmentID}">
-                                    <i class="fas fa-check"></i>
-                                    <div class="dd-item-text">${departmentName}</div>
-                                </div>`);
-            $("#employee__department .dropdown-list").append(optionHTML);
-        });
-    }).fail(res => {
-        alert("Không load được phòng ban!!");
-    })
+function loadDepartmentData(id) {
+    try {
+        $("#" + id + " .dropdown-list").empty();
+        $.ajax({
+            url: "http://cukcuk.manhnv.net/api/Department",
+            method: 'GET',
+            async: false
+        }).done(res => {
+            $("#" + id + " .dropdown-list").empty();
+            res.forEach(e => {
+                const departmentID = e["DepartmentId"];
+                const departmentName = e["DepartmentName"];
+                console.log(departmentID);
+                console.log(departmentName);
+                let optionHTML = $(`<div class="dropdown-list-item depart-txt" value="${departmentID}">
+                                        <i class="fas fa-check"></i>
+                                        <div class="dd-item-text">${departmentName}</div>
+                                    </div>`);
+                $("#" + id + " .dropdown-list").append(optionHTML);
+            });
+        }).fail(res => {
+            alert("Không load được phòng ban!!");
+        })
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function btnChooseDelete() {

@@ -3,6 +3,8 @@ $(document).ready(()=>{
     showDropDown("employee__position");
     showDropDown("employee__department");
     showDropDown("employee__workstatus");
+    showDropDown("employee__department_1");
+    showDropDown("employee__position_1");
 })
 
 function showDropDown(id){
