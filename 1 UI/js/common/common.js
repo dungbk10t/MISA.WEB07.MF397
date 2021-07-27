@@ -110,10 +110,11 @@ function formatDateToValue(data) {
         return '';
     }
 }
+
 function matchItemDropdown(res, id, attr) {
     console.log(id);
-	var itemId = $(`#${id}`).find(`[value='${res.attr}']`);
-	var itemList = $(`#${id} .dropdown-list .dropdown-list-item`);
+	var itemId = $("#"+id).find(`[value='${res+"."+attr}']`);
+	var itemList = $("#"+id+" .dropdown-list .dropdown-list-item");
 	$.each(itemList, function(index, item) {
 		$(item).removeClass("dropdown-item-check");
 		$(item). $(item).children(".fa-check").css("opacity", "0");
@@ -121,9 +122,10 @@ function matchItemDropdown(res, id, attr) {
 	itemId.toggleClass("dropdown-item-check")
        	itemId.children(".fa-check").css("opacity", "1")
     if(id == "employee__workstatus") {
-        $(`#${id} .select`).text(itemId.text().trim());
+        $("#"+id+" .select").text(itemId.text().trim());
     }
     else {
-        $(`#${id} .select`).text(itemId.text());
+        $("#"+id+" .select").text(itemId.text());
     }
 }
+

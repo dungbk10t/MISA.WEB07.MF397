@@ -15,13 +15,12 @@ class EmployeeJS extends HandleDataJS {
         super();
         this.setEvent();
         this.loadDropdown();
-
     }
     setDataUrl() {
         this.dataUrl = "http://cukcuk.manhnv.net/v1/Employees";
     }
     loadDropdown() {
-         //bind dữ liệu lên các dropdown
+        //bind dữ liệu lên các dropdown
         // 1. Dropdown position form
         loadPositionData("employee__position");
         // 2. Dropdown department form
@@ -81,72 +80,78 @@ function btnCloseOnclick(e) {
 }
 // 3. Save
 function btnSaveOnClick(e) {
-    var e__code = $('#employee__code').val();
-    var e__name = $('#employee__fullname').val();
-    var e__dob = $('#employee__dob').val();
-    var e__gender = $('#employee__gender').attr('value');
-    var e__idnum = $('#employee__idnumber').val();
-    var e__iddate = $('#employee__iddate').val();
-    var e__idplace = $('#employee__idplace').val();
-    var e__email = $('#employee__email').val();
-    var e__phone = $('#employee__phone').val();
-    var e__pos = $('#employee__position').attr('value');
-    var e__depart = $('#employee__department').attr('value');
-    var e__tax = $('#employee__taxcode').val();
-    var e__salary = $('#employee__basesalary').val();
-    var e__jdate = $('#employee__joindate').val();
-    var e__wstatus = $('#employee__workstatus').attr('value');
+    try {
+        var e__code = $('#employee__code').val();
+        var e__name = $('#employee__fullname').val();
+        var e__dob = $('#employee__dob').val();
+        var e__gender = $('#employee__gender').attr('value');
+        var e__idnum = $('#employee__idnumber').val();
+        var e__iddate = $('#employee__iddate').val();
+        var e__idplace = $('#employee__idplace').val();
+        var e__email = $('#employee__email').val();
+        var e__phone = $('#employee__phone').val();
+        var e__pos = $('#employee__position').attr('value');
+        var e__depart = $('#employee__department').attr('value');
+        var e__tax = $('#employee__taxcode').val();
+        var e__salary = $('#employee__basesalary').val();
+        var e__jdate = $('#employee__joindate').val();
+        var e__wstatus = $('#employee__workstatus').attr('value');
 
-    if (validateEmail(e__email) && $.isNumeric(e__phone.replaceAll('.', ''))) {
-        var newEmployee = {};
-        newEmployee.EmployeeCode = e__code;
-        newEmployee.FullName = e__name;
-        newEmployee.DateOfBirth = e__dob;
-        newEmployee.Gender = e__gender;
-        newEmployee.IdentityNumber = e__idnum;
-        newEmployee.IdentityDate = e__iddate;
-        newEmployee.IdentityPlace = e__idplace;
-        newEmployee.Email = e__email;
-        newEmployee.PhoneNumber = e__phone;
-        newEmployee.PositionId = e__pos;
-        newEmployee.DepartmentId = e__depart;
-        newEmployee.PersonalTaxCode = e__tax;
-        newEmployee.Salary = e__salary;
-        newEmployee.JoinDate = e__jdate;
-        newEmployee.WorkStatus = e__wstatus;
-        console.log(newEmployee);
+        if (validateEmail(e__email) && $.isNumeric(e__phone.replaceAll('.', ''))) {
+            var newEmployee = {};
+            newEmployee.EmployeeCode = e__code;
+            newEmployee.FullName = e__name;
+            newEmployee.DateOfBirth = e__dob;
+            newEmployee.Gender = e__gender;
+            newEmployee.IdentityNumber = e__idnum;
+            newEmployee.IdentityDate = e__iddate;
+            newEmployee.IdentityPlace = e__idplace;
+            newEmployee.Email = e__email;
+            newEmployee.PhoneNumber = e__phone;
+            newEmployee.PositionId = e__pos;
+            newEmployee.DepartmentId = e__depart;
+            newEmployee.PersonalTaxCode = e__tax;
+            newEmployee.Salary = e__salary;
+            newEmployee.JoinDate = e__jdate;
+            newEmployee.WorkStatus = e__wstatus;
+            console.log(newEmployee);
 
-        // CALL AJAX FROM API : POST DATA METHOD
-        if (formMode == 1) {
-            $.ajax({
-                url: `http://cukcuk.manhnv.net/v1/Employees/${eID}`,
-                method: "PUT",
-                data: JSON.stringify(newEmployee),
-                contentType: "application/json; charset=utf-8",
-            }).done(res => {
-                alert("Sửa dữ liệu thành công !!");
-                loadData();
-            }).fail(res => {
-                alert("Sửa dữ liệu thất bại !!");;
-            })
+            // CALL AJAX FROM API : POST DATA METHOD
+            if (formMode == 1) {
+                $.ajax({
+                    url: `http://cukcuk.manhnv.net/v1/Employees/${eID}`,
+                    method: "PUT",
+                    data: JSON.stringify(newEmployee),
+                    contentType: "application/json; charset=utf-8",
+                }).done(res => {
+                    alert("Sửa dữ liệu thành công !!");
+                    loadData();
+                }).fail(res => {
+                    alert("Sửa dữ liệu thất bại !!");;
+                })
+            }
+            if (formMode == 0) {
+                $.ajax({
+                    url: "http://cukcuk.manhnv.net/v1/Employees",
+                    method: "POST",
+                    data: JSON.stringify(newEmployee),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                }).done((res) => {
+                    alert('Thêm mới thành công');
+                    loadData();
+                }).fail(function (res) {
+                    alert('Không thêm được');
+                })
+            }
+        } else {
+            alert("Kiểm tra lại dữ liệu !!");
         }
-        if (formMode == 0) {
-            $.ajax({
-                url: "http://cukcuk.manhnv.net/v1/Employees",
-                method: "POST",
-                data: JSON.stringify(newEmployee),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-            }).done((res) => {
-                alert('Thêm mới thành công');
-                loadData();
-            }).fail(function (res) {
-                alert('Không thêm được');
-            })
-        }
-    } else {
-        alert("Kiểm tra lại dữ liệu !!");
+    } catch (error) {
+        alert("Có lỗi !!");
+        console.log(error);
     }
+
 }
 
 function loadData() {
@@ -240,7 +245,7 @@ function btnEditOnClick(e) {
             $('#employee__basesalary').val(fomatSalary(data.Salary));
 
             /* ******************************************** */
-            
+
             /* Binding data dropdown vao form*/
             // $('#employee__gender').val(data.Gender);
             // $('#employee__position').val(data.PositionId);
@@ -294,14 +299,15 @@ function editFormEmployee() {
             $('#employee__basesalary').val(data.Salary);
 
             /* Binding data dropdown vao form*/
-            $('#employee__gender').val(data.GenderName);
-            $('#employee__position').val(data.PositionName);
-            $('#employee__department').val(data.DepartmentName);
-            $('#employee__workstatus').val(data.WorkStatus);
-            // matchItemDropdown(employee__gender);
-            // matchItemDropdown(employee__position);
-            // matchItemDropdown(employee__department);
-            // matchItemDropdown(employee__workstatus);
+            
+            // $("#employee__gender .select").text(res.GenderName);
+            // matchItemDropdown(data,"employee__gender",Gender);
+            // matchItemDropdown(data,"employee__position",PositionId);
+            // matchItemDropdown(data,"employee__department",DepartmentId);
+            // matchItemDropdown(data,"employee__workstatus",WorkStatus);
+
+            
+            
 
         }).fail(res => {
             switch (res.status) {
@@ -367,7 +373,7 @@ function loadPositionData(id) {
             alert("Không load được vị trí!!");
         });
     } catch (error) {
-        
+
     }
 }
 
