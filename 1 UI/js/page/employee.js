@@ -97,7 +97,7 @@ function btnSaveOnClick(e) {
         var e__jdate = $('#employee__joindate').val();
         var e__wstatus = $('#employee__workstatus').attr('value');
 
-        if (validateEmail(e__email) && $.isNumeric(e__phone.replaceAll('.', ''))) {
+        if (validateEmail(e__email) && $.isNumeric(e__phone.replaceAll('.', '')) && validateDob(e__dob)) {
             var newEmployee = {};
             newEmployee.EmployeeCode = e__code;
             newEmployee.FullName = e__name;
@@ -179,7 +179,6 @@ function loadData() {
                 var e__depart = formatDataAPI(employee.DepartmentName);
                 var e__salary = fomatSalary(employee.Salary);
                 var e__wstatus = formatworkStatus(employee.WorkStatus);
-
                 var trHTML = $(`<tr employeeId = "${e__eid}">
                                     <td>${e__code}</td>  
                                     <td>${e__name}</td>

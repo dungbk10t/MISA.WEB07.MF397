@@ -197,6 +197,15 @@
                 line-height: 40px;
                 font-size: 20px;
             }
+            .content .content-body .content-title > span {
+                width: auto;
+                display: flex;
+                justify-content: flex-end;
+            }
+            .content .content-body .content-title > span #btn-delete {
+                margin-right: 16px;
+                visibility: hidden;
+            }
 
         .content .content-body .content-toolbar {
             width: 100%;

@@ -82,6 +82,9 @@ function formatDataAPI(dataAPI) {
     return (dataAPI == null) ? "" : dataAPI;
 }
 
+
+/* ********** START: VALIDATE DATA FUNCTION ********** */
+
 /**
  * Hàm kiểm tra 1 chuỗi có phải email hay không
  * @date : 23.07.2021
@@ -92,9 +95,17 @@ function formatDataAPI(dataAPI) {
 function validateEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
-  }
+}
 
-/* ************************************ END : CÁC HÀM XỬ LÝ DỮ LIỆU ************************************ */
+function validateDob(data) {
+    if(data != "") {
+        data += "T00:00:00";
+    }
+    return data;
+}
+
+
+/* ********** END: VALIDATE DATA FUNCTION ********** */
 
 function formatDateToValue(data) {
     if (data != null) {
@@ -110,6 +121,8 @@ function formatDateToValue(data) {
         return '';
     }
 }
+/* ************************************ END : CÁC HÀM XỬ LÝ DỮ LIỆU ************************************ */
+
 
 function matchItemDropdown(res, id, attr) {
     console.log(id);
@@ -129,3 +142,13 @@ function matchItemDropdown(res, id, attr) {
     }
 }
 
+//checked checkboxs -----------------------------------------------------------------------------
+function checkcheck(thischeck) {
+    if (thischeck.prop('checked')) {
+        thischeck.parents('tr').css('background-color', "#E3F3EE");
+        $('#btn-delete').css('visibility', 'visible');
+    } else {
+        thischeck.parents('tr').css('background-color', "#ffffff");
+        $('#btn-delete').css('visibility', 'hidden');
+    }
+}
