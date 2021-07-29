@@ -1,0 +1,33 @@
+input {
+    width: 325px;
+    height: 40px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    outline: none;
+    border: solid 1px #bbbbbb;
+    box-sizing: border-box;
+    font-family: 'GoogleSans-Regular';
+    font-size: 13px;
+}
+
+select.chondi {
+    width: 325px;
+    height: 40px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    outline: none;
+    border: solid 1px #bbbbbb;
+    box-sizing: border-box;
+}
+
+input.input-icon {
+    background-image: url('../../assets/icon/search.png');
+    background-repeat: no-repeat;
+    background-position: 16px center;
+    background-size: 16px;
+    padding-left: 40px;
+}
+    input.input-icon.input-search::placeholder {
+        font-family: GoogleSans-Italic;
+    }
+

@@ -1,0 +1,94 @@
+.dropdown {
+    position: relative;
+    width: 200px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-select {
+    padding: 11px 0;
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-style: normal;
+    font-size: 13px;
+    cursor: pointer;
+    order: 0;
+}
+    .dropdown-select .select {
+        margin-left: 16px;
+    }   
+    .dropdown-select i{
+        margin-right: 12px;
+        font-size: 16px;
+    }
+
+.dropdown .dropdown-list {
+    height: 0px;
+    width: 100%;
+    opacity: 1;
+    overflow: hidden;
+    order: 1;
+    z-index: 3; 
+    background-color: #ffffff;
+}
+    .dropdown .dropdown-list.active {
+        height: auto;
+        opacity: 1; 
+        overflow: visible;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        padding: 4px 0px;
+        /* max-height: 100px;
+        overflow-y: auto; */
+    }
+
+    .dropdown-list-item {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        background-color: #ffffff; 
+        cursor: pointer;         
+    }
+    .dropdown-list-item .dd-item-text {
+        margin-left: 10px;
+      
+    }
+    .dropdown-list-item:hover {
+        background-color: #E9EBEE;
+    }
+    .dropdown-item-check {
+        background-color: #019160;
+        color: #ffffff;
+    }
+    .fa-check {
+        margin-left: 10px;
+        opacity: 0;
+    }
+    .dropdown .dropdown-list.active + .dropdown-select .fa-angle-down {
+        transform: rotateX(180deg);
+    }
+    .dropdown-item-check .drop-item-text {
+        margin-left: 10px;
+    }
+
+    .form-dropdown {
+        width: 262px;
+        margin-left: 0px;
+        box-sizing: border-box;
+    }
+
+    .dropdown.dropdown1 .dropdown-select .select {
+        font-size: 15px; font-weight: bold;
+    }
+
+.drop-up .dropdown-list{
+    top: -250px;
+}

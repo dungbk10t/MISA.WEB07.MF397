@@ -1,0 +1,65 @@
+﻿﻿.content .content-body .grid {
+    border-bottom: 5px solid #bbbbbb;
+}
+    .content .content-body .grid table.tb-head {
+        width: 100%;
+        height: 50px;
+        table-layout: fixed;
+        float: left;
+    }
+    .content .content-body .grid table.tb-body {
+        width: 100%;
+        height: calc(100% - 80px);
+        table-layout: auto;
+        float: left;
+    }
+    .content .content-body .grid table.tb-head thead {
+        width: 100%;
+        height: 50px;
+        background-color: #ffffff;
+        border-bottom: solid 1px #E4E4E4;
+        display: table;
+    }
+    .content .content-body .grid table.tb-body tbody {
+        width: 100%;
+        height: 100%;
+        display: block;
+        overflow: scroll; /* Để cả x và y  */
+    }
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: lightgray;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:horizontal{
+    background-color: grey;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: grey;
+    border-radius: 4px;
+}
+
+.content .content-body .grid table.tb-body tbody tr {
+    border-bottom: 1px solid #E4E4E4;
+    display: table;
+    table-layout: fixed;
+    height: 48px;
+    width: 100%;
+}
+    .content .content-body .grid table.tb-body tbody tr:hover {
+        background-color: #E9EBEE;
+    }
+
+.content .content-body .grid table.tb-body tr td {
+    padding: 5px 10px;
+    width: 5%;
+    text-align: left;
+}
+
+.content .content-body .grid table.tb-head tr th {
+    padding: 5px 10px;
+    width: 5%;
+    text-align: left;
+}

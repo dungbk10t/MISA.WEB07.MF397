@@ -1,4 +1,4 @@
-class baseJS {
+class BaseJS {
     tableId = null;
     formMode = null;
     eId = null;
@@ -73,8 +73,60 @@ class baseJS {
                 $(`#${here.tableId} table tbody`).append(trHTML);   
             });
         }).fail(function(res){
-    
+            
         })
+    }
+    BindingData(objs) {
+        objs.forEach((e) => {
+            let columns = $(`#${here.tableId} table th`)
+            let trHTML = $(`<tr employeeId = ${e.EmployeeId}></tr>`)
+            $.each(columns, (index, col)=>{
+                let tdHTML = $('<td></td>')
+                // Để tạm fix sau  -> Chinh index = 0 thì append checkbox, index = 1 thì append số STT
+                if(index == 0){
+                    tdHTML.append($('<input onclick="checkcheck($(this))" type="checkbox" style="width:46px; height:22px;">'));
+                }
+                // else if(index == 1) {
+                //     tdHTML.append('<div style="width:46px; height:24px;">1</div>');
+                // }
+                // Để tạm fix sau  
+                else {
+                    let format = $(col).attr("format")
+                    let propName = $(col).attr("fieldName")
+                    let value = e[propName] 
+                    switch(format){
+                        case "dmy":
+                            value = here.dateFormat(value)
+                            break                              
+                        case "money":
+                            value = JSON.stringify(value)
+                            value = here.salaryFormat(value)
+                            break 
+                        case "workStatus":
+                            if(value == 0){
+                                value = "Đang làm việc"
+                                break
+                            } 
+                            if(value == 1){
+                                value = "Đang thử việc"
+                                break;
+                            } 
+                            if(value == 2){
+                                value = "Đã nghỉ việc"
+                                break
+                            } 
+                            else {
+                                value = ""
+                                break;
+                            }                        
+                        default: 
+                    }    
+                    tdHTML.append(value)
+                } 
+                trHTML.append(tdHTML)
+            })
+            $(`#${here.tableId} table tbody`).append(trHTML);   
+        });
     }
 
     initEvent(){
@@ -84,7 +136,7 @@ class baseJS {
         $("#btn-delete").click(here.btnOnClickDelete.bind(here));
         //Xử lý sựu kiện khi nhấn đúp chuột vào 1 row của table
         $(".tb-body").on("dblclick", "tbody tr", function () {
-            alert("Click được rồi");
+            // alert("Click được rồi");
             here.formMode = 1;
             let eForm = $(".employee-dialog");
             eForm.show();
@@ -128,7 +180,6 @@ class baseJS {
                         selectedItem.children(".fa-check").css("opacity", "1")
                     }
                 })
-
             }).fail(function (res) {
                 alert("Không thể binding dữ liệu lên form");
             })
@@ -156,6 +207,11 @@ class baseJS {
         $('#btn-close1').click(here.btnCloseOnclick.bind(here));
         $('#btn-close2').click(here.btnCloseOnclick.bind(here));
         $('#btn-cancel').click(here.btnCancelOnClick.bind(here));
+        $('#btn-refresh').click(here.btnRefreshOnClick.bind(here));
+        // Click vào nút exit trên popup
+        $('#btn-closepop').click(() => {
+            $('.popup').css('display', 'none');
+        });
     }
     dateFormat(_dob){
         let dob = null
@@ -194,25 +250,39 @@ class baseJS {
         $("input[required]").css("border", "1px solid #bbbbbb");
         $(".employee-dialog").show();
     }
+
+
     btnOnClickDelete() {    
         let delete_success = 0;
         let deleteEntityList = $(".tb-body tbody tr input[type=checkbox]:checked");       
         let needDelete= $(".tb-body tbody tr input[type=checkbox]:checked").length;
-        $.each(deleteEntityList, (index, e)=>{
-            let deleteEntity = $(e).parent().parent().attr("employeeId")
-            $.ajax({
-                url: this.link+`/${deleteEntity}`,
-                method: "DELETE"
-            }).done((res)=> {
-                delete_success = delete_success + 1;
-                if(delete_success == needDelete){
-                    alert("Xóa tất cả thành công")
-                    this.loadData()
-                }
-            }).fail(function(res){
-                alert('Không xóa được')
+        $('.popup').css('display', 'block');
+        PopupJS.showPopup('danger', 'Bạn có chắc chắn muốn xóa các bản ghi được chọn?', "Xóa các bản ghi!");
+        $('.popup button.btn-z').click(() => {
+            $.each(deleteEntityList, (index, e)=>{
+                let deleteEntity = $(e).parent().parent().attr("employeeId")
+                $.ajax({
+                    url: this.link+`/${deleteEntity}`,
+                    method: "DELETE"
+                }).done((res)=> {
+                    delete_success = delete_success + 1;
+                    if(delete_success == needDelete){
+                        // alert("Xóa tất cả thành công")
+                        this.loadData();
+                    }
+                    ToolTipJS.showMes('success', "Đã xóa thành công " + delete_success + "/" + needDelete + " bản ghi!")
+                    $('.employee-dialog').css("visibility", "hidden");
+                    $('.popup').css('display', 'none');
+                }).fail(function(res) {
+                    $('.employee-dialog').css("visibility", "hidden");
+                    $('.popup').css('display', 'none');
+                    alert('Không xóa được');
+                })
             })
-        })
+        });
+        $('.popup button.btn-y').click(() => {
+            $('.popup').css('display', 'none');
+        });
     }
     btnSaveOnClick () {
         var fieldList = $('.dialog-content-right .small-info')
@@ -236,22 +306,29 @@ class baseJS {
         });
         console.log(entity)
         if(this.formMode == 0){
-            console.log(0)
-            $.ajax({
-                url: this.link,
-                method: "POST", 
-                data: JSON.stringify(entity),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-            }).done((res)=> {
-                alert('Thêm mới thành công')
-                this.loadData()
-            }).fail(function(res){
-                alert('Không thêm được')
-            })
+            message = "Bạn có chắc chắn muốn thêm bản ghi này ?";
+            title = "Thêm mới bản ghi ! ";
+            PopupJS.showPopup('warning', message, title);
+            $('.popup').css('display', 'block');
+            $('.popup button.btn-x').click(() => {
+                $.ajax({
+                    url: this.link,
+                    method: "POST", 
+                    data: JSON.stringify(entity),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                }).done((res)=> {
+                    $(".employee-dialog").css("visibility", "hidden");
+                    $(".popup").css("display", "none");
+                    this.loadData();
+                    ToolTipJS.showMes("success", "Thêm mới bản ghi thành công !");
+                }).fail(function(res){
+                    ToolTipJS.showMes("danger", "Đã có lỗi xảy ra !");
+                })
+            });
+           
         }
         if(this.formMode == 1) {
-            console.log(1)
             $.ajax({
                 url: this.link+`/${this.eId}`,
                 method: "PUT", 
@@ -259,26 +336,23 @@ class baseJS {
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
             }).done((res)=> {
-                alert('Sửa thành công')
-                this.loadData()
+                $(".employee-dialog").css("visibility", "hidden");
+                $(".popup").css("display", "none");
+                this.loadData();
+                ToolTipJS.showMes("success", "Cập nhật bản ghi thành công !");
             }).fail(function(res){
-                alert('Không sửa được')
+                ToolTipJS.showMes("danger", "Đã có lỗi xảy ra !");
             })
         }
     }
     btnCloseOnclick() {
         $('.employee-dialog').hide();
-        $('.dialog-delete').hide();
-        $('.dialog-edit-delete').hide();
-        $('.dialog-delete strong span').remove();
-        $('.dialog-edit-delete .title span').remove();
     }
     btnCancelOnClick() {
         $('.employee-dialog').hide();
-        $('.dialog-delete').hide();
-        $('.dialog-edit-delete').hide();
-        $('.dialog-delete strong span').remove();
-        $('.dialog-edit-delete .title span').remove();
+    }
+    btnRefreshOnClick() {
+        this.loadData();
     }
 
 }
