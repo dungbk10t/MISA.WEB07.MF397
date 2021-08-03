@@ -1,20 +1,16 @@
 <template>
   <div class="content">
-    <TheHeader/>
-    <TheBody/>
+    <EmployeeList/>
   </div>
 </template>
 
 <script>
-
-import TheHeader from '@/components/layout/TheHeader'
-import TheBody from '@/components/layout/TheBody'
+import EmployeeList from '@/components/view/employee/EmployeeList';
 
 export default {
   name: 'TheContent',
-  components: {
-    TheHeader,
-    TheBody,
+  components: { 
+    EmployeeList,
   }
 }
 </script>

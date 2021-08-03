@@ -204,7 +204,7 @@
             }
             .content .content-body .content-title > span #btn-delete {
                 margin-right: 16px;
-                visibility: hidden;
+                /* visibility: hidden; */
             }
 
         .content .content-body .content-toolbar {
@@ -256,45 +256,84 @@
                 overflow: hidden;
             }
             
-        .content .content-body .content-paging {
-            width: 100%;
-            height: 56px;
-            float: left;
-            position: relative;
-        }
-
-            .content .content-body .content-paging .paging-left {
-                height: 100%;
-                width: 300px;
-                position: absolute;
-                left: 0;
+            .content .content-body .content-paging {
+                width: 100%;
+                height: 56px;
+                /* height: inherit; */
+                float: left;
+                position: relative;
             }
-
-                .content .content-body .content-paging .paging-left > p {
-                    line-height: 56px;
-                }
-
-            .content .content-body .content-paging .paging-center {
-                width: 400px;
-                height: 100%;
-                position: absolute;
-                left: 50%;
-                margin-left: -200px;
+            .content .content-body .content-paging .paging-bar {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .content .content-body .content-paging .paging-right {
-                height: 100%;
-                width: 300px;
-                position: absolute;
-                right: 0;
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-            }
-
-                .content .content-body .content-paging .paging-right > p {
-                    line-height: 56px;
+                 position: absolute;
+                 left: 16px;
+                 right: 16px;
+                 align-items: center;
+                 height: 55px;   
+             }
+                .content .content-body .content-paging .paging-bar .paging-record-option {
+                     position: absolute;
+                     right: 16px;
+                 }
+                 .content .content-body .content-paging .paging-bar .paging-record-info {
+                     position: absolute;
+                     left: 16px;
+                 }
+                 .content .content-body .content-paging .paging-bar .paging-option {
+                     position: absolute;
+                     /* left: 0px; */
+                     display: flex;
+                     /* display: inline-block; */
+                     height: 100%;
+                     width: 40%;
+                     align-items: center;
+                     text-align: center;
+                     justify-content: center;
+                     left: 30%;
+                     cursor: pointer;
+                 }
+                .btn-select-prev-list-page {
+                        background-image: url('../../assets/icon/btn-firstpage.svg');
+                        width: 24px;
+                        height: 24px;
+                    }
+                .btn-select-prev-page {
+                    background-image: url('../../assets/icon/btn-prev-page.svg');
+                    width: 18px;
+                    height: 24px;
+                    margin-left: 20px;
+                    margin-right: 10px;
                 }
+                
+                .btn-select-next-list-page {
+                    background-image: url('../../assets/icon/btn-lastpage.svg');
+                    width: 18px;
+                    height: 24px;
+                }
+                
+                .btn-select-next-page {
+                    background-image: url('../../assets/icon/btn-next-page.svg');
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 20px;
+                    margin-left:10px;
+                }
+                .page-number {
+                    width: 30px;
+                    height: 30px;
+                    margin: 0 4px;
+                    border: 1px solid #ccc;
+                    border-radius: 50%;
+                    background-color: #e9ebee;
+                    outline: none;
+                    cursor: pointer !important;
+                }
+                .page-number:hover {
+                    background-color: #ffffff;
+                    border: none;
+                }
+                .page-number:focus {
+                    background-color: #019160;
+                    color: #ffffff;
+                }
+            

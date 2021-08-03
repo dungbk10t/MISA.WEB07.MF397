@@ -13,9 +13,9 @@ function fomatSalary(inputData) {
     }
     else {
         inputData += '';
-        x = inputData.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? '.' + x[1] : '';
+        var x = inputData.split('.');
+        var x1 = x[0];
+        var x2 = x.length > 1 ? '.' + x[1] : '';
         var rgx = /(\d+)(\d{3})/;
         while (rgx.test(x1)) {
             x1 = x1.replace(rgx, '$1' + '.' + '$2');
@@ -143,7 +143,7 @@ function matchItemDropdown(res, id, attr) {
 }
 
 //checked checkboxs -----------------------------------------------------------------------------
-function checkcheck(thischeck) {
+function checkBox(thischeck) {
     if (thischeck.prop('checked')) {
         thischeck.parents('tr').css('background-color', "#E3F3EE");
         $('#btn-delete').css('visibility', 'visible');

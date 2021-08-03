@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <TheMenu/>
-    <TheContent/>
+    <EmployeeList/>
   </div>
 </template>
 
 <script>
 import TheMenu from '@/components/layout/TheMenu'
-import TheContent from '@/components/layout/TheContent'
+import EmployeeList from '@/components/view/employee/EmployeeList'
 
 
 
@@ -15,7 +15,7 @@ export default {
   name: 'App',
   components: {
     TheMenu,
-    TheContent
+    EmployeeList
   }
 }
 </script>

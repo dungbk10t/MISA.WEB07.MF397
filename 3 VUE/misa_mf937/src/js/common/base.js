@@ -29,7 +29,7 @@ class baseJS {
                     let tdHTML = $('<td></td>')
                     // Để tạm fix sau  -> Chinh index = 0 thì append checkbox, index = 1 thì append số STT
                     if(index == 0){
-                        tdHTML.append($('<input onclick="checkcheck($(this))" type="checkbox" style="width:46px; height:22px;">'));
+                        tdHTML.append($('<input onclick="checkBox($(this))" type="checkbox" style="width:46px; height:22px;">'));
                     }
                     // else if(index == 1) {
                     //     tdHTML.append('<div style="width:46px; height:24px;">1</div>');

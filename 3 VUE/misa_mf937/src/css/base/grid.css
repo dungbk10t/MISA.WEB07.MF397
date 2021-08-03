@@ -1,31 +1,57 @@
-﻿﻿.content .content-body .grid {
-    border-bottom: 5px solid #bbbbbb;
+﻿﻿.grid {
+    height: calc(100% - 112px);
+    overflow-y: auto; /*Thanh cuộn theo chiều dọc*/
+    overflow-x: auto;
 }
-    .content .content-body .grid table.tb-head {
-        width: 100%;
-        height: 50px;
-        table-layout: fixed;
-        float: left;
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    display: block;
+}
+    table body {
+        font-weight: normal;
     }
-    .content .content-body .grid table.tb-body {
-        width: 100%;
-        height: calc(100% - 80px);
-        table-layout: auto;
-        float: left;
+
+    table thead {
+        font-weight: bold;
     }
-    .content .content-body .grid table.tb-head thead {
-        width: 100%;
-        height: 50px;
+
+    table tr, td{
+        height: 48px;
+        border-bottom: 1px solid #bbbbbb;
+        text-align: left; /*căn trái cho text*/
+        font-weight: normal;
+    }
+    table th {
+        height: 48px;
+        border-bottom: 1px solid #bbbbbb;
+        text-align: left; /*căn trái cho text*/
+        position: sticky;
+        top: 0;
         background-color: #ffffff;
-        border-bottom: solid 1px #E4E4E4;
-        display: table;
     }
-    .content .content-body .grid table.tb-body tbody {
-        width: 100%;
-        height: 100%;
-        display: block;
-        overflow: scroll; /* Để cả x và y  */
+
+th,td{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+th:first-child, th:last-child, td:first-child, td:last-child{
+    padding-left: 16px;
+}
+    table tr {
+        cursor: pointer;
     }
+        table tr:hover {
+            background-color: #e5e5e5;
+        }   
+.tr-focus {
+    background-color: #EBF9F4;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -39,27 +65,4 @@
 ::-webkit-scrollbar-thumb {
     background-color: grey;
     border-radius: 4px;
-}
-
-.content .content-body .grid table.tb-body tbody tr {
-    border-bottom: 1px solid #E4E4E4;
-    display: table;
-    table-layout: fixed;
-    height: 48px;
-    width: 100%;
-}
-    .content .content-body .grid table.tb-body tbody tr:hover {
-        background-color: #E9EBEE;
-    }
-
-.content .content-body .grid table.tb-body tr td {
-    padding: 5px 10px;
-    width: 5%;
-    text-align: left;
-}
-
-.content .content-body .grid table.tb-head tr th {
-    padding: 5px 10px;
-    width: 5%;
-    text-align: left;
-}
+} 

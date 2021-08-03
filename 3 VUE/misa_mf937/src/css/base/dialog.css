@@ -6,6 +6,9 @@
     visibility:hidden;
     position:relative;
 }
+.e-dialog-hidden {
+    display: none;
+}
 .dialog-modal {
     position: fixed;
     top: 0;
@@ -36,6 +39,15 @@
         width: 100%;
         float: left;
         position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+    .employee-profile-dialog .dialog-header button {
+        height: 40px;
+        width: 40px;
+        background-color: #ffffff;
+        padding: 0;
+        border: 0;
     }
 
         .employee-profile-dialog .dialog-header p {
