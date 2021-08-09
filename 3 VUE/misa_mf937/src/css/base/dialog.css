@@ -43,8 +43,8 @@
         justify-content: space-between;
     }
     .employee-profile-dialog .dialog-header button {
-        height: 40px;
-        width: 40px;
+        height: 36px;
+        width: 36px;
         background-color: #ffffff;
         padding: 0;
         border: 0;
@@ -155,7 +155,7 @@
                     position: absolute;
                     left: 0;
                     bottom: 0;
-                    border-radius: 4px;
+                    /* border-radius: 4px; */
                 }
 
             .employee-profile-dialog .dialog-content .dialog-content-right .my-row {
@@ -273,3 +273,13 @@
 /* ********************** END : DIALOG DELETE ********************** */
 
 /* ********************** BEGIN : DIALOG EDIT ********************** */
+
+.money-unit{
+    /* display: inline-block; */
+   
+    text-align: center;
+    color: #454545;
+    position: absolute;
+    right: 24px;    
+    line-height: 80px;
+}

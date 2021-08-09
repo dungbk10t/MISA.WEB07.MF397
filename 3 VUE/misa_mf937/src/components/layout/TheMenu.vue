@@ -14,7 +14,7 @@
       />
       <MenuItem 
         menuItemClass="report-icon" 
-        menuItemText="Theo dõi chi" />
+        menuItemText="Theo dõi chi tiêu" />
       <MenuItem
         menuItemClass="dashboard-icon"
         menuItemText="Danh mục khách hàng"

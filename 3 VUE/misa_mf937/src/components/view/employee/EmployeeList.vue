@@ -11,7 +11,7 @@
       </div>
       <div class="header-right">
         <div class="avatar"></div>
-        <p>Nguyễn Văn Mạnh</p>
+        <p>Phạm Tuấn Dũng</p>
         <div class="option-icon"></div>
       </div>
     </div>
@@ -38,38 +38,37 @@
         </span>
       </div>
       <div class="content-toolbar">
-        <div class="toolbar-left">
+        <div class="toolbar-left" >
           <input
             class="input-icon input-search"
             type="text"
             placeholder="Tìm kiếm theo mã, tên hoặc số điện thoại"
-
           />
           <!-- Dropdown Position 1  -->
-          <div
-            class="dropdown form-dropdown dropdown-item-check"
-            id="employee__position_1"
-            value=""
-          >
-            <div class="dropdown-list"></div>
-            <div class="dropdown-select">
-              <div class="select">Chọn vị trí</div>
-              <i class="fas fa-angle-down"></i>
-            </div>
-          </div>
+          <Dropdown
+            style="width:213px"
+            defaultName="Tất cả vị trí"
+            dropdownClass="dropdown form-dropdown"
+            dropdownId="employee__position"
+            dropdownItemList="dropdown-list-item"
+            dropdownItemValueId="PositionId"
+            dropdownItemValueName="PositionName"
+            myUrl="v1/Positions"
+          />
           <!-- Dropdown Position 1  -->
           <!-- Dropdown Department 1  -->
-          <div
-            class="dropdown form-dropdown"
-            id="employee__department_1"
-            value=""
-          >
-            <div class="dropdown-list"></div>
-            <div class="dropdown-select">
-              <div class="select">Chọn phòng ban</div>
-              <i class="fas fa-angle-down"></i>
-            </div>
-          </div>
+          <Dropdown
+            style="width:213px"
+            defaultName="Tất cả phòng ban"
+            dropdownClass="dropdown form-dropdown"
+            dropdownId="employee__department_1"
+            dropdownItemList="dropdown-list-item"
+            tabindex="11"
+            dropdownItemValueId="DepartmentId"
+            dropdownItemValueName="DepartmentName"
+             myUrl="api/Department"
+          />
+
           <!-- Dropdown Department 1  -->
         </div>
 
@@ -93,8 +92,8 @@
               <th>#</th>
               <th fieldName="EmployeeCode">Mã nhân viên</th>
               <th fieldName="FullName">Họ và tên</th>
-              <th fieldName="GenderName">Giới tính</th>
               <th fieldName="DateOfBirth" format="dmy">Ngày sinh</th>
+              <th fieldName="GenderName">Giới tính</th>
               <th fieldName="PhoneNumber">Điện thoại</th>
               <th fieldName="Email">Email</th>
               <th fieldName="PositionName">Chức vụ</th>
@@ -114,10 +113,15 @@
               @dblclick="rowOnDblClick(employee.EmployeeId)"
             >
               <td>
-                <div class="checkbox" :class="{ 'checked icon-tick': checkedBoxs.includes(employee.EmployeeId)}" 
-                    @click="selectcheckBox(employee.EmployeeId)"
-                >
-                </div>
+                <div
+                  class="checkbox"
+                  :class="{
+                    'checked icon-tick': checkedBoxs.includes(
+                      employee.EmployeeId
+                    ),
+                  }"
+                  @click="selectcheckBox(employee.EmployeeId)"
+                ></div>
                 <!-- <div class="checkbox checked" @click="selectcheckBox(employee.EmployeeId)"></div> -->
               </td>
               <td>{{ index + 1 }}</td>
@@ -140,7 +144,7 @@
       <div class="content-paging">
         <div class="paging-bar">
           <div class="paging-record-info">
-            Hiển thị 1-10/10000 Nhân viên hàng
+            Hiển thị <b>1-10/10000</b> Nhân viên hàng
           </div>
           <div class="paging-option">
             <div class="btn-select-prev-list-page"></div>
@@ -164,26 +168,32 @@
       :mode="modeForm"
       @btnAddOnClick="btnAddOnClick"
       @btnSaveOnClick="btnSaveOnClick"
+      :isReOpen="reOpen"
     />
   </div>
 </template>
 
 <script>
 import EmployeeDetail from "@/components/view/employee/EmployeeDetail";
+import Dropdown from "../../base/BaseDropdown.vue";
 import axios from "axios";
+import { eventBus1 } from "../../../main";
 
 export default {
   name: "EmployeeList",
   components: {
     EmployeeDetail,
+    Dropdown,
   },
   data() {
     return {
+      employee: {},
       employees: [],
       checkedBoxs: [],
       employeeId: "",
       isHideDialogDetail: true,
       modeForm: 0,
+      reOpen: false,
     };
   },
   created() {
@@ -239,8 +249,9 @@ export default {
           .then(() => {
             vm.checkedBoxs = vm.checkedBoxs.filter((e) => e !== item);
             if (vm.checkedBoxs.length == 0) {
+              eventBus1.$emit("showTooltipDeleteSuccess");
               vm.loadData();
-              alert("Đã xóa hết các bản ghi được chọn ! ");
+              // alert("Đã xóa hết các bản ghi được chọn ! ");
             }
           });
       });
@@ -280,6 +291,19 @@ export default {
         let month = newDate.getMonth() + 1;
         let year = newDate.getFullYear();
         dob = `${date}/${month}/${year}`;
+      }
+      return dob;
+    },
+    formatDateToValue(dateInput) {
+      let dob = null;
+      if (dateInput != null) {
+        let newDate = new Date(dateInput);
+        let date = newDate.getDate();
+        date = date < 10 ? "0" + date : date;
+        let month = newDate.getMonth() + 1;
+        month = month < 10 ? "0" + month : month;
+        let year = newDate.getFullYear();
+        dob = `${year}-${month}/${date}`;
       }
       return dob;
     },

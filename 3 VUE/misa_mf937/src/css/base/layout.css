@@ -1,4 +1,4 @@
-.menu {
+/* .menu {
     width: 225px;
     height: 100vh;
     border-right: solid 1px #e4e4e4;
@@ -11,7 +11,6 @@
         display: flex;
         align-items: center;
     }
-
         .menu .menu-header .toggle {
             background-color: #fff;
             height: 24px;
@@ -23,7 +22,6 @@
             background-repeat: no-repeat;
             background-size: contain;
         }
-
         .menu .menu-header .logo {
             background-color: #fff;
             height: 24px;
@@ -32,18 +30,16 @@
             background-repeat: no-repeat;
             background-size: contain;
         }
-
     .menu .menu-body {
         width: 100%;
     }
-
         .menu .menu-body .menu-item {
             width: 100%;
             height: 44px;
             display: flex;
             cursor: pointer;
         }
-
+        
             .menu .menu-body .menu-item .menu-icon {
                 width: 20px;
                 height: 20px;
@@ -74,20 +70,29 @@
                 .menu .menu-body .menu-item .menu-icon.setting-icon {
                     background-image: url('../../assets/icon/setting.png');
                 }
+                .menu .menu-body .menu-item .menu-icon:focus{
+                    background-image: #019160;
+                }
 
             .menu .menu-body .menu-item:hover {
                 background-color: #e5e5e5;
                 color: #000000;
             }
-
+            .menu .menu-body .menu-item:focus {
+                background-color: #019160;
+                color: #ffffff;
+            }
                 .menu .menu-body .menu-item:hover .menu-icon {
                     background-color: #e5e5e5;
+                }
+                .menu .menu-body .menu-item:focus .menu-icon {
+                    background-color: #019160;
                 }
 
             .menu .menu-body .menu-item p {
                 font-size: 13px;
                 color: #515252;
-            }
+            } */
 
 .content {
     width: calc(100% - 227px);
@@ -176,10 +181,11 @@
             }
 
     .content .content-body {
-        width: 100%;
+        width: 100%;    
         height: calc(100% - 49px);
         float: left;
         padding: 24px;
+        padding-bottom: 0px;
         box-sizing: border-box;
         background-color: #E9EBEE;
     }

@@ -1,9 +1,44 @@
 <template>
   <div class="messenger-wrapper">
-    <div class="toast-messenger" scale="0" v-bind:type="tooltipType">
-      <i v-bind:class="['fas', tooltipIClass]"></i>
+    <div
+      v-if="tooltipType == 'warning'"
+      :class="['toast-messenger warning', tooltipScaleClass]"
+      scale="0"
+      v-bind:type="tooltipType"
+    >
+      <i class="fas fa-exclamation-circle"></i>
       <p>{{ tooltipText }}</p>
-      <button><i class="fas fa-times"></i></button>
+      <button><i class="fas fa-times" @click="closeToolTip"></i></button>
+    </div>
+    <div
+      v-else-if="tooltipType == 'danger'"
+      :class="['toast-messenger danger', tooltipScaleClass]"
+      scale="0"
+      v-bind:type="tooltipType"
+    >
+      <i class="fas fa-exclamation-triangle"></i>
+      <p>{{ tooltipText }}</p>
+      <button><i class="fas fa-times" @click="closeToolTip"></i></button>
+    </div>
+    <div
+      v-else-if="tooltipType == 'success'"
+      :class="['toast-messenger success', tooltipScaleClass]"
+      scale="0"
+      v-bind:type="tooltipType"
+    >
+      <i class="fas fa-check-circle"></i>
+      <p>{{ tooltipText }}</p>
+      <button><i class="fas fa-times" @click="closeToolTip"></i></button>
+    </div>
+    <div
+      v-else
+      :class="['toast-messenger primary', tooltipScaleClass]"
+      scale="0"
+      v-bind:type="tooltipType"
+    >
+      <i class="fas fa-exclamation"></i>
+      <p>{{ tooltipText }}</p>
+      <button><i class="fas fa-times" @click="closeToolTip"></i></button>
     </div>
   </div>
 </template>
@@ -13,8 +48,22 @@ export default {
   name: "BaseToolTip",
   props: {
     tooltipText: String,
-    tooltipIClass: String,
     tooltipType: String,
+    tooltipScaleClass: String,
+  },
+  watch: {
+    tooltipScaleClass() {
+      if (this.tooltipScaleClass == "scale1") {
+        setTimeout(() => {
+          this.closeToolTip();
+        }, 3000);
+      }
+    },
+  },
+  methods: {
+    closeToolTip() {
+      this.$emit("closeToolTip");
+    },
   },
 };
 </script>
@@ -25,6 +74,7 @@ export default {
   top: 4px;
   left: 50%;
   margin-left: -165px;
+  z-index: 50000; 
 }
 
 .toast-messenger {
@@ -39,7 +89,7 @@ export default {
   transform: scale(0);
   transition: 0.5s;
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
-  z-index: 1000;
+  z-index: 50000;
   background-color: #ffffff;
   opacity: 1;
 }
@@ -84,5 +134,9 @@ export default {
 
 .scale1 {
   transform: scale(1);
+}
+
+.scale0 {
+  transform: scale(0);
 }
 </style>

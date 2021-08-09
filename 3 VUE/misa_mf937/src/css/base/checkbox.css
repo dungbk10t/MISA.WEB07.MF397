@@ -1,6 +1,7 @@
 .icon-tick{
-    background-image: url("../../assets/icon/tick.svg");
+    background-image: url("../../assets/icon/tick.png");
     color: #fff;
+    background-size: cover;
 }
 
 .checkbox {

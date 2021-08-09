@@ -1,7 +1,7 @@
 <template>
     <div class="content-paging">
             <div class="paging-bar">
-                <div class="paging-record-info">Hiển thị 1-10/10000 Nhân viên hàng</div>
+                <div class="paging-record-info"><p>Hiển thị <b>1-10/10000</b> Nhân viên hàng</p></div>
                 <div class="paging-option">
                     <div class="btn-select-prev-list-page"></div>
                     <div class="btn-select-prev-page"></div>
@@ -23,7 +23,7 @@
 export default {
     name: 'TheContentPaging',
     components: {
-   
+        
     }
 }
 </script>

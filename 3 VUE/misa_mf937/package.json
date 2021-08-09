@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.5",
+    "vue-bus": "^1.2.1",
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {

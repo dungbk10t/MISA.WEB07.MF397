@@ -61,7 +61,10 @@ export default {
 .menu .menu-body .menu-item .menu-icon.setting-icon {
   background-image: url("../../assets/icon/setting.png");
 }
-
+.menu .menu-body .menu-item-active {
+  background-color: #019160;
+  color: #ffffff;
+}
 .menu .menu-body .menu-item:hover {
   background-color: #e5e5e5;
   color: #000000;
