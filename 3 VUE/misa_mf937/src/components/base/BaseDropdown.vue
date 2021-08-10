@@ -21,7 +21,7 @@
   </div>
     </div>
     <div class="dropdown-select" @click="dropdownOnClick">
-      <div class="select" > {{currentName}}</div>
+      <div class="select"> {{currentName}}</div>
       <i class="fas fa-angle-down"></i>
     </div>
   </div>
@@ -60,7 +60,7 @@ export default {
   watch: {
     selectedId: function () {
       this.initChoice();
-      console.log(this.selectedId);
+      // console.log(this.selectedId);
     },
   },
   methods: {
@@ -102,23 +102,23 @@ export default {
             },
           ];
           break;
-        case "StoreName":
+        case "RestaurantName":
           this.itemlist = [
             {
-              StoreId: 0,
-              StoreName: "Nhà hàng Biển Đông",
+              RestaurantId: 0,
+              RestaurantName: "Nhà hàng Biển Đông",
             },
             {
-              StoreId: 1,
-              StoreName: "Nhà hàng Phú Quốc",
+              RestaurantId: 1,
+              RestaurantName: "Nhà hàng Phú Quốc",
             },
             {
-              StoreId: 2,
-              StoreName: "Nhà hàng Đà Nẵng",
+              RestaurantId: 2,
+              RestaurantName: "Nhà hàng Đà Nẵng",
             },
             {
-              StoreId: 3,
-              StoreName: "Nhà hàng Hà Nội",
+              RestaurantId: 3,
+              RestaurantName: "Nhà hàng Hà Nội",
             },
           ];
           break;
@@ -128,7 +128,7 @@ export default {
               .get(`http://cukcuk.manhnv.net/${this.myUrl}`)
               .then((res) => {
                 this.itemlist = res.data;
-                console.log(this.myUrl);
+            
               })
               .catch((error) => {
                 console.log(error);
@@ -138,9 +138,9 @@ export default {
       }
     },
     initChoice() {
-      console.log("SelectedID : "+this.selectedId)
+      // console.log("SelectedID : "+this.selectedId)
       let vm = this;
-      if ((vm.selectedId + "").length > 0) {
+      if (vm.selectedId) {
         vm.itemlist.forEach((item) => {
           if (vm.selectedId == item[vm.dropdownItemValueId]) {
             vm.currentName = item[vm.dropdownItemValueName];
@@ -166,5 +166,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
+
 </style>

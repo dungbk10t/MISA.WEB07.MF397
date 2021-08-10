@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <TheMenu />
-    <EmployeeList />
+    <TheMenu
+      :isCollapseMenu="isCollapseMenu"
+      @btnToggleOnClick="btnToggleOnClick"
+    />
+    <EmployeeList
+      :isCollapseMenu="isCollapseMenu"
+      @btnDeleteOnClick="showDeletePopup"
+    />
     <ToastMessage
       :tooltipText="tooltipText"
       :tooltipType="tooltipType"
@@ -55,6 +61,11 @@ export default {
       this.tooltipText = "Thông tin này bắt buộc nhập !";
       this.tooltipScaleClass = "scale1";
     });
+    eventBus2.$on("showTooltipInputRequied2", () => {
+      this.tooltipType = "danger";
+      this.tooltipText = "Thông tin nhập không hợp lệ !";
+      this.tooltipScaleClass = "scale1";
+    });
     eventBus2.$on("showPopupConfirmAdd", () => {
       this.isShowPopup = true;
       this.popupContent = "Bạn có muốn thêm nhân viên này vào danh sách không?";
@@ -75,12 +86,12 @@ export default {
   },
   data() {
     return {
+      isCollapseMenu: false,
       tooltipType: "",
       tooltipText: "",
       tooltipScaleClass: "scale0",
-      isCollapseMenu: false,
       isShowAddDialog: false,
-      forMode: 1,
+      formMode: 1,
       employeeId: "",
       reOpen: false,
       isShowPopup: false,
@@ -92,7 +103,7 @@ export default {
   methods: {
     showAddForm() {
       this.isShowAddDialog = true;
-      this.forMode = 1;
+      this.formMode = 1;
       this.employeeId = "";
       this.reOpen = !this.reOpen;
     },
@@ -101,7 +112,7 @@ export default {
     },
     showEditForm1(id) {
       this.isShowAddDialog = true;
-      this.forMode = 0;
+      this.formMode = 0;
       this.employeeId = id;
       this.reOpen = !this.reOpen;
     },

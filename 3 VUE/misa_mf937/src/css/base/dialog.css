@@ -49,6 +49,9 @@
         padding: 0;
         border: 0;
     }
+    .employee-profile-dialog .dialog-header button:hover{
+        background-color: #E5E5E5;
+    }
 
         .employee-profile-dialog .dialog-header p {
             font-size: 24px;
@@ -281,5 +284,10 @@
     color: #454545;
     position: absolute;
     right: 24px;    
-    line-height: 80px;
+    line-height: 40px;
+    height: 40px;
+    right: 10px;
+    top: 20px;
+    z-index: 5;
+
 }

@@ -2,7 +2,7 @@
   <button 
       v-bind:class="buttonClass" 
       v-bind:id="buttonId"
-      @click="$emit('btn-click')"
+      @click="$emit('btnClick')"
   >
       <i v-if="iClass !== ''" v-bind:class="['fas' , iClass]"></i>
       <p>{{buttonText}}</p>
@@ -75,52 +75,5 @@ button {
 
 .button.button-refresh i {
   margin: auto 16px;
-}
-
-.content .content-body .content-paging .paging-center button {
-  height: 40px;
-}
-
-.content .content-body .content-paging .paging-center button.circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid #bbbbbb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.content .content-body .content-paging .paging-center button.circle:hover {
-  background-color: #ffffff;
-}
-
-
-.content
-  .content-body
-  .content-paging
-  .paging-center
-  button.circle:nth-child(3n + 1) {
-  background-color: #019160;
-}
-
-.content
-  .content-body
-  .content-paging
-  .paging-center
-  button.circle:nth-child(3n + 1):hover {
-  background-color: #2fbe8e;
-}
-
- .btn-inline {
-  border: none ;
-  outline: none;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-}
-
-.content .content-body .content-paging .paging-center button.btn-inline i {
-  font-size: 20px;
 }
 </style>

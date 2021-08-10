@@ -23,9 +23,9 @@
       </div>
     </div>
     <div class="popup-footer">
-      <Button v-if="popupType !== 'notification'" buttonClass="button btn-y" buttonText="NO" @btn-click="hidePopup"/>
-      <Button v-if="popupType !== 'danger'" buttonClass="button btn-x" buttonText="YES" @btn-click="btnXOnClick" />
-      <Button v-if="popupType == 'danger'" buttonClass="button btn-z" buttonText="YES" @btn-click="btnZOnClick" />
+      <Button v-if="popupType !== 'notification'" buttonClass="button btn-y" buttonText="NO" @btnClick="hidePopup"/>
+      <Button v-if="popupType !== 'danger'" buttonClass="button btn-x" buttonText="YES" @btnClick="btnXOnClick" />
+      <Button v-if="popupType == 'danger'" buttonClass="button btn-z" buttonText="YES" @btnClick="btnZOnClick" />
     </div>
   </div>
 </template>

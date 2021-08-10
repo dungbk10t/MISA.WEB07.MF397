@@ -1,15 +1,21 @@
 <template>
-  <div class="content">
+  <div class="content" :class="{ 'collapse-content': isCollapseMenu }">
     <div class="content-header">
       <div class="header-left">
-        <select>
-          <option value="">Nhà hàng Biển Đông</option>
-          <option value="">Nhà hàng Biển Tây</option>
-          <option value="">Nhà hàng Biển Nam</option>
-          <option value="">Nhà hàng Biển Bắc</option>
-        </select>
+        <div class="iconMB"></div>
+        <!-- Dropdown Restaurant  -->
+        <Dropdown
+          class="dropdown-select-header"
+          defaultName="Tất cả vị trí"
+          dropdownClass="dropdown form-dropdown"
+          dropdownItemList="dropdown-list-item"
+          dropdownItemValueId="RestaurantId"
+          dropdownItemValueName="RestaurantName"
+        />
+        <!-- Dropdown Restaurant  -->
       </div>
       <div class="header-right">
+        <div class="iconBell"></div>
         <div class="avatar"></div>
         <p>Phạm Tuấn Dũng</p>
         <div class="option-icon"></div>
@@ -19,14 +25,14 @@
       <div class="content-title">
         <b>Danh sách nhân viên</b>
         <span>
-          <button
-            id="btn-delete"
-            class="button button-icon"
-            @click="btnDeleteOnClick"
-          >
-            <i class="fas fa-trash-alt"></i>
-            <p>Xóa nhân viên</p>
-          </button>
+          <Button
+            v-if="isShowDeleteButton"
+            buttonId="btn-delete"
+            buttonClass="button button-icon"
+            iClass="fa-trash-alt"
+            buttonText="Xóa nhân viên"
+            @btnClick="btnDeleteOnClick"
+          />
           <button
             id="btn-add"
             class="button button-icon"
@@ -38,7 +44,7 @@
         </span>
       </div>
       <div class="content-toolbar">
-        <div class="toolbar-left" >
+        <div class="toolbar-left">
           <input
             class="input-icon input-search"
             type="text"
@@ -46,7 +52,7 @@
           />
           <!-- Dropdown Position 1  -->
           <Dropdown
-            style="width:213px"
+            style="width: 213px"
             defaultName="Tất cả vị trí"
             dropdownClass="dropdown form-dropdown"
             dropdownId="employee__position"
@@ -54,11 +60,12 @@
             dropdownItemValueId="PositionId"
             dropdownItemValueName="PositionName"
             myUrl="v1/Positions"
+            selectedId="default"
           />
           <!-- Dropdown Position 1  -->
           <!-- Dropdown Department 1  -->
           <Dropdown
-            style="width:213px"
+            style="width: 213px"
             defaultName="Tất cả phòng ban"
             dropdownClass="dropdown form-dropdown"
             dropdownId="employee__department_1"
@@ -66,9 +73,9 @@
             tabindex="11"
             dropdownItemValueId="DepartmentId"
             dropdownItemValueName="DepartmentName"
-             myUrl="api/Department"
+            myUrl="api/Department"
+            selectedId="default"
           />
-
           <!-- Dropdown Department 1  -->
         </div>
 
@@ -122,7 +129,6 @@
                   }"
                   @click="selectcheckBox(employee.EmployeeId)"
                 ></div>
-                <!-- <div class="checkbox checked" @click="selectcheckBox(employee.EmployeeId)"></div> -->
               </td>
               <td>{{ index + 1 }}</td>
               <td>{{ employee.EmployeeCode }}</td>
@@ -165,10 +171,10 @@
     <EmployeeDetail
       v-bind:isHide="isHideDialogDetail"
       v-bind:employeeId="employeeId"
-      :mode="modeForm"
+      :mode="mode"
       @btnAddOnClick="btnAddOnClick"
-      @btnSaveOnClick="btnSaveOnClick"
-      :isReOpen="reOpen"
+      
+      :isReOpenForm="isReOpenForm"
     />
   </div>
 </template>
@@ -176,14 +182,17 @@
 <script>
 import EmployeeDetail from "@/components/view/employee/EmployeeDetail";
 import Dropdown from "../../base/BaseDropdown.vue";
+import Button from "../../base/BaseButton.vue";
 import axios from "axios";
 import { eventBus1 } from "../../../main";
+import { eventBus2 } from "../../../main";
 
 export default {
   name: "EmployeeList",
   components: {
     EmployeeDetail,
     Dropdown,
+    Button,
   },
   data() {
     return {
@@ -192,8 +201,9 @@ export default {
       checkedBoxs: [],
       employeeId: "",
       isHideDialogDetail: true,
-      modeForm: 0,
-      reOpen: false,
+      isShowDeleteButton: false,
+      mode: 0,
+      isReOpenForm: false,
     };
   },
   created() {
@@ -201,14 +211,30 @@ export default {
     axios
       .get("http://cukcuk.manhnv.net/v1/Employees")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         vm.employees = res.data;
       })
       .catch((res) => {
         console.log(res);
       });
+    eventBus2.$on("loadData", () => {
+      this.loadData();
+      console.log("loading")
+    });
+    eventBus2.$on("deleteData", () => {
+      this.deleteData();
+    });
+    eventBus2.$on("collapseMenu", (_isCollapse) => {
+      this.isCollase = _isCollapse;
+      console.log(this.isCollase);
+    });
+    eventBus2.$on("confirmCloseAddForm",() => {
+      this.isHideDialogDetail= true
+    });
   },
-
+  props: {
+    isCollapseMenu: Boolean,
+  },
   methods: {
     /** -----------------------------------------------------------------------
      * @Event : Hiển thị form chi tiết khi nhấn button thêm nhân viên
@@ -217,7 +243,8 @@ export default {
      */
     btnAddOnClick(isHide) {
       this.isHideDialogDetail = isHide;
-      this.modeForm = 0; // Khi nhấn vào cập nhật trạng thái 0 - Thêm mới
+      this.mode = 0; // Khi nhấn vào cập nhật trạng thái 0 - Thêm mới
+      this.isReOpenForm = !this.isReOpenForm;
     },
     /** -----------------------------------------------------------------------
      * @Event : Thêm mới / cập nhật dữ liệu dữ liệu khi click vào nut "Save"
@@ -230,7 +257,7 @@ export default {
         this.loadData();
       }
     },
-    /** -----------------------------------------------------------------------
+    /** ------------------------------------------------------------------------
      * @Event : Hiển thị form chi tiết khi double vào một hàng của bảng dữ liệu.
      * @Author : Author : Phạm Tuấn Dũng
      * @Date : 31/07/2021
@@ -239,9 +266,13 @@ export default {
       // alert(employeeId);
       this.isHideDialogDetail = false;
       this.employeeId = empId;
-      this.modeForm = 1; // Khi nhấn vào cập nhật trạng thái 1 - Sửa
+      this.mode = 1; // Khi nhấn vào cập nhật trạng thái 1 - Sửa
+      this.isReOpenForm = !this.isReOpenForm;
     },
     btnDeleteOnClick() {
+      this.$emit("btnDeleteOnClick");
+    },
+    deleteData() {
       var vm = this;
       vm.checkedBoxs.forEach(function (item) {
         axios
@@ -261,7 +292,7 @@ export default {
     },
     loadData() {
       var vm = this;
-      console.log(this);
+      // console.log(this);
       axios
         .get("http://cukcuk.manhnv.net/v1/Employees")
         .then((res) => {
@@ -274,9 +305,19 @@ export default {
     selectcheckBox(id) {
       if (this.checkedBoxs.includes(id)) {
         this.checkedBoxs = this.checkedBoxs.filter((e) => e !== id);
+        if (this.checkedBoxs.length == 0) {
+          this.hideDeleteButton();
+        }
       } else {
         this.checkedBoxs.push(id);
+        this.showDeleteButton();
       }
+    },
+    showDeleteButton() {
+      this.isShowDeleteButton = true;
+    },
+    hideDeleteButton() {
+      this.isShowDeleteButton = false;
     },
     /** -----------------------------------------------------------------------
      * @Format : Format dữ liệu ngày sinh thành dạng dd/mm/yyyy
@@ -356,3 +397,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.collapse-content {
+  width: calc(100% -54px);
+}
+</style>

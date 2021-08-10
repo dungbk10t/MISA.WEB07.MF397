@@ -1,7 +1,7 @@
 <template>
   <div v-bind:class="['menu-item',menuItemType]">
     <div v-bind:class="['menu-icon', menuItemClass]"></div>
-    <p>{{ menuItemText }}</p>
+    <p v-if="isShowText">{{ menuItemText }}</p>
   </div>
 </template>
 
@@ -11,7 +11,8 @@ export default {
   props: {
     menuItemClass: String,
     menuItemText: String,
-    menuItemType: String
+    menuItemType: String,
+    isShowText: Boolean,
   },
 };
 </script>

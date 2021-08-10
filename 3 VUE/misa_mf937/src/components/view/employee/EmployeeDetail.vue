@@ -28,7 +28,7 @@
             </div>
             <div class="my-row">
               <!-- EMPLOYEE CODE -->
-              <div class="small-info" fieldName="EmployeeCode">
+              <div class="small-info numberField" fieldName="EmployeeCode">
                 <p>Mã nhân viên (<font color="red">*</font>)</p>
                 <Input
                   inputClass="autofocus"
@@ -78,7 +78,7 @@
                   tabindex="4"
                   dropdownItemValueId="Gender"
                   dropdownItemValueName="GenderName"
-                  :selectedId="(employee.Gender)+''"
+                  :selectedId="employee.Gender + ''"
                   v-model="employee.Gender"
                 />
                 <!-- Dropdown -->
@@ -127,7 +127,7 @@
             <div class="my-row">
               <!-- EMAIL -->
               <div class="small-info" fieldName="Email">
-                <p>Email(<font color="red">*</font>)</p>
+                <p>Email (<font color="red">*</font>)</p>
                 <Input
                   inputType="text"
                   inputPlacehoder=""
@@ -205,14 +205,16 @@
                 />
               </div>
               <!-- SALARY -->
-              <div class="small-info" fieldName="Salary">
+              <div class="small-info number" fieldName="Salary">
                 <p>Mức lương cơ bản</p>
                 <Input
                   inputClass="right-align"
                   inputType="text"
                   inputPlacehoder=""
                   inputId="employee__basesalary"
+                  :inputValue="formatSalary1(employee.Salary)"
                   v-model="employee.Salary"
+                  @formatSalary="formatSalary"
                 />
                 <div class="money-unit">(VNĐ)</div>
               </div>
@@ -239,7 +241,7 @@
                   tabindex="11"
                   dropdownItemValueId="WorkStatus"
                   dropdownItemValueName="WorkStatusName"
-                  :selectedId="(employee.WorkStatus) + ''"
+                  :selectedId="employee.WorkStatus + ''"
                   v-model="employee.WorkStatus"
                 />
                 <!-- Dropdown -->
@@ -249,17 +251,19 @@
         </div>
       </div>
       <div class="dialog-footer">
-        <button id="btn-cancel" class="btn-cancel" @click="btnCancelOnClick">
-          <b>Hủy</b>
-        </button>
-        <button
-          id="btn-save"
-          class="button button-icon btn-save"
-          @click="btnSaveOnclick"
-        >
-          <i class="fas fa-save"></i>
-          <p>Lưu</p>
-        </button>
+        <Button
+          buttonId="btn-cancel"
+          buttonClass="button button-icon"
+          buttonText="Hủy"
+          @btnClick="btnCancelOnClick"
+        />
+        <Button
+          buttonId="btn-save"
+          buttonClass="button button-icon"
+          buttonText="Lưu"
+          iClass="fa-save"
+          @btnClick="btnSaveOnclick"
+        />
       </div>
     </div>
   </div>
@@ -267,16 +271,18 @@
 
 <script>
 import axios from "axios";
+import { store } from "../../../main.js";
 import { required, minLength, between } from "vuelidate/lib/validators";
 import { eventBus1, eventBus2 } from "../../../main.js";
 import Input from "../../base/BaseInput.vue";
 import Dropdown from "../../base/BaseDropdown.vue";
-
+import Button from "../../base/BaseButton.vue";
 export default {
   setup() {},
   components: {
     Input,
     Dropdown,
+    Button,
   },
   validations: {
     name: {
@@ -307,12 +313,48 @@ export default {
       type: Boolean,
       default: false,
     },
-    isReOpen: {
+    isReOpenForm: {
       type: Boolean,
       default: false,
     },
   },
+
+  created() {
+    // this.loadData();
+    // eventBus1.$on("loadData", () => {
+    //   this.loadData();
+    // });
+    this.employee.Salary = "";
+
+    eventBus2.$on("addOrUpdateData", () => {
+        this.addData();
+        console.log("confirm Pressed");
+      // else {
+      //   this.updateData();
+      //   console.log("confirm 1");
+      // }
+    });
+    this.getNewEmployeeCode();
+    // eventBus2.$on("invalidInput", () => {
+    //   this.isValidForm = false;
+    // });
+  },
   methods: {
+    formatSalary1(myinput) {
+      myinput += "";
+      if (myinput != null) {
+        myinput.replaceAll(".", "");
+
+        let onlynumber = "";
+        for (var i = 0; i < myinput.length; i++) {
+          if (!isNaN(parseInt(myinput[i], 10))) {
+            onlynumber += myinput[i];
+          }
+        }
+        return Number(onlynumber).toLocaleString("vi");
+      }
+      return 0;
+    },
     /** --------------------------------------------------------
      * @Event: Nhấn nút "Cancel" để hủy điền form
      * @Athor: Phạm Tuấn Dũng
@@ -326,13 +368,87 @@ export default {
      * @Athor: Phạm Tuấn Dũng
      * @Date: 23.07.2021
      */
-    loadData() {
+    // loadData() {
+    //   var vm = this;
+    //   console.log(this);
+    //   axios
+    //     .get("http://cukcuk.manhnv.net/v1/Employees")
+    //     .then((res) => {
+    //       vm.employees = res.data;
+    //     })
+    //     .catch((res) => {
+    //       console.log(res);
+    //     });
+    // },
+    getNewEmployeeCode() {
       var vm = this;
-      console.log(this);
+      let tmpEmployee={};
       axios
-        .get("http://cukcuk.manhnv.net/v1/Employees")
-        .then((res) => {
-          vm.employee = res.data;
+          .get("http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode")
+          .then((res) => {
+            console.log(res.data);
+            tmpEmployee.EmployeeCode = res.data;
+            vm.employee = tmpEmployee;
+          })
+          .catch((res) => {
+            console.log(res);
+          });
+    },
+    addData() {
+      let vm = this;
+      console.log("SavedEmployee", vm.employee);
+      let tmpEmployee= vm.employee;
+
+      tmpEmployee.Salary=parseInt( (tmpEmployee.Salary +'').replaceAll('.',''));
+      if (vm.mode == 0) {
+        axios
+          .post(`http://cukcuk.manhnv.net/v1/Employees/`, tmpEmployee)
+          .then(() => {
+            setTimeout(() => {
+              eventBus2.$emit("confirmCloseAddForm");
+              eventBus2.$emit("loadData");
+            }, 500);
+            eventBus1.$emit("showTooltipAddSuccess");
+          })
+          .catch((res) => {
+            console.log(res);
+          });
+      } else {
+        axios
+          .put(
+            `http://cukcuk.manhnv.net/v1/Employees/${vm.employeeId}`,
+           tmpEmployee
+          )
+          .then(() => {
+            setTimeout(() => {
+              
+              eventBus2.$emit("confirmCloseAddForm");
+              eventBus2.$emit("loadData");
+            }, 500);
+            eventBus1.$emit("showTooltipUpdateSuccess");
+          })
+          .catch((res) => {
+            console.log(res);
+          });
+      }
+      console.log(tmpEmployee);
+    },
+    updateDataaaa() {
+      let vm = this;
+      // console.log(vm.employee);
+      axios
+        .put(
+          `http://cukcuk.manhnv.net/v1/Employees/${vm.employeeId}`,
+          vm.employee
+        )
+        .then(() => {
+          // vm.$emit("btnSaveOnClick",true)
+          setTimeout(() => {
+            console.log(vm.employee);
+            eventBus2.$emit("confirmCloseAddForm");
+            eventBus2.$emit("loadData");
+          }, 500);
+          eventBus1.$emit("showTooltipUpdateSuccess");
         })
         .catch((res) => {
           console.log(res);
@@ -344,60 +460,85 @@ export default {
        * @Athor: Phạm Tuấn Dũng
        * @Date: 01.08.2021
        */
-      let vm = this;
+      // if (
+      //   this.employee.EmployeeCode !== "" &&
+      //   this.employee.FullName !== "" &&
+      //   this.employee.IdentityNumber !== "" &&
+      //   this.employee.Email !== "" &&
+      //   this.employee.PhoneNumber !== ""
+      // ) {
+      // eventBus2.$emit("validateFormInput");
       if (this.mode == 0) {
-        console.log(vm.employee);
-        axios
-          .post(`http://cukcuk.manhnv.net/v1/Employees/`, vm.employee)
-          .then((res) => {
-            console.log(res);
-            vm.$emit("btnSaveOnClick", true);
-            eventBus1.$emit("showTooltipUpdateSuccess");
-            alert("Thêm mới thành công !!");
-          })
-          .catch((res) => {
-            console.log(res);
-          });
-      } else {  
-        axios
-          .put(
-            `http://cukcuk.manhnv.net/v1/Employees/${vm.employeeId}`,
-            vm.employee
-          )
-          .then(() => {
-            vm.$emit("btnSaveOnClick", true);
-            eventBus1.$emit("showTooltipUpdateSuccess");
-            alert("Sửa mới thành công !!");
-          })
-          .catch((res) => {
-            console.log(res);
-          });
+        console.log("btnsave 0");
+        eventBus2.$emit("showPopupConfirmAdd");
+      } else {
+        console.log("btnsave 1");
+        eventBus2.$emit("showPopupConfirmUpdate");
       }
+      // setTimeout(() => {
+      //   if (this.isValidForm) {
+      //     //ad
+      //   } else {
+      //     console.log("form is not valid");
+      //     this.isValidForm= true;
+      //   }
+      // }, 500);
+
+      // } else {
+      //   eventBus2.$emit("showTooltipInputRequiedAll");
+      // }
     },
-    
+
     validateEmployeeCode() {
-      if (this.employeeCode == "") {
+      console.log("EmployeeCode 01");
+      if (
+        this.employee.EmployeeCode == "" ||
+        this.employee.EmployeeCode == undefined
+      ) {
         eventBus2.$emit("showTooltipInputRequied");
+        console.log("INVALID EMPLOYEE_CODE !!");
       }
     },
     validateFullName() {
-      if (this.fullName == "") {
+      console.log("FullName 01");
+      if (this.employee.FullName == "" || this.employee.FullName == undefined) {
         eventBus2.$emit("showTooltipInputRequied");
+        console.log("INVALID FULL_NAME !!");
       }
     },
     validateIdentityNumber() {
-      if (this.identityNumber == "") {
+      console.log("Inden 01");
+      if (
+        this.employee.IdentityNumber == "" ||
+        this.employee.IdentityNumber == undefined
+      ) {
         eventBus2.$emit("showTooltipInputRequied");
+        console.log("INVALID INDETITY NUMBER !!");
       }
     },
     validateEmail() {
-      if (this.email == "") {
+      console.log("Email 01");
+      if (this.employee.Email == "" || this.employee.Email == undefined) {
         eventBus2.$emit("showTooltipInputRequied");
+        console.log("INVALID EMAIL NULL !!");
+      } else if (!store.validateEmail(this.employee.Email)) {
+        // Tạo một toast message mới : ND : Thông tin nhập không hợp lệ !!
+        eventBus2.$emit("showTooltipInputRequie2");
+        console.log("INVALID EMAIL !!");
       }
     },
     validatePhoneNumber() {
-      if (this.phoneNumber == "") {
+      console.log("Phone 01");
+      if (
+        this.employee.PhoneNumber == "" ||
+        this.employee.PhoneNumber == undefined
+      ) {
         eventBus2.$emit("showTooltipInputRequied");
+        console.log("INVALID PHONE NUMBER NULL !!");
+      } else if (!store.validatePhoneNumber(this.employee.PhoneNumber)) {
+        // Tạo một toast message mới : ND : Thông tin nhập không hợp lệ !!
+        eventBus2.$emit("showTooltipInputRequied2");
+        console.log("INVALID PHONE NUMBER 222 !!");
       }
     },
     formatDateToValue(dateInput) {
@@ -413,60 +554,65 @@ export default {
       }
       return dob;
     },
+    resetEntityInfo() {
+      let vm = this,
+        newEmployee = {};
+      newEmployee.DepartmentId = "";
+      newEmployee.PositionId = "";
+      newEmployee.Gender = "";
+      newEmployee.WorkStatus = "";
+      vm.employee = newEmployee;
+    },
+    formatSalary() {
+      if (!this.employee.Salary) {
+        console.log("--> vao If");
+        this.employee.Salary = "";
+      }
+      console.log(this.employee.Salary);
+      this.employee.Salary = this.formatSalary1(this.employee.Salary);
+      console.log("2" + this.employee.Salary);
+    },
+    // getNewEmployeeCode() {
+    //   console.log("Get New EmployeeCode");
+    // },
   },
   data() {
     return {
       employee: {},
-
-      // employeeCode: "",
-      // fullName: "",
-      // gender: "",
-      // dateOfBirth: "",
-      // phoneNumber: "",
-      // email: "",
-      // identityNumber: "",
-      // identityDate: "",
-      // identityPlace: "",
-      // joinDate: "",
-      // departmentId: "",
-      // positionId: "",
-      // personalTaxCode: "",
-      // salary: "",
-      // workStatus: "",
+      newEmployeeCode: "",
+      salary: "",
+      // isValidForm: true,
     };
   },
   watch: {
-    employeeId: function () {
-      // alert("Watch: " + this.employeeId);
-      // Gọi API lấy thông tin chi tiết
+    isReOpenForm: function () {
       let vm = this;
-      axios
-        .get(`http://cukcuk.manhnv.net/v1/Employees/${vm.employeeId}`)
-        .then((res) => {
-          console.log(res.data);
-          var employee = res.data;
-          employee.DateOfBirth = vm.formatDateToValue(employee.DateOfBirth);
-          employee.IdentityDate = vm.formatDateToValue(employee.IdentityDate);
-          employee.JoinDate = vm.formatDateToValue(employee.JoinDate);
-          vm.employee = employee;
-        })
-        .catch((res) => {
-          console.log(res);
-        });
-      // Binding dữ liệu
-    },
-    isLoadAgain() {
-      this.loadData();
+      vm.resetEntityInfo();
+      if (vm.mode == 1) {
+        // Gọi API lấy thông tin chi tiết
+        axios
+          .get(`http://cukcuk.manhnv.net/v1/Employees/${vm.employeeId}`)
+          .then((res) => {
+            console.log(res.data);
+            var employee = res.data;
+            employee.DateOfBirth = vm.formatDateToValue(employee.DateOfBirth);
+            employee.IdentityDate = vm.formatDateToValue(employee.IdentityDate);
+            employee.JoinDate = vm.formatDateToValue(employee.JoinDate);
+            vm.employee = employee;
+          })
+          .catch((res) => {
+            console.log(res);
+          });
+        // Binding dữ liệu
+      } else if (vm.mode == 0) {
+        vm.resetEntityInfo();
+        vm.getNewEmployeeCode();
+      }
     },
     mode: function () {
       if (this.mode == 0) {
         this.employee = {};
       }
-    },
-  },
-  computed: {
-    testEmployeeId: function () {
-      return this.employeeId;
     },
   },
 };
