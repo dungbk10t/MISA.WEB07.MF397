@@ -1,7 +1,9 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MISA.CUKCUK.API.Models;
+using MISA.Core.Entities;
+using MISA.Core.Interfaces.Repository;
+using MISA.Core.Interfaces.Services;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,17 @@ namespace MISA.CUKCUK.API.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
+        IEmployeeRepository _employeeRepository;
+        IEmployeeService _employeeService;
+
+        // Tiem no vao
+        public EmployeesController(IEmployeeService employeeService, IEmployeeRepository employeeRepository)
+        {
+            _employeeService = employeeService;
+            _employeeRepository = employeeRepository; 
+
+        }
+       
         // GET, POST, PUT, DELETE
         /// <summary>
         /// Lấy thông tin tất cả các nhân viên
@@ -28,6 +41,7 @@ namespace MISA.CUKCUK.API.Controllers
         {
             try
             {
+
                 // Truy cập vào Database :
                 // 1. Khai báo thông tin database :
                 var connectionString = "Host = 47.241.69.179;" +
@@ -130,83 +144,51 @@ namespace MISA.CUKCUK.API.Controllers
         {
             try
             {
-                // Kiểm tra thông tin của khách hàng đã hợp lệ hay chưa ?
+                //// Kiểm tra thông tin của khách hàng đã hợp lệ hay chưa ?
 
-                // 1. Mã nhân viên bắt buộc phải có
-                if (employee.EmployeeCode == "" || employee.EmployeeCode == null)
-                {
-                    var errorObj = new
-                    {
-                        devMsg = "",
-                        userMsg = Properties.Resources.EXCEPTION_ERR_NULL_EMPLOYEECODE_MSG,
-                        errorCode = Properties.Resources.ERROR_CODE_400,
-                        moreInfo = @"https://openapi.misa.com.vn/errorcode/misa-001",
-                        traceId = ""
-                    };
-                    return StatusCode(500, errorObj);
+                //// 1. Mã nhân viên bắt buộc phải có
+                //if (employee.EmployeeCode == "" || employee.EmployeeCode == null)
+                //{
+                //    var errorObj = new
+                //    {
+                //        devMsg = "",
+                //        userMsg = Properties.Resources.EXCEPTION_ERR_NULL_EMPLOYEECODE_MSG,
+                //        errorCode = Properties.Resources.ERROR_CODE_400,
+                //        moreInfo = @"https://openapi.misa.com.vn/errorcode/misa-001",
+                //        traceId = ""
+                //    };
+                //    return StatusCode(500, errorObj);
 
-                }
-                // 2. Email phải đúng định dạng
-                var emailFormat = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-                var isMatch = Regex.IsMatch(emailFormat, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-                if (isMatch == false)
-                {
-                    var errorObj = new
-                    {
-                        userMsg = Properties.Resources.EXCEPTION_ERR_EMAIL_MSG,
-                        errorCode = Properties.Resources.ERROR_CODE_500,
-                        moreInfo = @"https://openapi.misa.com.vn/errorcode/misa-001",
-                        traceId = ""
-                    };
-                }
+                //}
+                //// 2. Email phải đúng định dạng
+                //var emailFormat = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+                //var isMatch = Regex.IsMatch(emailFormat, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+                //if (isMatch == false)
+                //{
+                //    var errorObj = new
+                //    {
+                //        userMsg = Properties.Resources.EXCEPTION_ERR_EMAIL_MSG,
+                //        errorCode = Properties.Resources.ERROR_CODE_500,
+                //        moreInfo = @"https://openapi.misa.com.vn/errorcode/misa-001",
+                //        traceId = ""
+                //    };
+                //}
+
                 
 
-                // Truy cập vào Database :
-                employee.EmployeeId = Guid.NewGuid();
-                // 1. Khai báo thông tin database :
-                var connectionString = "Host = 47.241.69.179;" +
-                     "Database = MISA.CukCuk_Demo_NVMANH;" +
-                     "User id = dev;" +
-                     "Password = 12345678;";
-
-                // 2. Khởi tạo đối tượng kết nói với Database :
-                IDbConnection dbConnection = new MySqlConnection(connectionString);
-                // Khai báo DynamicParam : 
-                var dynamicParam = new DynamicParameters();
-                // 3. Thêm dữ liệu vào trong database :
-                var columnsName = string.Empty;
-                var columnsParam = string.Empty;
-
-                // Đọc từng property của object : 
-                var propertise = employee.GetType().GetProperties();
-                // Duyệt từng property của object :
-                foreach (var prop in propertise)
-                {
-                    // Lấy tên prop : 
-                    var propName = prop.Name;
-                    // Lấy value của prop : 
-                    var propValue = prop.GetValue(employee);
-                    // Lấy kiểu dữ liệu của prop : 
-                    var propType = prop.PropertyType;
-                    // Thêm param tương ứng với mỗi property của đối tượng : 
-                    dynamicParam.Add($"{propName}", propValue);
-                    columnsName += $"{propName},";
-                    columnsParam += $"@{propName},";
-                }
-                columnsName = columnsName.Remove(columnsName.Length - 1, 1);
-                columnsParam = columnsParam.Remove(columnsParam.Length - 1, 1);
-
-                var sqlCommand = $"INSERT INTO Employee({columnsName}) VALUES ({columnsParam})";
-                var rowEffects = dbConnection.Execute(sqlCommand, param: dynamicParam);
                 // 4. Trả về cho client
-                if (rowEffects > 0)
-                {
-                    return StatusCode(201, rowEffects);
-                }
-                else
-                {
-                    return StatusCode(204);
-                }
+                //var serviceResult = _employeeService.Add(employee);
+                //if (serviceResult.IsValid == true)
+                //{
+                //    return StatusCode(201, serviceResult.Data);
+                //}
+                //else
+                //{
+                //    return StatusCode(204);
+                //}
+
+
+               
             }
             catch (Exception ex)
             {

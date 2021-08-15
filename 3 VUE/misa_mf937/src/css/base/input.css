@@ -28,10 +28,8 @@ input.input-icon {
     padding-left: 40px;
 }
 input.hasError{
-    border-color: red;
-    
+    border-color: red;  
 }
-    
 .number input{
     padding-right: 50px;
     text-align: right;

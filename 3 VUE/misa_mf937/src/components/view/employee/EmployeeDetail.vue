@@ -9,9 +9,11 @@
     <div class="employee-profile-dialog">
       <div class="dialog-header">
         <p>THÔNG TIN NHÂN VIÊN</p>
-        <button id="btn-close" @click="btnCancelOnClick">
-          <i class="fas fa-times"></i>
-        </button>
+        <Button
+          buttonId="btn-close"
+          iClass="fa-times"
+          @btnClick="btnCancelOnClick"
+        />
       </div>
       <div class="dialog-content">
         <div class="dialog-content-left">
@@ -34,8 +36,9 @@
                   inputClass="autofocus"
                   inputType="text"
                   inputPlacehoder=""
-                  :inputValue="employee.EmployeeCode"
                   inputId="employee__code"
+                  :inputValue="employee.EmployeeCode"
+                  :isBorderRed="statusValide_EmployeeCode"
                   @input-blur="validateEmployeeCode"
                   v-model="employee.EmployeeCode"
                 />
@@ -47,8 +50,9 @@
                   inputClass="autofocus"
                   inputType="text"
                   inputPlacehoder=""
-                  :inputValue="employee.FullName"
                   inputId="employee__fullname"
+                  :inputValue="employee.FullName"
+                  :isBorderRed="statusValide_FullName"
                   @input-blur="validateFullName"
                   v-model="employee.FullName"
                 />
@@ -62,7 +66,6 @@
                 <Input
                   inputClass="autofocus"
                   inputType="date"
-                  :inputValue="employee.DateOfBirth"
                   inputId="employee__dateofbirth"
                   v-model="employee.DateOfBirth"
                 />
@@ -93,8 +96,9 @@
                   inputClass="autofocus"
                   inputType="text"
                   inputPlacehoder=""
-                  :inputValue="employee.IdentityNumber"
                   inputId="employee__idnumber"
+                  :inputValue="employee.IdentityNumber"
+                  :isBorderRed="statusValide_IndentityNumber"
                   @input-blur="validateIdentityNumber"
                   v-model="employee.IdentityNumber"
                 />
@@ -105,8 +109,8 @@
                 <Input
                   inputType="date"
                   inputPlacehoder=""
-                  :inputValue="employee.IdentityDate"
                   inputId="employee__iddate"
+                  :inputValue="employee.IdentityDate"
                   v-model="employee.IdentityDate"
                 />
               </div>
@@ -132,6 +136,7 @@
                   inputType="text"
                   inputPlacehoder=""
                   :inputValue="employee.Email"
+                  :isBorderRed="statusValide_Email"
                   inputId="employee__email"
                   @input-blur="validateEmail"
                   v-model="employee.Email"
@@ -144,6 +149,7 @@
                   inputType="text"
                   inputPlacehoder=""
                   :inputValue="employee.PhoneNumber"
+                  :isBorderRed="statusValide_PhoneNumber"
                   inputId="employee__phone"
                   @input-blur="validatePhoneNumber"
                   v-model="employee.PhoneNumber"
@@ -198,9 +204,8 @@
                 <p>Mã số thuế cá nhân</p>
                 <Input
                   inputType="text"
-                  inputPlacehoder=""
-                  :inputValue="employee.PersonalTaxCode"
                   inputId="employee__taxcode"
+                  :inputValue="employee.PersonalTaxCode"
                   v-model="employee.PersonalTaxCode"
                 />
               </div>
@@ -293,6 +298,7 @@ export default {
       between: between(20, 30),
     },
   },
+  // CÁC THUỘC TÍNH 
   props: {
     isHide: {
       type: Boolean,
@@ -309,10 +315,6 @@ export default {
       require: true,
       default: 0, // 0 - Thêm mới ; 1 - Sửa
     },
-    isLoadAgain: {
-      type: Boolean,
-      default: false,
-    },
     isReOpenForm: {
       type: Boolean,
       default: false,
@@ -320,26 +322,19 @@ export default {
   },
 
   created() {
-    // this.loadData();
-    // eventBus1.$on("loadData", () => {
-    //   this.loadData();
-    // });
     this.employee.Salary = "";
-
     eventBus2.$on("addOrUpdateData", () => {
-        this.addData();
-        console.log("confirm Pressed");
-      // else {
-      //   this.updateData();
-      //   console.log("confirm 1");
-      // }
+      this.addData();
     });
     this.getNewEmployeeCode();
-    // eventBus2.$on("invalidInput", () => {
-    //   this.isValidForm = false;
-    // });
   },
+  // CÁC PHƯƠNG THỨC 
   methods: {
+    /** --------------------------------------------------------
+     * @Function:Hàm format định dạng lương 
+     * @Athor: Phạm Tuấn Dũng
+     * @Date: 23.07.2021
+     */
     formatSalary1(myinput) {
       myinput += "";
       if (myinput != null) {
@@ -364,42 +359,32 @@ export default {
       this.$emit("btnAddOnClick", true);
     },
     /** --------------------------------------------------------
-     * @Event: Hàm loadData
+     * @Event: Hàm gọi API lấy về mã nhân viên mới.
      * @Athor: Phạm Tuấn Dũng
-     * @Date: 23.07.2021
+     * @Date: 10.08.2021
      */
-    // loadData() {
-    //   var vm = this;
-    //   console.log(this);
-    //   axios
-    //     .get("http://cukcuk.manhnv.net/v1/Employees")
-    //     .then((res) => {
-    //       vm.employees = res.data;
-    //     })
-    //     .catch((res) => {
-    //       console.log(res);
-    //     });
-    // },
     getNewEmployeeCode() {
       var vm = this;
-      let tmpEmployee={};
+      let tmpEmployee = {};
       axios
-          .get("http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode")
-          .then((res) => {
-            console.log(res.data);
-            tmpEmployee.EmployeeCode = res.data;
-            vm.employee = tmpEmployee;
-          })
-          .catch((res) => {
-            console.log(res);
-          });
+        .get("http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode")
+        .then((res) => {
+          console.log(res.data);
+          tmpEmployee.EmployeeCode = res.data;
+          vm.employee = tmpEmployee;
+        })
+        .catch((res) => {
+          console.log(res);
+        });
     },
     addData() {
       let vm = this;
       console.log("SavedEmployee", vm.employee);
-      let tmpEmployee= vm.employee;
+      let tmpEmployee = vm.employee;
 
-      tmpEmployee.Salary=parseInt( (tmpEmployee.Salary +'').replaceAll('.',''));
+      tmpEmployee.Salary = parseInt(
+        (tmpEmployee.Salary + "").replaceAll(".", "")
+      );
       if (vm.mode == 0) {
         axios
           .post(`http://cukcuk.manhnv.net/v1/Employees/`, tmpEmployee)
@@ -417,11 +402,10 @@ export default {
         axios
           .put(
             `http://cukcuk.manhnv.net/v1/Employees/${vm.employeeId}`,
-           tmpEmployee
+            tmpEmployee
           )
           .then(() => {
             setTimeout(() => {
-              
               eventBus2.$emit("confirmCloseAddForm");
               eventBus2.$emit("loadData");
             }, 500);
@@ -433,41 +417,12 @@ export default {
       }
       console.log(tmpEmployee);
     },
-    updateDataaaa() {
-      let vm = this;
-      // console.log(vm.employee);
-      axios
-        .put(
-          `http://cukcuk.manhnv.net/v1/Employees/${vm.employeeId}`,
-          vm.employee
-        )
-        .then(() => {
-          // vm.$emit("btnSaveOnClick",true)
-          setTimeout(() => {
-            console.log(vm.employee);
-            eventBus2.$emit("confirmCloseAddForm");
-            eventBus2.$emit("loadData");
-          }, 500);
-          eventBus1.$emit("showTooltipUpdateSuccess");
-        })
-        .catch((res) => {
-          console.log(res);
-        });
-    },
-    btnSaveOnclick() {
-      /** --------------------------------------------------------
+    /** --------------------------------------------------------
        * @Event: Nhấn nút "Save" để cập nhật/thêm mới dữ liệu form
        * @Athor: Phạm Tuấn Dũng
        * @Date: 01.08.2021
        */
-      // if (
-      //   this.employee.EmployeeCode !== "" &&
-      //   this.employee.FullName !== "" &&
-      //   this.employee.IdentityNumber !== "" &&
-      //   this.employee.Email !== "" &&
-      //   this.employee.PhoneNumber !== ""
-      // ) {
-      // eventBus2.$emit("validateFormInput");
+    btnSaveOnclick() {
       if (this.mode == 0) {
         console.log("btnsave 0");
         eventBus2.$emit("showPopupConfirmAdd");
@@ -475,20 +430,11 @@ export default {
         console.log("btnsave 1");
         eventBus2.$emit("showPopupConfirmUpdate");
       }
-      // setTimeout(() => {
-      //   if (this.isValidForm) {
-      //     //ad
-      //   } else {
-      //     console.log("form is not valid");
-      //     this.isValidForm= true;
-      //   }
-      // }, 500);
-
-      // } else {
-      //   eventBus2.$emit("showTooltipInputRequiedAll");
-      // }
     },
-
+    /**
+     * Hàm validate dữ liệu mã nhân viện 
+     * Created by : Phạm Tuấn Dũng (13/08/2021)
+     */
     validateEmployeeCode() {
       console.log("EmployeeCode 01");
       if (
@@ -496,16 +442,32 @@ export default {
         this.employee.EmployeeCode == undefined
       ) {
         eventBus2.$emit("showTooltipInputRequied");
+        this.statusValide_EmployeeCode = true;
         console.log("INVALID EMPLOYEE_CODE !!");
       }
+      else {
+        this.statusValide_EmployeeCode = false;
+      }
     },
+    /**
+     * Hàm validate dữ liệu họ tên 
+     * Created by : Phạm Tuấn Dũng (13/08/2021)
+     */
     validateFullName() {
       console.log("FullName 01");
       if (this.employee.FullName == "" || this.employee.FullName == undefined) {
         eventBus2.$emit("showTooltipInputRequied");
+        this.statusValide_FullName = true;
         console.log("INVALID FULL_NAME !!");
       }
+      else {
+         this.statusValide_FullName = false;
+      }  
     },
+     /**
+     * Hàm validate dữ liệu họ tên đầy đủ
+     * Created by : Phạm Tuấn Dũng (13/08/2021)
+     */
     validateIdentityNumber() {
       console.log("Inden 01");
       if (
@@ -513,20 +475,38 @@ export default {
         this.employee.IdentityNumber == undefined
       ) {
         eventBus2.$emit("showTooltipInputRequied");
+        this.statusValide_IndentityNumber = true;
         console.log("INVALID INDETITY NUMBER !!");
       }
+      else {
+        this.statusValide_IndentityNumber = false;
+      }
+      
     },
+    /**
+     * Hàm validate dữ liệu email
+     * Created by : Phạm Tuấn Dũng (13/08/2021)
+     */
     validateEmail() {
       console.log("Email 01");
       if (this.employee.Email == "" || this.employee.Email == undefined) {
         eventBus2.$emit("showTooltipInputRequied");
+        this.statusValide_Email = true;
         console.log("INVALID EMAIL NULL !!");
       } else if (!store.validateEmail(this.employee.Email)) {
         // Tạo một toast message mới : ND : Thông tin nhập không hợp lệ !!
-        eventBus2.$emit("showTooltipInputRequie2");
+        eventBus2.$emit("showTooltipInputRequied2");
+        this.statusValide_Email = true;
         console.log("INVALID EMAIL !!");
       }
+      else {
+        this.statusValide_Email = false;
+      }
     },
+    /**
+     * Hàm validate dữ liệu số điện thoại
+     * Created by : Phạm Tuấn Dũng (13/08/2021)
+     */
     validatePhoneNumber() {
       console.log("Phone 01");
       if (
@@ -534,13 +514,23 @@ export default {
         this.employee.PhoneNumber == undefined
       ) {
         eventBus2.$emit("showTooltipInputRequied");
+        this.statusValide_PhoneNumber = true;
         console.log("INVALID PHONE NUMBER NULL !!");
       } else if (!store.validatePhoneNumber(this.employee.PhoneNumber)) {
         // Tạo một toast message mới : ND : Thông tin nhập không hợp lệ !!
         eventBus2.$emit("showTooltipInputRequied2");
+        this.statusValide_PhoneNumber = true;
         console.log("INVALID PHONE NUMBER 222 !!");
       }
+      else 
+      {
+        this.statusValide_PhoneNumber = false;
+      }
     },
+    /**
+     * Hàm format dữ liệu sinh nhật về chuẩn yyyy-mm-dd. Mục đích :  Hiển thị lên form 
+     * Created by : Phạm Tuấn Dũng (13/08/2021)
+     */
     formatDateToValue(dateInput) {
       let dob = null;
       if (dateInput != null) {
@@ -554,6 +544,11 @@ export default {
       }
       return dob;
     },
+    /**
+     * Hàm reset dữ liệu nhân viên với các trường (mã nhân viên, mã phòng ban, giới tính, tình trạng công việc). 
+     * Mục đích :  
+     * Created by : Phạm Tuấn Dũng (13/08/2021)
+     */
     resetEntityInfo() {
       let vm = this,
         newEmployee = {};
@@ -563,30 +558,46 @@ export default {
       newEmployee.WorkStatus = "";
       vm.employee = newEmployee;
     },
+    /**
+     * Hàm format lại dữ liệu tiền lương lên form. Ví dụ 1000000 -> 1.000.000 
+     * Created by : Phạm Tuấn Dũng (13/08/2021)
+     */
     formatSalary() {
       if (!this.employee.Salary) {
-        console.log("--> vao If");
         this.employee.Salary = "";
       }
-      console.log(this.employee.Salary);
       this.employee.Salary = this.formatSalary1(this.employee.Salary);
-      console.log("2" + this.employee.Salary);
     },
-    // getNewEmployeeCode() {
-    //   console.log("Get New EmployeeCode");
-    // },
   },
+  // DỮ LIỆU KHỞI TẠO
   data() {
     return {
-      employee: {},
-      newEmployeeCode: "",
-      salary: "",
-      // isValidForm: true,
+      employee: {}, // Object employee để lưu thông tin 1 nhân viên 
+      newEmployeeCode: "", // Mã nhân viên mới
+     
+      // Trang thái validate. Mục đích : input form border xanh hoặc đỏ tương ứng với các trại thái đúng / sai
+      statusValide_EmployeeCode: false,
+      statusValide_FullName: false,
+      statusValide_IndentityNumber: false,
+      statusValide_Email: false,
+      statusValide_PhoneNumber: false,
     };
   },
+  // HÀM WATCH
   watch: {
+    /**
+     * Hàm cập nhật dữ liệu khi gọi lại form 
+     */
     isReOpenForm: function () {
       let vm = this;
+
+      // Cập nhật lại trạng thái validate là false (tức chưa validate) khi mở lại form
+      vm.statusValide_EmployeeCode = false;
+      vm.statusValide_FullName = false;
+      vm.statusValide_IndentityNumber = false; 
+      vm.statusValide_Email =  false;
+      vm.statusValide_PhoneNumber = false;
+      
       vm.resetEntityInfo();
       if (vm.mode == 1) {
         // Gọi API lấy thông tin chi tiết

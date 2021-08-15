@@ -27,8 +27,11 @@
       <Button v-if="popupType !== 'danger'" buttonClass="button btn-x" buttonText="YES" @btnClick="btnXOnClick" />
       <Button v-if="popupType == 'danger'" buttonClass="button btn-z" buttonText="YES" @btnClick="btnZOnClick" />
     </div>
+    
   </div>
 </template>
+
+
 
 <script>
 import Button from "./BaseButton.vue";

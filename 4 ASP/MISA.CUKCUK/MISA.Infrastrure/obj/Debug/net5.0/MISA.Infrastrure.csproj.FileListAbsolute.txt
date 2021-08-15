@@ -1,0 +1,15 @@
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\bin\Debug\net5.0\MISA.Infrastrure.deps.json
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\bin\Debug\net5.0\MISA.Infrastrure.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\bin\Debug\net5.0\ref\MISA.Infrastrure.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\bin\Debug\net5.0\MISA.Infrastrure.pdb
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\MISA.Infrastrure.csproj.AssemblyReference.cache
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\MISA.Infrastrure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\MISA.Infrastrure.AssemblyInfoInputs.cache
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\MISA.Infrastrure.AssemblyInfo.cs
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\MISA.Infrastrure.csproj.CoreCompileInputs.cache
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\MISA.Infrastrure.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\ref\MISA.Infrastrure.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\MISA.Infrastrure.pdb
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\bin\Debug\net5.0\MISA.Core.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\bin\Debug\net5.0\MISA.Core.pdb
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Infrastrure\obj\Debug\net5.0\MISA.Infrastrure.csproj.CopyComplete

@@ -33,22 +33,21 @@
             buttonText="Xóa nhân viên"
             @btnClick="btnDeleteOnClick"
           />
-          <button
-            id="btn-add"
-            class="button button-icon"
-            @click="btnAddOnClick(false)"
-          >
-            <i class="fas fa-user-plus"></i>
-            <p>Thêm nhân viên</p>
-          </button>
+          <Button
+            buttonId="btn-add"
+            buttonClass="button button-icon"
+            iClass="fa-user-plus"
+            buttonText="Thêm nhân viên"
+            @btnClick="btnAddOnClick(false)"
+          />
         </span>
       </div>
       <div class="content-toolbar">
         <div class="toolbar-left">
-          <input
-            class="input-icon input-search"
-            type="text"
-            placeholder="Tìm kiếm theo mã, tên hoặc số điện thoại"
+          <Input
+            inputClass="input-icon input-search autofocus "
+            inputType="text"
+            inputPlacehoder="Tìm kiếm theo mã, tên hoặc số điện thoại"
           />
           <!-- Dropdown Position 1  -->
           <Dropdown
@@ -80,13 +79,12 @@
         </div>
 
         <div class="toolbar-right">
-          <button
-            id="btn-refresh"
-            class="button button-refresh"
-            @click="btnRefreshOnClick"
-          >
-            <i class="fas fa-sync-alt"></i>
-          </button>
+          <Button
+            buttonId="btn-refresh"
+            buttonClass="button button-refresh"
+            iClass="fa-sync-alt"
+            @btnClick="btnRefreshOnClick"
+          />
         </div>
       </div>
       <div class="grid grid-employee" id="employee__table">
@@ -147,35 +145,22 @@
           </tbody>
         </table>
       </div>
-      <div class="content-paging">
-        <div class="paging-bar">
-          <div class="paging-record-info">
-            Hiển thị <b>1-10/10000</b> Nhân viên hàng
-          </div>
-          <div class="paging-option">
-            <div class="btn-select-prev-list-page"></div>
-            <div class="btn-select-prev-page"></div>
-            <div class="list-page">
-              <button class="page-number">1</button>
-              <button class="page-number">2</button>
-              <button class="page-number">3</button>
-              <button class="page-number">4</button>
-            </div>
-            <div class="btn-select-next-page"></div>
-            <div class="btn-select-next-list-page"></div>
-          </div>
-          <div class="paging-record-option">10 Nhân viên trên trang</div>
-        </div>
-      </div>
+      <Paging
+        :totalRecord="totalRecord"
+        :pagingSize="pagingSize"
+        :currentPage="currentPage"
+        @changeCurrentPage="changeCurrentPage"
+        @changePagingSize="changePagingSize"
+      />
     </div>
     <EmployeeDetail
       v-bind:isHide="isHideDialogDetail"
       v-bind:employeeId="employeeId"
       :mode="mode"
       @btnAddOnClick="btnAddOnClick"
-      
       :isReOpenForm="isReOpenForm"
-    />
+      
+    />  
   </div>
 </template>
 
@@ -183,29 +168,50 @@
 import EmployeeDetail from "@/components/view/employee/EmployeeDetail";
 import Dropdown from "../../base/BaseDropdown.vue";
 import Button from "../../base/BaseButton.vue";
+import Input from "../../base/BaseInput.vue";
+import Paging from "../../layout/TheContentPaging.vue";
+
 import axios from "axios";
 import { eventBus1 } from "../../../main";
 import { eventBus2 } from "../../../main";
 
 export default {
   name: "EmployeeList",
+  /**
+   * Các component được sử dụng 
+   */
   components: {
     EmployeeDetail,
     Dropdown,
     Button,
+    Input,
+    Paging,
   },
+  /**
+   * Dữ liệu khởi tạo 
+   * Created : Phạm Tuấn Dũng (13/08/2021)
+   */
   data() {
     return {
-      employee: {},
-      employees: [],
-      checkedBoxs: [],
-      employeeId: "",
-      isHideDialogDetail: true,
-      isShowDeleteButton: false,
-      mode: 0,
-      isReOpenForm: false,
+      employee: {}, // Object employee dùng để lưu dữ liệu thông tin 1 nhân viên 
+      employees: [], // Mảng employees dùng để lưu danh sách nhiều nhân viên
+      checkedBoxs: [], // checkedBoxs mảng checkboxs để lưu các id của nhân viện được lựa chọn 
+      employeeId: "", // mã nhân viên 
+      isHideDialogDetail: true, // Trang thái đóng Form
+      isShowDeleteButton: false, // Trạng thái mở Form
+      mode: 0, // 2 chế độ 0 : thêm mới, 1 : update
+      isReOpenForm: false, // 
+      
+      totalRecord: 156, // Tổng số bản ghi khởi tạo bằng 0
+      pagingSize: 10,  // Tổng số nhân viên trên 1 bản ghi. Khởi tạo giá trị bắt đầu bằng 10 
+      currentPage: 1, // Bản ghi hiện tại
+
     };
   },
+  /**
+   * @Created : Các hàm khởi tạo 
+   * @Author : Phạm Tuấn Dũng (13/08/2021)
+   */
   created() {
     var vm = this;
     axios
@@ -217,19 +223,18 @@ export default {
       .catch((res) => {
         console.log(res);
       });
+    // EventBus gọi hàm loadData (Bên lắng nghe)
     eventBus2.$on("loadData", () => {
       this.loadData();
-      console.log("loading")
+      console.log("loading");
     });
+    // EventBus gọi hàm deletaData (Bên lắng nghe)
     eventBus2.$on("deleteData", () => {
       this.deleteData();
     });
-    eventBus2.$on("collapseMenu", (_isCollapse) => {
-      this.isCollase = _isCollapse;
-      console.log(this.isCollase);
-    });
-    eventBus2.$on("confirmCloseAddForm",() => {
-      this.isHideDialogDetail= true
+    // EventBus gọi hàm đóng Form (Bên lắng nghe)
+    eventBus2.$on("confirmCloseAddForm", () => {
+      this.isHideDialogDetail = true;
     });
   },
   props: {
@@ -269,6 +274,11 @@ export default {
       this.mode = 1; // Khi nhấn vào cập nhật trạng thái 1 - Sửa
       this.isReOpenForm = !this.isReOpenForm;
     },
+    /** -----------------------------------------------------------------------
+     * @Event : Xóa nhân viên khi click vào nút delete
+     * @Author : Author : Phạm Tuấn Dũng
+     * @Date : 31/07/2021
+     */
     btnDeleteOnClick() {
       this.$emit("btnDeleteOnClick");
     },
@@ -287,9 +297,19 @@ export default {
           });
       });
     },
+    /** -----------------------------------------------------------------------
+     * @Event : Sự kiện click vào nút Refresh để load dữ liệu
+     * @Author : Author : Phạm Tuấn Dũng
+     * @Date : 31/07/2021
+     */
     btnRefreshOnClick() {
       this.loadData();
     },
+    /** -----------------------------------------------------------------------
+     * @Function : Hàm loaddata
+     * @Author : Author : Phạm Tuấn Dũng
+     * @Date : 31/07/2021
+     */
     loadData() {
       var vm = this;
       // console.log(this);
@@ -302,6 +322,11 @@ export default {
           console.log(res);
         });
     },
+    /** -----------------------------------------------------------------------
+     * @Function : Tick vào checkbox ứng với mã nhân viên tương ứng. Mục đich : Xóa nhân viên theo id
+     * @Author : Author : Phạm Tuấn Dũng
+     * @Date : 31/07/2021
+     */
     selectcheckBox(id) {
       if (this.checkedBoxs.includes(id)) {
         this.checkedBoxs = this.checkedBoxs.filter((e) => e !== id);
@@ -313,6 +338,11 @@ export default {
         this.showDeleteButton();
       }
     },
+    /** -----------------------------------------------------------------------
+     * @evetn : Sự kiện ẩn / hiện nút Delete tương ứng khi tick vào checkbox 
+     * @Author : Author : Phạm Tuấn Dũng
+     * @Date : 31/07/2021
+     */
     showDeleteButton() {
       this.isShowDeleteButton = true;
     },
@@ -335,6 +365,11 @@ export default {
       }
       return dob;
     },
+    /** -----------------------------------------------------------------------
+     * @Format : Format dữ liệu ngày sinh thành dạng yyyy-mm-dd .Mục đích : Để trả về đúng định dạnh khi hiển thị trong Form
+     * @Author : Author : Phạm Tuấn Dũng
+     * @Date : 31/07/2021
+     */
     formatDateToValue(dateInput) {
       let dob = null;
       if (dateInput != null) {
@@ -394,6 +429,13 @@ export default {
       }
       return wStatusStr;
     },
+    changeCurrentPage(newCurrentPage){
+      
+       this.currentPage = newCurrentPage;
+    },
+    changePagingSize(newPagingSize) {
+      this.pagingSize = newPagingSize;
+    }
   },
 };
 </script>

@@ -1,7 +1,8 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MISA.CUKCUK.API.Models;
+using MISA.Core.Entities;
+using MISA.Core.Interfaces.Services;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace MISA.CUKCUK.API.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
+        ICustomerService _customerService;
+        public CustomersController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+
+        }
         // GET, POST, PUT, DELETE
         /// <summary>
         /// Lấy thông tin tất cả các khách hàng 
@@ -28,6 +35,7 @@ namespace MISA.CUKCUK.API.Controllers
         {
             try
             {
+
                 // Truy cập vào Database :
 
                 // 1. Khai báo thông tin database :
@@ -129,83 +137,17 @@ namespace MISA.CUKCUK.API.Controllers
         [HttpPost]
         public IActionResult InsertCustomer(Customer customer)
         {
-
             try
             {
-                // Kiểm tra thông tin của khách hàng đã hợp lệ hay chưa ?
-
-                // 1. Mã khách hàng bắt buộc phải có
-                if (customer.CustomerCode == "" || customer.CustomerCode == null)
-                {
-                    var errorObj = new
-                    {
-                        userMsg = Properties.Resources.EXCEPTION_ERR_NULL_CUSTOMERCODE_MSG,
-                        errorCode = Properties.Resources.ERROR_CODE_400,
-                        moreInfo = @"https://openapi.misa.com.vn/errorcode/misa-001",
-                        traceId = ""
-                    };
-                    return StatusCode(500, errorObj);
-
-                }
-                // 2. Email phải đúng định dạng
-                var emailFormat = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-                var isMatch = Regex.IsMatch(emailFormat, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-                if (isMatch == false)
-                {
-                    var errorObj = new
-                    {
-                        userMsg = Properties.Resources.EXCEPTION_ERR_EMAIL_MSG,
-                        errorCode = Properties.Resources.ERROR_CODE_400,
-                        moreInfo = @"https://openapi.misa.com.vn/errorcode/misa-001",
-                        traceId = ""
-                    };
-                }
-
-                // Truy cập vào Database :
-                customer.CustomerId = Guid.NewGuid();
-                // 1. Khai báo thông tin database :
-                var connectionString = "Host = 47.241.69.179;" +
-                     "Database = MISA.CukCuk_Demo_NVMANH;" +
-                     "User id = dev;" +
-                     "Password = 12345678;";
-
-                // 2. Khởi tạo đối tượng kết nói với Database :
-                IDbConnection dbConnection = new MySqlConnection(connectionString);
-                // Khai báo DynamicParam : 
-                var dynamicParam = new DynamicParameters();
-                // 3. Thêm dữ liệu vào trong database :
-                var columnsName = string.Empty;
-                var columnsParam = string.Empty;
-
-                // Đọc từng property của object : 
-                var propertise = customer.GetType().GetProperties();
-                // Duyệt từng property của object :
-                foreach (var prop in propertise)
-                {
-                    // Lấy tên prop : 
-                    var propName = prop.Name;
-                    // Lấy value của prop : 
-                    var propValue = prop.GetValue(customer);
-                    // Lấy kiểu dữ liệu của prop : 
-                    var propType = prop.PropertyType;
-                    // Thêm param tương ứng với mỗi property của đối tượng : 
-                    dynamicParam.Add($"{propName}", propValue);
-                    columnsName += $"{propName},";
-                    columnsParam += $"@{propName},";
-                }
-                columnsName = columnsName.Remove(columnsName.Length - 1, 1);
-                columnsParam = columnsParam.Remove(columnsParam.Length - 1, 1);
-
-                var sqlCommand = $"INSERT INTO Customer({columnsName}) VALUES ({columnsParam})";
-                var rowEffects = dbConnection.Execute(sqlCommand, param: dynamicParam);
                 // 4. Trả về cho client
-                if (rowEffects > 0)
+                var serviceResult = _customerService.Add(customer);
+                if (serviceResult.IsValid == true)
                 {
-                    return StatusCode(201, rowEffects);
+                    return StatusCode(201, serviceResult.Data);
                 }
                 else
                 {
-                    return StatusCode(204);
+                    return BadRequest(204);
                 }
             }
             catch (Exception ex)

@@ -3,7 +3,7 @@
     <label v-if="labelText"></label>
     <input
       v-bind:id="inputId"
-      v-bind:class="inputClass"
+      v-bind:class="[inputClass,{'hasError': isBorderRed}]"
       v-bind:type="inputType"
       v-bind:placeholder="inputPlacehoder"
       v-bind:value="inputValue"
@@ -22,44 +22,14 @@ export default {
     inputClass: String,
     inputType: String,
     inputPlacehoder: String,
-    // dataType: String,
     inputValue: String,
     inputId: String,
+    isBorderRed: Boolean,
     inputRequied: {
       type: Boolean,
       default: false,
     },
   },
-
-// data() {
-//     return {
-//       isInvalid: false,
-//     };
-//   },
-//   methods: {
-//     onBlurDoValidate(inputValue) {
-//       let vm = this;
-//       console.log("currentInputValue", inputValue);
-//       if( !inputValue){
-//         vm.isInvalid= true;
-//       }else{
-//         vm.isInvalid= false;
-//       }
-//       eventBus2.$emit('invalidInput');
-//       //Goi ham validate
-//       // eventBus2.$emit("validateData", [inputValue, vm.dataType]);
-
-//       // Hiển thị hoặc ẩn thông báo nếu có hoa không có lỗi
-//       // vm.isInvalid = true;
-//     },
-//     created() {
-//       let vm= this;
-//       eventBus2.$on('validateFormInput' ,()=>{
-//         vm.onBlurDoValidate();
-//         console.log("got command")  
-//       })
-//     },
-//   },
 };
 </script>
 
@@ -81,9 +51,11 @@ input:focus {
 }
 
 input.input-search {
-  font-family: GoogleSans-Italic;
+  font-family: GoogleSans-Regular;
 }
-
+input.hasError{
+  border-color: #FF4747;
+}
 select.chondi {
   width: 325px;
   height: 40px;
