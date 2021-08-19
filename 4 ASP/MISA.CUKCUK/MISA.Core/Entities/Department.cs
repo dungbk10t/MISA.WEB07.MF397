@@ -10,7 +10,7 @@ namespace MISA.Core.Entities
     {
         #region Property
         /// <summary>
-        /// Khóa chính phòng ban
+        /// Id phòng ban
         /// </summary>
         public Guid departmentId { get; set; }
         /// <summary>
@@ -21,8 +21,11 @@ namespace MISA.Core.Entities
         /// Tên phòng ban
         /// </summary>
         public string departmentName { get; set; }
+        /// <summary>
+        /// Mô tả
+        /// </summary>
+        public string description { get; set; }
 
-        public string Decription { get; set; }
         #endregion
     }
 }

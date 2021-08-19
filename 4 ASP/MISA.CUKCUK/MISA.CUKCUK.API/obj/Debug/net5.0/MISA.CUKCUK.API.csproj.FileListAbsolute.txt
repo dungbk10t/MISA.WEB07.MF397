@@ -68,3 +68,7 @@ C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.C
 C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.CUKCUK.API\bin\Debug\net5.0\MISA.Infrastrure.dll
 C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.CUKCUK.API\bin\Debug\net5.0\MISA.Core.pdb
 C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.CUKCUK.API\bin\Debug\net5.0\MISA.Infrastrure.pdb
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.CUKCUK.API\bin\Debug\net5.0\MISA.Core.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.CUKCUK.API\bin\Debug\net5.0\MISA.Infrastrure.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.CUKCUK.API\bin\Debug\net5.0\MISA.Core.pdb
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.CUKCUK.API\bin\Debug\net5.0\MISA.Infrastrure.pdb

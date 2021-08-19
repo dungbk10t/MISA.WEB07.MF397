@@ -8,76 +8,74 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MISA.Core.Responses;
+using Microsoft.Extensions.Configuration;
 
 namespace MISA.Infrastrure.Repository
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
     {
-        public int Add(Customer customer)
+        //public CustomerRepository(IConfiguration configuration):base(configuration)
+        //{
+
+        //}
+        #region GetByFilter Method : Phương thức lấy và lọc dữ liệu khách hàng (Phương thức riêng)
+        public FilterResponse GetByFilter(int pageSize, int pageNumber, string filterString, Guid? customerGroupId)
         {
-            // Khởi tạo Id mới cho đối tượng : 
-            customer.CustomerId = Guid.NewGuid();
-            // 1. Khai báo thông tin database :
-            var connectionString = "Host = 47.241.69.179;" +
-                 "Database = MISA.CukCuk_Demo_NVMANH;" +
-                 "User id = dev;" +
-                 "Password = 12345678;";
+            var sqlSelectCount = "SELECT COUNT(*) FROM Customer c";
+            var sqlQuery = $"SELECT c.*, cg.CustomerGroupName, CASE " +
+                           $"WHEN c.Gender = 0 THEN 'Nữ' " +
+                           $"WHEN c.Gender = 1 THEN 'Nam' " +
+                           $"ELSE 'Không xác định' " +
+                           $"END as GenderName" +
+                           $"FROM Customer c LEFT JOIN CustomerGroup cg ON cg.CustomerGroupId=c.CustomerGroupId";
+            DynamicParameters parameters = new DynamicParameters();
 
-            // 2. Khởi tạo đối tượng kết nói với Database :
-            IDbConnection dbConnection = new MySqlConnection(connectionString);
-            // Khai báo DynamicParam : 
-            var dynamicParam = new DynamicParameters();
-            // 3. Thêm dữ liệu vào trong database :
-            var columnsName = string.Empty;
-            var columnsParam = string.Empty;
+            parameters.Add("@pageSize", pageSize);
+            parameters.Add("@pageStart", pageNumber * pageSize);
+            if (filterString == null) filterString = "";
+            var sqlQueryWhere = "WHERE ( UPPER(c.FullName) LIKE CONCAT('%',@filter,'%') " +
+                            "OR UPPTER(c.CustomerCode) LIKE CONCAT('%',@filter,'%') " +
+                            "OR c.PhoneNumber LIKE CONCAT('%',@filter,'%') )";
+            parameters.Add("@filter", filterString.ToUpper());
 
-            // Đọc từng property của object : 
-            var propertise = customer.GetType().GetProperties();
-            // Duyệt từng property của object :
-            foreach (var prop in propertise)
+            // Lọc theo id nhóm khách hàng
+            if (customerGroupId != null)
             {
-                // Lấy tên prop : 
-                var propName = prop.Name;
-                // Lấy value của prop : 
-                var propValue = prop.GetValue(customer);
-                // Lấy kiểu dữ liệu của prop : 
-                var propType = prop.PropertyType;
-                // Thêm param tương ứng với mỗi property của đối tượng : 
-                dynamicParam.Add($"{propName}", propValue);
-                columnsName += $"{propName},";
-                columnsParam += $"@{propName},";
+                sqlQueryWhere += "AND c.CustomerGroupId=@CustomerGroupId ";
+                parameters.Add("@CustomerGroupId", customerGroupId);
             }
-            columnsName = columnsName.Remove(columnsName.Length - 1, 1);
-            columnsParam = columnsParam.Remove(columnsParam.Length - 1, 1);
+            sqlQuery += sqlQueryWhere;
+            sqlSelectCount += sqlQueryWhere;
 
-            var sqlCommand = $"INSERT INTO Customer({columnsName}) VALUES ({columnsParam})";
-            var rowEffects = dbConnection.Execute(sqlCommand, param: dynamicParam);
-            return rowEffects;
-        }
+            // Sắp xếp theo chiều giảm dần mã khách hàng
+            sqlQuery += "ORDER BY c.CustomerCode DESC";
 
-        public int Delete(Guid customerId)
-        {
-            throw new NotImplementedException(); 
-        }
+            // Phân trang cho kết quả truy vấn
+            sqlQuery += (pageSize > 0) ? "LIMIT @pageStart, @pageSize;" : "";
+            sqlSelectCount += "ORDER BY c.CustomerId";
+            // Thực hiện truy vấn dữ liệu
+            var customers = _dbConnection.Query<object>(sqlQuery, param: parameters);
 
-        public List<Customer> Get()
-        {
-            throw new NotImplementedException();
-        }
+            if (customers == null)
+            {
+                return new FilterResponse
+                {
+                    TotalRecord = 0,
+                    TotalPage = 0,
+                    Data = null
+                };
+            }
 
-        public Customer GetById(Guid customerId)
-        {
-            throw new NotImplementedException();
+            var totalRecord = _dbConnection.QueryFirstOrDefault<int>(sqlSelectCount, param: parameters);
+            var totalPage = (int)(totalRecord / pageSize) + ((totalRecord % pageSize != 0) ? 1 : 0);
+            return new FilterResponse
+            {
+                TotalRecord = totalRecord,
+                TotalPage = totalPage,
+                Data = (List<object>)customers
+            };
         }
-
-        public int Update(Customer customer, Guid customerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Update(Customer customer)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }

@@ -61,6 +61,51 @@ namespace MISA.CUKCUK.API.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thêm mới thành công !.
+        /// </summary>
+        public static string ADD_SUCCESS_MSG {
+            get {
+                return ResourceManager.GetString("ADD_SUCCESS_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dữ liệu được gửi lên chưa đúng định dạng !.
+        /// </summary>
+        public static string BAD_REQUEST_MSG {
+            get {
+                return ResourceManager.GetString("BAD_REQUEST_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Host = 47.241.69.179;Database = MISA.CukCuk_Demo_NVMANH;User id = dev;Password = 12345678;.
+        /// </summary>
+        public static string connectionString {
+            get {
+                return ResourceManager.GetString("connectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đã xóa thành công !.
+        /// </summary>
+        public static string DELETE_SUCCESS_MSG {
+            get {
+                return ResourceManager.GetString("DELETE_SUCCESS_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Truy vấn SQL không thành công !.
+        /// </summary>
+        public static string ERR_SQL_MSG {
+            get {
+                return ResourceManager.GetString("ERR_SQL_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 200.
         /// </summary>
         public static string ERROR_CODE_200 {
@@ -117,9 +162,9 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 500.
         /// </summary>
-        public static string ERROR_CODE_500 {
+        public static string CODE_500 {
             get {
-                return ResourceManager.GetString("ERROR_CODE_500", resourceCulture);
+                return ResourceManager.GetString("CODE_500", resourceCulture);
             }
         }
         
@@ -171,9 +216,9 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Có lỗi xảy ra! vui lòng liên hệ với MISA..
         /// </summary>
-        public static string EXCEPTION_ERR_MSG_500 {
+        public static string EXCEPTION_ERR_MSG {
             get {
-                return ResourceManager.GetString("EXCEPTION_ERR_MSG_500", resourceCulture);
+                return ResourceManager.GetString("EXCEPTION_ERR_MSG", resourceCulture);
             }
         }
         
@@ -210,6 +255,24 @@ namespace MISA.CUKCUK.API.Properties {
         public static string EXCEPTION_ERR_NULL_POSITIONCODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_NULL_POSITIONCODE_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không có dữ liệu !.
+        /// </summary>
+        public static string NULLDATA_MSG {
+            get {
+                return ResourceManager.GetString("NULLDATA_MSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cập nhật thành công !.
+        /// </summary>
+        public static string UPDATE_SUCCESS_MSG {
+            get {
+                return ResourceManager.GetString("UPDATE_SUCCESS_MSG", resourceCulture);
             }
         }
     }

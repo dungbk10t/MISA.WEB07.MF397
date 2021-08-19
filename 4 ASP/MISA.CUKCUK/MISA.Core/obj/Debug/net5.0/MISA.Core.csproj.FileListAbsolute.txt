@@ -12,3 +12,17 @@ C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.C
 C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.pdb
 C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.Exceptions.Resources.resources
 C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397-master\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.GenerateResource.cache
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\bin\Debug\net5.0\MISA.Core.deps.json
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\bin\Debug\net5.0\MISA.Core.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\bin\Debug\net5.0\ref\MISA.Core.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\bin\Debug\net5.0\MISA.Core.pdb
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.AssemblyReference.cache
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.Exceptions.Resources.resources
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.GenerateResource.cache
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.AssemblyInfoInputs.cache
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.AssemblyInfo.cs
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.csproj.CoreCompileInputs.cache
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\ref\MISA.Core.dll
+C:\Users\dungb\OneDrive\Desktop\MISA.WEB07.MF397\4 ASP\MISA.CUKCUK\MISA.Core\obj\Debug\net5.0\MISA.Core.pdb

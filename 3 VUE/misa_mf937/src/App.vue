@@ -138,25 +138,6 @@ export default {
   // CÁC PHƯƠNG THỨC 
   methods: {
     
-    // showAddForm() {
-    //   this.isShowAddDialog = true;
-    //   this.formMode = 1;
-    //   this.employeeId = "";
-    //   this.reOpen = !this.reOpen;
-    // },
-    // hideForm() {
-    //   this.isShowAddDialog = false;
-    // },
-    // showEditForm1(id) {
-    //   this.isShowAddDialog = true;
-    //   this.formMode = 0;
-    //   this.employeeId = id;
-    //   this.reOpen = !this.reOpen;
-    // },
-    /**
-     * Popup thông báo xác nhận xóa nhân viên 
-     * Created : Phạm Tuấn Dũng (13/2/2021)
-     */
     showDeletePopup() {
       this.isShowPopup = true;
       this.popupContent = "Bạn có chắc muốn xóa nhân viên này không ?" ;

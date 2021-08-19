@@ -10,70 +10,39 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Services
 {
-    public class CustomerService : ICustomerService
+    public class CustomerService : BaseService<Customer>, ICustomerService
     {
-        ServiceResult _serviceResult;
+
+        #region Fields
         ICustomerRepository _customerRepository;
+        ServiceResult _serviceResult;
+        #endregion
 
-        public object Properties { get; private set; }
-
-        public CustomerService(ICustomerGroupRepository customerRepository)
+        #region Constructors
+        public  CustomerService(ICustomerRepository customerRepository) : base(customerRepository)
         {
-            _serviceResult = new ServiceResult();
             _customerRepository = customerRepository;
-        } 
-        public CustomerService() 
-        {
             _serviceResult = new ServiceResult();
         }
-        public ServiceResult Add(Customer customer)
-        {
-            // Xử ký nghiệp vụ :
+        #endregion
 
-            // Kiểm tra thông tin của khách hàng đã hợp lệ hay chưa ?
-            // 1. Mã khách hàng bắt buộc phải có
-            if (customer.CustomerCode == "" || customer.CustomerCode == null)
-            {
-                var errorObj = new
-                {
-                    userMsg = Exceptions.Resources.EXCEPTION_ERR_NULL_CUSTOMERCODE_MSG,
-                    errorCode = Exceptions.Resources.ERROR_CODE_400,
-                    moreInfo = @"https://openapi.misa.com.vn/errorcode/misa-001",
-                    traceId = ""
-                };
-                _serviceResult.IsValid = false; 
-                _serviceResult.Data = errorObj;
-                return _serviceResult;
-            }
-            // 2. Email phải đúng định dạng
-            var emailFormat = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-            var isMatch = Regex.IsMatch(emailFormat, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-            if (isMatch == false)
-            {
-                var errorObj = new
-                {
-                    userMsg = Exceptions.Resources.EXCEPTION_ERR_EMAIL_MSG,
-                    errorCode = Exceptions.Resources.ERROR_CODE_400,
-                    moreInfo = @"https://openapi.misa.com.vn/errorcode/misa-001",
-                    traceId = ""
-                };
-                _serviceResult.IsValid = false;
-                _serviceResult.Data = errorObj;
-                return _serviceResult;
-            }
-            _serviceResult.Data = _customerRepository.Add(customer);
+        #region GetbyFilter Method :
+        /// <summary>
+        /// Lấy và lọc dữ liệu
+        /// </summary>
+        /// <param name="pageSize">Số bản ghi trên 1 trang</param>
+        /// <param name="pageNumber">Số trang</param>
+        /// <param name="filterString">Chuỗi lọc</param>
+        /// <param name="customerGroupId">Id của nhóm khách hàng</param>
+        /// <returns></returns>
+        /// CreateBy : Phạm Tuấn Dũng (17/08/2021)
+        public ServiceResult GetByFilter(int pageSize, int pageNumber, string filterString, Guid? customerGroupId)
+        {
+            _serviceResult.Data = _customerRepository.GetByFilter(pageSize, pageNumber, filterString, customerGroupId);
+            _serviceResult.IsValid = _serviceResult.Data != null;
             return _serviceResult;
         }
-        
-
-        public ServiceResult Update(Customer customer, Guid customerId)
-        {
-            // Xử ký nghiệp vụ
-
-            // Tương tác kết nối với Database :
-            _serviceResult.Data = _customerRepository.Update(customer, customerId);
-            return _serviceResult; 
-        }
+        #endregion
     }
 }
     

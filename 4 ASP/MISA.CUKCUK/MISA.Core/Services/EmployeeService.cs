@@ -9,37 +9,36 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
+
+        #region Fields
         IEmployeeRepository _employeeRepository;
-        ServiceResult _serviceResult;
-        public EmployeeService(IEmployeeGroupRepository employeeRepository)
+        ServiceResult _serviceResult2;
+        #endregion
+
+        #region Constructors
+        public EmployeeService(IEmployeeRepository employeeRepository) : base(employeeRepository)
         {
             _employeeRepository = employeeRepository;
+            _serviceResult2 = new ServiceResult();
         }
-        
-        public EmployeeService()
-        {
-            _serviceResult = new ServiceResult();
+        #endregion
 
-        }
-        public ServiceResult Add(Employee employee)
+        #region GET methods of Employee
+        public ServiceResult GetByFilter(int pageSize, int pageNumber, string filterString, Guid? departmentId, Guid? positionId)
         {
-            // Xử ký nghiệp vụ
-
-            // Tương tác kết nối với Database :
-            
-            _serviceResult.Data = _employeeRepository.Add(employee);
+            _serviceResult.Data = _employeeRepository.GetByFilter(pageSize, pageNumber, filterString, departmentId, positionId);
+            _serviceResult.IsValid = _serviceResult.Data != null;
             return _serviceResult;
         }
 
-        public ServiceResult Update(Employee employee, Guid employeeId)
+        public ServiceResult GetNewEmployeeCode()
         {
-            // Xử ký nghiệp vụ
-
-            // Tương tác kết nối với Database :
-            _serviceResult.Data = _employeeRepository.Update(employee, employeeId);
+            _serviceResult.Data = _employeeRepository.GetNewCode();
+            _serviceResult.IsValid = _serviceResult.Data != null;
             return _serviceResult;
         }
+        #endregion
     }
 }

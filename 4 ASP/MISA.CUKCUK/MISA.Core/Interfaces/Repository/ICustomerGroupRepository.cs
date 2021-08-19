@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces.Repository
 {
-    public interface ICustomerGroupRepository
+    public interface ICustomerGroupRepository : IBaseRepository<CustomerGroup>
     {
        
-    } 
+    }
 }

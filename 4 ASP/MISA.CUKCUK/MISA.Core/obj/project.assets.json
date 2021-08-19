@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj",
+      "projectUniqueName": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj",
       "projectName": "MISA.Core",
-      "projectPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj",
+      "projectPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj",
       "packagesPath": "C:\\Users\\dungb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\obj\\",
+      "outputPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dungb\\AppData\\Roaming\\NuGet\\NuGet.Config",

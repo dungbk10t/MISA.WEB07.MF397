@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MISA.Core.MISAAttribute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,11 +31,11 @@ namespace MISA.Core.Entities
         /// </summary>
         public string FullName { get; set; }
         /// <summary>
-        /// Giới tính
+        /// Giới tính (Kiểu int)
         /// </summary>
         public int? Gender { get; set; }
         /// <summary>
-        /// Địa chỉ
+        /// Giới tính (Kiểu string)
         /// </summary>
         public string Address { get; set; }
         /// <summary>
@@ -44,11 +45,22 @@ namespace MISA.Core.Entities
         /// <summary>
         /// Email
         /// </summary>
+        [MISANotMap]
+        public string GenderName { get; set; }
+        /// <summary>
+        /// Địa chỉ
+        /// </summary>
+        [MISANotMap]
         public string Email { get; set; }
         /// <summary>
         /// Số điện thoại
         /// </summary>
         public string PhoneNumber { get; set; }
+        /// <summary>
+        /// Id nhóm khách hàng
+        /// </summary>
+        public Guid? CustomerGroupId { get; set; }
+        
 
         #endregion
     }

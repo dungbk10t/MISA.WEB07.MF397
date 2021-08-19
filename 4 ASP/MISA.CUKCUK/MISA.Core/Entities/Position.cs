@@ -13,14 +13,16 @@ namespace MISA.Core.Entities
         /// </summary>
         public Guid positionId { get; set; }
         /// <summary>
-        /// Mã phòng ban 
+        /// Mã vị trí/ chức vụ
         /// </summary>
         public string positionCode { get; set; }
         /// <summary>
-        /// Tên phòng ban
+        /// Tên vị trí/ chức vụ
         /// </summary>
         public string positionName { get; set; }
-
+        /// <summary>
+        /// Mô tả
+        /// </summary>
         public string Decription { get; set; }
     }
 }

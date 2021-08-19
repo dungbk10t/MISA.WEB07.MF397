@@ -202,7 +202,7 @@ export default {
       mode: 0, // 2 chế độ 0 : thêm mới, 1 : update
       isReOpenForm: false, // 
       
-      totalRecord: 156, // Tổng số bản ghi khởi tạo bằng 0
+      totalRecord: 180, // Tổng số bản ghi khởi tạo
       pagingSize: 10,  // Tổng số nhân viên trên 1 bản ghi. Khởi tạo giá trị bắt đầu bằng 10 
       currentPage: 1, // Bản ghi hiện tại
 
@@ -429,8 +429,8 @@ export default {
       }
       return wStatusStr;
     },
+    //
     changeCurrentPage(newCurrentPage){
-      
        this.currentPage = newCurrentPage;
     },
     changePagingSize(newPagingSize) {

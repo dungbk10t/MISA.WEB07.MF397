@@ -7,21 +7,26 @@ using System.Threading.Tasks;
 
 namespace MISA.Core.Interfaces.Services
 {
-    public interface IEmployeeService
+    public interface IEmployeeService: IBaseService<Employee>
     {
+
         /// <summary>
-        /// Thêm mới khách hàng 
+        /// Lấy và lọc dữ liệu nhân viên
         /// </summary>
-        /// <param name="customer">Thông tin khách hàng</param>
+        /// <param name="pageSize">Kích thước trang - Số bản ghi trên 1 trang</param>
+        /// <param name="pageNumber">Số trang</param>
+        /// <param name="filterString">Dữ liệu lọc</param>
+        /// <param name="departmentId">Mã phòng ban</param>
         /// <returns>ServiceResult -  kết quả xử lý nghiệp vụ</returns>
-        /// CreatedBy : Phạm Tuấn Dũng (13/08/2021) 
-        ServiceResult Add(Employee employee);
+        /// CreatedBy : Phạm Tuấn Dũng (16/08/2021) 
+        ServiceResult GetByFilter(int pageSize, int pageNumber, string filterString, Guid? departmentId, Guid? positionId);
+
         /// <summary>
-        /// Cập nhật khách hàng 
+        /// Lấy mã nhân viên mới
         /// </summary>
-        /// <param name="customer">Thông tin khách hàng</param>
         /// <returns>ServiceResult -  kết quả xử lý nghiệp vụ</returns>
-        /// CreatedBy : Phạm Tuấn Dũng (13/08/2021) 
-        ServiceResult Update(Employee employee, Guid employeeId);
+        /// CreatedBy : Phạm Tuấn Dũng (16/08/2021) 
+        ServiceResult GetNewEmployeeCode();
+
     }
 }

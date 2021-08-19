@@ -298,7 +298,7 @@ export default {
       between: between(20, 30),
     },
   },
-  // CÁC THUỘC TÍNH 
+  // CÁC THUỘC TÍNH
   props: {
     isHide: {
       type: Boolean,
@@ -328,10 +328,10 @@ export default {
     });
     this.getNewEmployeeCode();
   },
-  // CÁC PHƯƠNG THỨC 
+  // CÁC PHƯƠNG THỨC
   methods: {
     /** --------------------------------------------------------
-     * @Function:Hàm format định dạng lương 
+     * @Function:Hàm format định dạng lương
      * @Athor: Phạm Tuấn Dũng
      * @Date: 23.07.2021
      */
@@ -415,13 +415,12 @@ export default {
             console.log(res);
           });
       }
-      console.log(tmpEmployee);
     },
     /** --------------------------------------------------------
-       * @Event: Nhấn nút "Save" để cập nhật/thêm mới dữ liệu form
-       * @Athor: Phạm Tuấn Dũng
-       * @Date: 01.08.2021
-       */
+     * @Event: Nhấn nút "Save" để cập nhật/thêm mới dữ liệu form
+     * @Athor: Phạm Tuấn Dũng
+     * @Date: 01.08.2021
+     */
     btnSaveOnclick() {
       if (this.mode == 0) {
         console.log("btnsave 0");
@@ -432,7 +431,7 @@ export default {
       }
     },
     /**
-     * Hàm validate dữ liệu mã nhân viện 
+     * Hàm validate dữ liệu mã nhân viện
      * Created by : Phạm Tuấn Dũng (13/08/2021)
      */
     validateEmployeeCode() {
@@ -444,13 +443,12 @@ export default {
         eventBus2.$emit("showTooltipInputRequied");
         this.statusValide_EmployeeCode = true;
         console.log("INVALID EMPLOYEE_CODE !!");
-      }
-      else {
+      } else {
         this.statusValide_EmployeeCode = false;
       }
     },
     /**
-     * Hàm validate dữ liệu họ tên 
+     * Hàm validate dữ liệu họ tên
      * Created by : Phạm Tuấn Dũng (13/08/2021)
      */
     validateFullName() {
@@ -459,12 +457,11 @@ export default {
         eventBus2.$emit("showTooltipInputRequied");
         this.statusValide_FullName = true;
         console.log("INVALID FULL_NAME !!");
+      } else {
+        this.statusValide_FullName = false;
       }
-      else {
-         this.statusValide_FullName = false;
-      }  
     },
-     /**
+    /**
      * Hàm validate dữ liệu họ tên đầy đủ
      * Created by : Phạm Tuấn Dũng (13/08/2021)
      */
@@ -477,11 +474,9 @@ export default {
         eventBus2.$emit("showTooltipInputRequied");
         this.statusValide_IndentityNumber = true;
         console.log("INVALID INDETITY NUMBER !!");
-      }
-      else {
+      } else {
         this.statusValide_IndentityNumber = false;
       }
-      
     },
     /**
      * Hàm validate dữ liệu email
@@ -498,8 +493,7 @@ export default {
         eventBus2.$emit("showTooltipInputRequied2");
         this.statusValide_Email = true;
         console.log("INVALID EMAIL !!");
-      }
-      else {
+      } else {
         this.statusValide_Email = false;
       }
     },
@@ -521,14 +515,12 @@ export default {
         eventBus2.$emit("showTooltipInputRequied2");
         this.statusValide_PhoneNumber = true;
         console.log("INVALID PHONE NUMBER 222 !!");
-      }
-      else 
-      {
+      } else {
         this.statusValide_PhoneNumber = false;
       }
     },
     /**
-     * Hàm format dữ liệu sinh nhật về chuẩn yyyy-mm-dd. Mục đích :  Hiển thị lên form 
+     * Hàm format dữ liệu sinh nhật về chuẩn yyyy-mm-dd. Mục đích :  Hiển thị lên form
      * Created by : Phạm Tuấn Dũng (13/08/2021)
      */
     formatDateToValue(dateInput) {
@@ -545,8 +537,8 @@ export default {
       return dob;
     },
     /**
-     * Hàm reset dữ liệu nhân viên với các trường (mã nhân viên, mã phòng ban, giới tính, tình trạng công việc). 
-     * Mục đích :  
+     * Hàm reset dữ liệu nhân viên với các trường (mã nhân viên, mã phòng ban, giới tính, tình trạng công việc).
+     * Mục đích :
      * Created by : Phạm Tuấn Dũng (13/08/2021)
      */
     resetEntityInfo() {
@@ -559,7 +551,7 @@ export default {
       vm.employee = newEmployee;
     },
     /**
-     * Hàm format lại dữ liệu tiền lương lên form. Ví dụ 1000000 -> 1.000.000 
+     * Hàm format lại dữ liệu tiền lương lên form. Ví dụ 1000000 -> 1.000.000
      * Created by : Phạm Tuấn Dũng (13/08/2021)
      */
     formatSalary() {
@@ -572,9 +564,9 @@ export default {
   // DỮ LIỆU KHỞI TẠO
   data() {
     return {
-      employee: {}, // Object employee để lưu thông tin 1 nhân viên 
+      employee: {}, // Object employee để lưu thông tin 1 nhân viên
       newEmployeeCode: "", // Mã nhân viên mới
-     
+
       // Trang thái validate. Mục đích : input form border xanh hoặc đỏ tương ứng với các trại thái đúng / sai
       statusValide_EmployeeCode: false,
       statusValide_FullName: false,
@@ -586,7 +578,7 @@ export default {
   // HÀM WATCH
   watch: {
     /**
-     * Hàm cập nhật dữ liệu khi gọi lại form 
+     * Hàm cập nhật dữ liệu khi gọi lại form
      */
     isReOpenForm: function () {
       let vm = this;
@@ -594,10 +586,10 @@ export default {
       // Cập nhật lại trạng thái validate là false (tức chưa validate) khi mở lại form
       vm.statusValide_EmployeeCode = false;
       vm.statusValide_FullName = false;
-      vm.statusValide_IndentityNumber = false; 
-      vm.statusValide_Email =  false;
+      vm.statusValide_IndentityNumber = false;
+      vm.statusValide_Email = false;
       vm.statusValide_PhoneNumber = false;
-      
+
       vm.resetEntityInfo();
       if (vm.mode == 1) {
         // Gọi API lấy thông tin chi tiết

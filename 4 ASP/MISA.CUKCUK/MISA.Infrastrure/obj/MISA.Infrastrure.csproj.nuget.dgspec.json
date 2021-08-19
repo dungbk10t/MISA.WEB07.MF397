@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\MISA.Infrastrure.csproj": {}
+    "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\MISA.Infrastrure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj": {
+    "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj",
+        "projectUniqueName": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj",
         "projectName": "MISA.Core",
-        "projectPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj",
+        "projectPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj",
         "packagesPath": "C:\\Users\\dungb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\obj\\",
+        "outputPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dungb\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,14 +58,14 @@
         }
       }
     },
-    "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\MISA.Infrastrure.csproj": {
+    "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\MISA.Infrastrure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\MISA.Infrastrure.csproj",
+        "projectUniqueName": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\MISA.Infrastrure.csproj",
         "projectName": "MISA.Infrastrure",
-        "projectPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\MISA.Infrastrure.csproj",
+        "projectPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\MISA.Infrastrure.csproj",
         "packagesPath": "C:\\Users\\dungb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\obj\\",
+        "outputPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Infrastrure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dungb\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,8 +82,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj": {
-                "projectPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397-master\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj"
+              "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj": {
+                "projectPath": "C:\\Users\\dungb\\OneDrive\\Desktop\\MISA.WEB07.MF397\\4 ASP\\MISA.CUKCUK\\MISA.Core\\MISA.Core.csproj"
               }
             }
           }
@@ -101,6 +101,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.0.90, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "MySqlConnector": {
               "target": "Package",
