@@ -22,7 +22,7 @@ namespace MISA.CUKCUK.API.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MISA.CUKCUK.API.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MISA.CUKCUK.API.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace MISA.CUKCUK.API.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,63 +61,18 @@ namespace MISA.CUKCUK.API.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thêm mới thành công !.
-        /// </summary>
-        public static string ADD_SUCCESS_MSG {
-            get {
-                return ResourceManager.GetString("ADD_SUCCESS_MSG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dữ liệu được gửi lên chưa đúng định dạng !.
-        /// </summary>
-        public static string BAD_REQUEST_MSG {
-            get {
-                return ResourceManager.GetString("BAD_REQUEST_MSG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Host = 47.241.69.179;Database = MISA.CukCuk_Demo_NVMANH;User id = dev;Password = 12345678;.
-        /// </summary>
-        public static string connectionString {
-            get {
-                return ResourceManager.GetString("connectionString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Đã xóa thành công !.
-        /// </summary>
-        public static string DELETE_SUCCESS_MSG {
-            get {
-                return ResourceManager.GetString("DELETE_SUCCESS_MSG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Truy vấn SQL không thành công !.
-        /// </summary>
-        public static string ERR_SQL_MSG {
-            get {
-                return ResourceManager.GetString("ERR_SQL_MSG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 200.
         /// </summary>
-        public static string ERROR_CODE_200 {
+        internal static string ERROR_CODE_200 {
             get {
                 return ResourceManager.GetString("ERROR_CODE_200", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 200.
+        ///   Looks up a localized string similar to 201.
         /// </summary>
-        public static string ERROR_CODE_201 {
+        internal static string ERROR_CODE_201 {
             get {
                 return ResourceManager.GetString("ERROR_CODE_201", resourceCulture);
             }
@@ -126,7 +81,7 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 204.
         /// </summary>
-        public static string ERROR_CODE_204 {
+        internal static string ERROR_CODE_204 {
             get {
                 return ResourceManager.GetString("ERROR_CODE_204", resourceCulture);
             }
@@ -135,7 +90,7 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 400.
         /// </summary>
-        public static string ERROR_CODE_400 {
+        internal static string ERROR_CODE_400 {
             get {
                 return ResourceManager.GetString("ERROR_CODE_400", resourceCulture);
             }
@@ -144,7 +99,7 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 401.
         /// </summary>
-        public static string ERROR_CODE_401 {
+        internal static string ERROR_CODE_401 {
             get {
                 return ResourceManager.GetString("ERROR_CODE_401", resourceCulture);
             }
@@ -153,7 +108,7 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 403.
         /// </summary>
-        public static string ERROR_CODE_403 {
+        internal static string ERROR_CODE_403 {
             get {
                 return ResourceManager.GetString("ERROR_CODE_403", resourceCulture);
             }
@@ -162,25 +117,25 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 500.
         /// </summary>
-        public static string CODE_500 {
+        internal static string ERROR_CODE_500 {
             get {
-                return ResourceManager.GetString("CODE_500", resourceCulture);
+                return ResourceManager.GetString("ERROR_CODE_500", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Mã khách hàng bị trùng !!.
         /// </summary>
-        public static string EXCEPTION_ERR_DULICATE_CUSTOMERCODE_MSG {
+        internal static string EXCEPTION_ERR_DULICATE_CUSTOMERCODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_DULICATE_CUSTOMERCODE_MSG", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã phòng ban bị trùng.
+        ///   Looks up a localized string similar to Mã phòng ban bị trùng !!.
         /// </summary>
-        public static string EXCEPTION_ERR_DULICATE_DEPARTMENTCODE_MSG {
+        internal static string EXCEPTION_ERR_DULICATE_DEPARTMENTCODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_DULICATE_DEPARTMENTCODE_MSG", resourceCulture);
             }
@@ -189,16 +144,16 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Mã nhân viên bị trùng !!.
         /// </summary>
-        public static string EXCEPTION_ERR_DULICATE_EMPLOYEECODE_MSG {
+        internal static string EXCEPTION_ERR_DULICATE_EMPLOYEECODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_DULICATE_EMPLOYEECODE_MSG", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã vị trí bị trùng.
+        ///   Looks up a localized string similar to Mã vị trí bị trùng !!.
         /// </summary>
-        public static string EXCEPTION_ERR_DULICATE_POSITIONCODE_MSG {
+        internal static string EXCEPTION_ERR_DULICATE_POSITIONCODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_DULICATE_POSITIONCODE_MSG", resourceCulture);
             }
@@ -207,7 +162,7 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Email không đúng định dạng !!.
         /// </summary>
-        public static string EXCEPTION_ERR_EMAIL_MSG {
+        internal static string EXCEPTION_ERR_EMAIL_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_EMAIL_MSG", resourceCulture);
             }
@@ -216,16 +171,16 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Có lỗi xảy ra! vui lòng liên hệ với MISA..
         /// </summary>
-        public static string EXCEPTION_ERR_MSG {
+        internal static string EXCEPTION_ERR_MSG_500 {
             get {
-                return ResourceManager.GetString("EXCEPTION_ERR_MSG", resourceCulture);
+                return ResourceManager.GetString("EXCEPTION_ERR_MSG_500", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Mã khách hàng không được phép để trống !!.
         /// </summary>
-        public static string EXCEPTION_ERR_NULL_CUSTOMERCODE_MSG {
+        internal static string EXCEPTION_ERR_NULL_CUSTOMERCODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_NULL_CUSTOMERCODE_MSG", resourceCulture);
             }
@@ -234,7 +189,7 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Mã phòng ban không được phép để trống !!.
         /// </summary>
-        public static string EXCEPTION_ERR_NULL_DEPARTMENTCODE_MSG {
+        internal static string EXCEPTION_ERR_NULL_DEPARTMENTCODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_NULL_DEPARTMENTCODE_MSG", resourceCulture);
             }
@@ -243,7 +198,7 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Mã nhân viên không được phép để trống !!.
         /// </summary>
-        public static string EXCEPTION_ERR_NULL_EMPLOYEECODE_MSG {
+        internal static string EXCEPTION_ERR_NULL_EMPLOYEECODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_NULL_EMPLOYEECODE_MSG", resourceCulture);
             }
@@ -252,27 +207,9 @@ namespace MISA.CUKCUK.API.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Mã vị trí không được phép để trống !!.
         /// </summary>
-        public static string EXCEPTION_ERR_NULL_POSITIONCODE_MSG {
+        internal static string EXCEPTION_ERR_NULL_POSITIONCODE_MSG {
             get {
                 return ResourceManager.GetString("EXCEPTION_ERR_NULL_POSITIONCODE_MSG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Không có dữ liệu !.
-        /// </summary>
-        public static string NULLDATA_MSG {
-            get {
-                return ResourceManager.GetString("NULLDATA_MSG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cập nhật thành công !.
-        /// </summary>
-        public static string UPDATE_SUCCESS_MSG {
-            get {
-                return ResourceManager.GetString("UPDATE_SUCCESS_MSG", resourceCulture);
             }
         }
     }

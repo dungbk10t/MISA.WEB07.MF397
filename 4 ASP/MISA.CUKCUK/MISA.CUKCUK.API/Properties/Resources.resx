@@ -117,23 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ADD_SUCCESS_MSG" xml:space="preserve">
-    <value>Thêm mới thành công !</value>
-  </data>
-  <data name="BAD_REQUEST_MSG" xml:space="preserve">
-    <value>Dữ liệu được gửi lên chưa đúng định dạng !</value>
-  </data>
-  <data name="connectionString" xml:space="preserve">
-    <value>Host = 47.241.69.179;Database = MISA.CukCuk_Demo_NVMANH;User id = dev;Password = 12345678;</value>
-  </data>
-  <data name="DELETE_SUCCESS_MSG" xml:space="preserve">
-    <value>Đã xóa thành công !</value>
-  </data>
   <data name="ERROR_CODE_200" xml:space="preserve">
     <value>200</value>
   </data>
   <data name="ERROR_CODE_201" xml:space="preserve">
-    <value>200</value>
+    <value>201</value>
   </data>
   <data name="ERROR_CODE_204" xml:space="preserve">
     <value>204</value>
@@ -150,20 +138,17 @@
   <data name="ERROR_CODE_500" xml:space="preserve">
     <value>500</value>
   </data>
-  <data name="ERR_SQL_MSG" xml:space="preserve">
-    <value>Truy vấn SQL không thành công !</value>
-  </data>
   <data name="EXCEPTION_ERR_DULICATE_CUSTOMERCODE_MSG" xml:space="preserve">
     <value>Mã khách hàng bị trùng !!</value>
   </data>
   <data name="EXCEPTION_ERR_DULICATE_DEPARTMENTCODE_MSG" xml:space="preserve">
-    <value>Mã phòng ban bị trùng</value>
+    <value>Mã phòng ban bị trùng !!</value>
   </data>
   <data name="EXCEPTION_ERR_DULICATE_EMPLOYEECODE_MSG" xml:space="preserve">
     <value>Mã nhân viên bị trùng !!</value>
   </data>
   <data name="EXCEPTION_ERR_DULICATE_POSITIONCODE_MSG" xml:space="preserve">
-    <value>Mã vị trí bị trùng</value>
+    <value>Mã vị trí bị trùng !!</value>
   </data>
   <data name="EXCEPTION_ERR_EMAIL_MSG" xml:space="preserve">
     <value>Email không đúng định dạng !!</value>
@@ -182,11 +167,5 @@
   </data>
   <data name="EXCEPTION_ERR_NULL_POSITIONCODE_MSG" xml:space="preserve">
     <value>Mã vị trí không được phép để trống !!</value>
-  </data>
-  <data name="NULLDATA_MSG" xml:space="preserve">
-    <value>Không có dữ liệu !</value>
-  </data>
-  <data name="UPDATE_SUCCESS_MSG" xml:space="preserve">
-    <value>Cập nhật thành công !</value>
   </data>
 </root>
